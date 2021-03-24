@@ -8,7 +8,7 @@ function SnowMan(props){
         <div className="container">
             <div className="row justify-content-center">
                 <div className="col-md-12">
-                    <center>{props.title}のページ</center>
+                    <center>snowmanのページ</center>
                     <table>
                         <tr>
                             <td>
