@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Artist;
 use App\iwamotoComment;
 
+use Illuminate\Support\Facades\Auth;
+
 class ArtistController extends Controller
 {
     public function index(Request $request)
@@ -57,6 +59,12 @@ class ArtistController extends Controller
         return view('artist.snowman');
     }
 
+     public function iwamototalk()
+    {   
+        return view('artist.iwamotoTalk');
+    }
+
+
     public function snowmanprofile()
     {   
         return view('artist.snowmanprofile');
@@ -71,19 +79,21 @@ class ArtistController extends Controller
         $iwamotoComment = new IwamotoComment;
         $form = $request->all();
 
+        $user = Auth::user()->name;
+        $form['name'] = $user;
         unset($form['_token']);
         
         $iwamotoComment->fill($form);
         $iwamotoComment->save();
 
-        return redirect('snowman/profile');
+        return redirect('snowman/profile/iwamototalk');
 
     }
     public function iwamotoCommentIndex()
     {
         
         $posts = IwamotoComment::all();
-        return view('artist.snowmanprofile', ['iwamotoposts' => $posts]);
+        return view('artist.iwamotoTalk', ['iwamotoposts' => $posts]);
 
     }
 

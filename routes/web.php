@@ -24,10 +24,11 @@ Route::get('/all', 'ArtistController@index')->middleware('auth');
 Route::get('/snowman', 'ArtistController@snowman')->middleware('auth');
 Route::get('/sixtones', 'ArtistController@sixtones')->middleware('auth');
 Route::get('/snowman/profile', 'ArtistController@snowmanprofile')->middleware('auth');
-Route::get('/snowman/profile', 'ArtistController@iwamotoCommentIndex')->middleware('auth');
 Route::post('/snowman/profile', 'ArtistController@iwamotoCommentPost')->middleware('auth');
 Route::get('/snowman/checkit', 'ArtistController@snowmancheckit')->middleware('auth');
 Route::get('/snowman/mustgo', 'ArtistController@snowmanmustgo')->middleware('auth');
+Route::get('/snowman/profile/iwamototalk', 'ArtistController@iwamotoCommentIndex')->middleware('auth');
+
 
 
 Route::get('/home', 'HomeController@index')->name('home');
