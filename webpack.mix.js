@@ -11,8 +11,10 @@ const mix = require('laravel-mix');
  |
  */
 
-mix.react('resources/js/app.js', 'public/js')
-   .sass('resources/sass/app.scss', 'public/css');
+mix.js('resources/js/app.js', 'public/js')
+   .sass('resources/sass/app.scss', 'public/css')
+   .sass('resources/sass/admin.scss','public/css');
+
    // .options({ // 追加
    //       processCssUrls: false, // 追加
    //       postCss: [ tailwindcss('./tailwind.config.js') ], // 追加
