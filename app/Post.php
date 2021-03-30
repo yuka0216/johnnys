@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class IwamotoComment extends Model
+class Post extends Model
 {
     //勝手に変えられてほしくない値は以下を設定
     protected $guarded = array('id');
@@ -14,10 +14,6 @@ class IwamotoComment extends Model
         'comment' => 'required',
     );
 
-    public function allComments()
-    {
-        return $this->hasMany('App\AllComment');
-    }
-   
+    
 
 }

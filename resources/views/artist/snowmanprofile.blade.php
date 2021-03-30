@@ -7,19 +7,19 @@
                 <h3 class="text-center">talk about ...?</h2>
                 <table class="mx-auto">
                     <tr>
-                    <td><a href="/snowman/profile/abetalk"><img class="rounded-full" src="{{ asset('image/abe.jpg') }}" alt=""></a></td>
-                    <td><a href="/snowman/profile/miyadatetalk"><img class="rounded-full" src="{{ asset('image/date.jpg') }}" alt=""></a></td>
-                    <td><a href="/snowman/profile/hukazawatalk"><img class="rounded-full" src="{{ asset('image/hukka.jpg') }}" alt=""></a></td>                        
+                    <td><a href="/snowman/profile/abe"><img class="rounded-full" src="{{ asset('image/abe.jpg') }}" alt=""></a></td>
+                    <td><a href="/snowman/profile/miyadate"><img class="rounded-full" src="{{ asset('image/date.jpg') }}" alt=""></a></td>
+                    <td><a href="/snowman/profile/hukazawa"><img class="rounded-full" src="{{ asset('image/hukka.jpg') }}" alt=""></a></td>                        
                     </tr>
                     <tr>
-                    <td><a href="/snowman/profile/megurotalk"><img class="rounded-full" src="{{ asset('image/meme.jpg') }}" alt=""></a></td>
-                    <td><a href="/snowman/profile/mukaitalk"><img class="rounded-full" src="{{ asset('image/mukai.jpg') }}" alt=""></a></td>
-                    <td><a href="/snowman/profile/raultalk"><img class="rounded-full" src="{{ asset('image/raul.jpg') }}" alt=""></a></td>                        
+                    <td><a href="/snowman/profile/meguro"><img class="rounded-full" src="{{ asset('image/meme.jpg') }}" alt=""></a></td>
+                    <td><a href="/snowman/profile/mukai"><img class="rounded-full" src="{{ asset('image/mukai.jpg') }}" alt=""></a></td>
+                    <td><a href="/snowman/profile/raul"><img class="rounded-full" src="{{ asset('image/raul.jpg') }}" alt=""></a></td>                        
                     </tr>
                     <tr>
-                    <td><a href="/snowman/profile/sakumatalk"><img class="rounded-full" src="{{ asset('image/sakkun.jpg') }}" alt=""></a></td>
-                    <td><a href="/snowman/profile/watanabetalk"><img class="rounded-full" src="{{ asset('image/shoppi.jpg') }}" alt=""></a></td>
-                    <td><a href="/snowman/profile/iwamototalk"><img class="rounded-full" src="{{ asset('image/iwamoto.jpg') }}" alt=""></a></td>                        
+                    <td><a href="/snowman/profile/sakuma"><img class="rounded-full" src="{{ asset('image/sakkun.jpg') }}" alt=""></a></td>
+                    <td><a href="/snowman/profile/watanabe"><img class="rounded-full" src="{{ asset('image/shoppi.jpg') }}" alt=""></a></td>
+                    <td><a href="/snowman/profile/iwamoto"><img class="rounded-full" src="{{ asset('image/iwamoto.jpg') }}" alt=""></a></td>                        
                     </tr>
                 </table>
             </div>
