@@ -5,9 +5,9 @@
     <div class="col-md-9 mx-auto">
         <div class="border">
                 <h4 class="text-center">talk board</h4>
-                <h2 class="text-center">-HIKARU IWAMOTO-</h2>
+                <h2 class="text-center">-{{ $profile->name }}-</h2>
                 <br>
-                <form action="{{ action('ArtistController@iwamotoCommentPost') }}" method="post" enctype="multipart/form-data">
+                <form action="{{ action('ArtistController@post', ['name' => $name]) }}" method="post" enctype="multipart/form-data">
                 @if (count($errors) > 0)
                     <ul>
                         @foreach($errors->all() as $e)
@@ -39,17 +39,17 @@
                     <br>
                 </form>
             </div>
-            <form action="{{ action('ArtistController@iwamotoCommentIndex') }}" method="get">
-            @if (count($iwamotoposts) > 0)
-                @foreach($iwamotoposts as $iwamotopost)
+            <form action="{{ action('ArtistController@postIndex', ['name'=>$name]) }}" method="get">
+            @if (count($posts) > 0)
+                @foreach($posts as $post)
                     <table class="table">
                         <tr><td>
-                        {{ $iwamotopost->name }}<br>
-                        {{ $iwamotopost->comment }}<br>
-                        @if ($iwamotopost->image_path)
-                        <img src="{{ asset('storage/image/' . $iwamotopost->image_path) }}" style="width: 100px"><br>
+                        {{ $post->name }}<br>
+                        {{ $post->comment }}<br>
+                        @if ($post->image_path)
+                        <img src="{{ asset('storage/image/' . $post->image_path) }}" style="width: 100px"><br>
                         @endif
-                        {{ $iwamotopost->created_at }}                        
+                        {{ $post->created_at }}                        
                         </td></tr>
                     </table>
                 @endforeach

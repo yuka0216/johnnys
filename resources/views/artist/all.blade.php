@@ -45,7 +45,7 @@
                                 <tr><th></th><th>名前</th><th>グループ</th><th>誕生日</th><th>血液型</th><th>入所日</th></tr>
                             </thead>
                                 @foreach($artists as $artist)
-                                <tr><td><a href="{{ asset('/snowman/profile/' . $artist->talk_board . 'talk') }}"><img src="{{ asset('image/' . $artist->image_path) }}" class="img-thumbnail" alt="参考画像" width="120" height="120"></td>
+                                <tr><td><a href="{{ asset('/snowman/profile/' . $artist->talk_board ) }}"><img src="{{ asset('image/' . $artist->image_path) }}" class="img-thumbnail" alt="参考画像" width="120" height="120"></td>
                                 <td>{{ $artist->name }}</td><td>{{ $artist->グループ }}</td><td>{{ $artist->誕生日 }}</td><td>{{ $artist->血液型 }}</td><td>{{ $artist->入所日 }}</a></td></tr>
                                 @endforeach
                         </table>

@@ -4,9 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Artist;
-use App\IwamotoComment;
+use App\Post;
 use Illuminate\Support\Facades\Auth;
-use App\AllComment;
 
 class ArtistController extends Controller
 {
@@ -18,7 +17,7 @@ class ArtistController extends Controller
         $cond_birthYear = $request->cond_birthYear;
         $cond_birthMonth = $request->cond_birthMonth;
         $cond_birthDay = $request->cond_birthDay;
-        $cond_joinYear = $request->cond_joinYear;
+        $cond_joinYear = $request->cond_joinYear;    
 
         $image = "C:\bbs\snowman";
 
@@ -59,11 +58,6 @@ class ArtistController extends Controller
         return view('artist.snowman');
     }
 
-     public function iwamototalk()
-    {   
-        return view('artist.iwamotoTalk');
-    }
-
 
     public function snowmanprofile()
     {   
@@ -71,48 +65,42 @@ class ArtistController extends Controller
     }
 
 
-    public function iwamotoCommentPost(Request $request)
+    public function post(Request $request)
     {   
-        $this->validate($request, IwamotoComment::$rules);
-        $iwamotoComment = new IwamotoComment;
+        
+        $name = $request->name;
+        $post = new Post;
         $form = $request->all();
 
         if (isset($form['image'])) {
             $path = $request->file('image')->store('public/image');
-            $iwamotoComment->image_path = basename($path);
+            $post->image_path = basename($path);
         } else {
-            $iwamotoComment->image_path = null;
+            $post->image_path = null;
         }
 
         $user = Auth::user()->name;
         $user_id = Auth::user()->id;
         $form['name'] = $user;
         $form['user_id'] = $user_id;
-        $form['commented_at'] = "岩本照";
+        $form['commented_at'] = $name;
 
         unset($form['_token']);
         unset($form['image']);
+        
+        $post->fill($form);
+        $post->save();
 
-        $iwamotoComment->fill($form);
-        $iwamotoComment->save();
+        $redirect = "snowman/profile/" . $name;
 
-        $allComment = new AllComment;
-        $allComment->user_id = $iwamotoComment->user_id;
-        $allComment->comment_id = $iwamotoComment->id;
-        $allComment->comment = $iwamotoComment->comment;
-        $allComment->image_path = $iwamotoComment->image_path;
-        $allComment->commented_at = $iwamotoComment->commented_at;
-        $allComment->save();
-
-        return redirect('snowman/profile/iwamototalk');
+        return redirect($redirect);
 
     }
-    public function iwamotoCommentIndex()
+    public function postIndex($name)
     {
-        
-        $posts = IwamotoComment::all();
-        return view('artist.iwamotoTalk', ['iwamotoposts' => $posts]);
-
+        $posts = Post::where('commented_at', $name)->get();
+        $profile = Artist::where('talk_board', $name)->first();
+        return view('artist.talkboard', ['posts' => $posts, 'name' => $name, 'profile' => $profile]);
     }
 
     public function snowmancheckit()
@@ -132,11 +120,11 @@ class ArtistController extends Controller
 
 
 
-    public function commentIndex()
+    public function myPostIndex()
     {
         $id = Auth::user()->id;
-        $myComment = AllComment::where('user_id', $id)->get();
-        return view('artist.mypage', ['myComments' => $myComment]); 
+        $myPosts = Post::where('user_id', $id)->get();
+        return view('artist.mypage', ['myPosts' => $myPosts]); 
     }
 
 }

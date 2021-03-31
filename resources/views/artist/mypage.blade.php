@@ -4,17 +4,17 @@
 <div class="row">
     <div class="col-md-9 mx-auto">
         <h2>コメント履歴</h2>
-        <form action="{{ action('ArtistController@commentIndex') }}" method="get">
-            @if ($myComments != NULL)
-                @foreach ($myComments as $myComment)
+        <form action="{{ action('ArtistController@myPostIndex') }}" method="get">
+            @if ($myPosts != NULL)
+                @foreach ($myPosts as $myPost)
                     <div class="card">
                         <div class="card-body">
-                            {{ $myComment->comment }}<br>
-                            @if ($myComment->image_path)
-                            <img src="{{ asset('storage/image/' . $myComment->image_path) }}" style="width: 100px"><br>
+                            {{ $myPost->comment }}<br>
+                            @if ($myPost->image_path)
+                            <img src="{{ asset('storage/image/' . $myPost->image_path) }}" style="width: 100px"><br>
                             @endif
-                            <a href="/snowman/profile/iwamototalk">{{ "@" . $myComment->commented_at . "ページ" }}</a><br>
-                            {{ $myComment->created_at }}
+                            <a href="{{ asset('/snowman/profile/' . $myPost->commented_at) }}">{{"@" . $myPost->commented_at}}</a><br>
+                            {{ $myPost->created_at }}
                         </div>  
                     </div>
                 @endforeach
