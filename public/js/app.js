@@ -37160,6 +37160,8 @@ __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 __webpack_require__(/*! ./components/App */ "./resources/js/components/App.js");
 
+__webpack_require__(/*! ./inputfile */ "./resources/js/inputfile.js");
+
 /***/ }),
 
 /***/ "./resources/js/bootstrap.js":
@@ -37214,7 +37216,70 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-throw new Error("Module build failed (from ./node_modules/babel-loader/lib/index.js):\nSyntaxError: C:\\Users\\chiki\\projects\\bbs\\resources\\js\\components\\App.js: Support for the experimental syntax 'jsx' isn't currently enabled (17:9):\n\n\u001b[0m \u001b[90m 15 |\u001b[39m \u001b[36mfunction\u001b[39m \u001b[33mApp\u001b[39m() {\u001b[0m\n\u001b[0m \u001b[90m 16 |\u001b[39m     \u001b[36mreturn\u001b[39m (\u001b[0m\n\u001b[0m\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 17 |\u001b[39m         \u001b[33m<\u001b[39m\u001b[33mRouter\u001b[39m\u001b[33m>\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m    |\u001b[39m         \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 18 |\u001b[39m             \u001b[33m<\u001b[39m\u001b[33mdiv\u001b[39m\u001b[33m>\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 19 |\u001b[39m                 \u001b[33m<\u001b[39m\u001b[33mlink\u001b[39m href\u001b[33m=\u001b[39m\u001b[32m\"https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css\"\u001b[39m rel\u001b[33m=\u001b[39m\u001b[32m\"stylesheet\"\u001b[39m\u001b[33m>\u001b[39m\u001b[33m<\u001b[39m\u001b[33m/\u001b[39m\u001b[33mlink\u001b[39m\u001b[33m>\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 20 |\u001b[39m                 \u001b[33m<\u001b[39m\u001b[33mNavBar\u001b[39m \u001b[33m/\u001b[39m\u001b[33m>\u001b[39m\u001b[0m\n\nAdd @babel/preset-react (https://git.io/JfeDR) to the 'presets' section of your Babel config to enable transformation.\nIf you want to leave it as-is, add @babel/plugin-syntax-jsx (https://git.io/vb4yA) to the 'plugins' section to enable parsing.\n    at Parser._raise (C:\\Users\\chiki\\projects\\bbs\\node_modules\\@babel\\parser\\lib\\index.js:776:17)\n    at Parser.raiseWithData (C:\\Users\\chiki\\projects\\bbs\\node_modules\\@babel\\parser\\lib\\index.js:769:17)\n    at Parser.expectOnePlugin (C:\\Users\\chiki\\projects\\bbs\\node_modules\\@babel\\parser\\lib\\index.js:9690:18)\n    at Parser.parseExprAtom (C:\\Users\\chiki\\projects\\bbs\\node_modules\\@babel\\parser\\lib\\index.js:11063:22)\n    at Parser.parseExprSubscripts (C:\\Users\\chiki\\projects\\bbs\\node_modules\\@babel\\parser\\lib\\index.js:10644:23)\n    at Parser.parseUpdate (C:\\Users\\chiki\\projects\\bbs\\node_modules\\@babel\\parser\\lib\\index.js:10624:21)\n    at Parser.parseMaybeUnary (C:\\Users\\chiki\\projects\\bbs\\node_modules\\@babel\\parser\\lib\\index.js:10602:23)\n    at Parser.parseExprOps (C:\\Users\\chiki\\projects\\bbs\\node_modules\\@babel\\parser\\lib\\index.js:10463:23)\n    at Parser.parseMaybeConditional (C:\\Users\\chiki\\projects\\bbs\\node_modules\\@babel\\parser\\lib\\index.js:10437:23)\n    at Parser.parseMaybeAssign (C:\\Users\\chiki\\projects\\bbs\\node_modules\\@babel\\parser\\lib\\index.js:10400:21)\n    at C:\\Users\\chiki\\projects\\bbs\\node_modules\\@babel\\parser\\lib\\index.js:10367:39\n    at Parser.allowInAnd (C:\\Users\\chiki\\projects\\bbs\\node_modules\\@babel\\parser\\lib\\index.js:12043:12)\n    at Parser.parseMaybeAssignAllowIn (C:\\Users\\chiki\\projects\\bbs\\node_modules\\@babel\\parser\\lib\\index.js:10367:17)\n    at Parser.parseParenAndDistinguishExpression (C:\\Users\\chiki\\projects\\bbs\\node_modules\\@babel\\parser\\lib\\index.js:11246:28)\n    at Parser.parseExprAtom (C:\\Users\\chiki\\projects\\bbs\\node_modules\\@babel\\parser\\lib\\index.js:10964:21)\n    at Parser.parseExprSubscripts (C:\\Users\\chiki\\projects\\bbs\\node_modules\\@babel\\parser\\lib\\index.js:10644:23)\n    at Parser.parseUpdate (C:\\Users\\chiki\\projects\\bbs\\node_modules\\@babel\\parser\\lib\\index.js:10624:21)\n    at Parser.parseMaybeUnary (C:\\Users\\chiki\\projects\\bbs\\node_modules\\@babel\\parser\\lib\\index.js:10602:23)\n    at Parser.parseExprOps (C:\\Users\\chiki\\projects\\bbs\\node_modules\\@babel\\parser\\lib\\index.js:10463:23)\n    at Parser.parseMaybeConditional (C:\\Users\\chiki\\projects\\bbs\\node_modules\\@babel\\parser\\lib\\index.js:10437:23)\n    at Parser.parseMaybeAssign (C:\\Users\\chiki\\projects\\bbs\\node_modules\\@babel\\parser\\lib\\index.js:10400:21)\n    at Parser.parseExpressionBase (C:\\Users\\chiki\\projects\\bbs\\node_modules\\@babel\\parser\\lib\\index.js:10345:23)\n    at C:\\Users\\chiki\\projects\\bbs\\node_modules\\@babel\\parser\\lib\\index.js:10339:39\n    at Parser.allowInAnd (C:\\Users\\chiki\\projects\\bbs\\node_modules\\@babel\\parser\\lib\\index.js:12037:16)\n    at Parser.parseExpression (C:\\Users\\chiki\\projects\\bbs\\node_modules\\@babel\\parser\\lib\\index.js:10339:17)\n    at Parser.parseReturnStatement (C:\\Users\\chiki\\projects\\bbs\\node_modules\\@babel\\parser\\lib\\index.js:12564:28)\n    at Parser.parseStatementContent (C:\\Users\\chiki\\projects\\bbs\\node_modules\\@babel\\parser\\lib\\index.js:12243:21)\n    at Parser.parseStatement (C:\\Users\\chiki\\projects\\bbs\\node_modules\\@babel\\parser\\lib\\index.js:12195:17)\n    at Parser.parseBlockOrModuleBlockBody (C:\\Users\\chiki\\projects\\bbs\\node_modules\\@babel\\parser\\lib\\index.js:12777:25)\n    at Parser.parseBlockBody (C:\\Users\\chiki\\projects\\bbs\\node_modules\\@babel\\parser\\lib\\index.js:12768:10)\n    at Parser.parseBlock (C:\\Users\\chiki\\projects\\bbs\\node_modules\\@babel\\parser\\lib\\index.js:12752:10)\n    at Parser.parseFunctionBody (C:\\Users\\chiki\\projects\\bbs\\node_modules\\@babel\\parser\\lib\\index.js:11715:24)\n    at Parser.parseFunctionBodyAndFinish (C:\\Users\\chiki\\projects\\bbs\\node_modules\\@babel\\parser\\lib\\index.js:11699:10)\n    at C:\\Users\\chiki\\projects\\bbs\\node_modules\\@babel\\parser\\lib\\index.js:12910:12\n    at Parser.withTopicForbiddingContext (C:\\Users\\chiki\\projects\\bbs\\node_modules\\@babel\\parser\\lib\\index.js:12012:14)\n    at Parser.parseFunction (C:\\Users\\chiki\\projects\\bbs\\node_modules\\@babel\\parser\\lib\\index.js:12909:10)");
+// import React from 'react';
+// import ReactDOM from 'react-dom';
+// import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+// import NavBar from './NavBar'
+// import Top from './Top'
+// import SnowMan from './SnowMan'
+// import Sakuma from './Sakuma'
+// import Abe from './Abe'
+// import Meguro from './Meguro'
+// import Header from './Header'
+// function App() {
+//     return (
+//         <Router>
+//             <div>
+//                 <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet"></link>
+//                 <NavBar />
+//                 <Header />
+//                 <Switch>
+//                     <Route path="/" exact component={Top} />
+//                     <Route path="/SnowMan" component={SnowMan} />
+//                     <Route path="/Sakuma" component={Sakuma} />
+//                     <Route path="/Abe" component={Abe} />
+//                     <Route path="/Meguro" component={Meguro} />
+//                 </Switch>
+//             </div>
+//         </Router>    
+//     )
+// }
+//     //     <div className="container">
+//     //         <div className="row justify-content-center">
+//     //             <div className="col-md-12">
+//     //                  <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet"></link>
+//     //                     <center>Snow Man</center>
+//     //                     <a href="http://127.0.0.1:8080/"><img class="w-32 h-32 rounded-full" src={"image/abe.jpg"} alt="" /></a>
+//     //             </div>
+//     //         </div>
+//     //     </div>
+//     // );
+// if (document.getElementById('app')) {
+//     ReactDOM.render(<App />, document.getElementById('app'));
+// }
+
+/***/ }),
+
+/***/ "./resources/js/inputfile.js":
+/*!***********************************!*\
+  !*** ./resources/js/inputfile.js ***!
+  \***********************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+// // id="inputGroupFile"の要素の内容を取得し その要素でchangeイベントが発生したら関数を実行する
+// document.getElementById("inputGroupFile").addEventListener("change", function() {
+//     // 選択されたファイルの最初のファイルのデータを変数fileに代入する
+//     let file = this.files[0];
+//     // class="custom-file-label"の要素の内容を取得し その内容の最初のオブジェクトの文章をfile.nameで書き替える
+//     document.getElementsByClassName("custom-file-label")[0].innerHTML = file.name;
+// }, false);
+$(function () {
+  $('#inputGroupFile').on('change', function () {
+    var file = $(this).prop('files')[0];
+    $('.custom-file-label').text(file.name);
+  });
+});
 
 /***/ }),
 

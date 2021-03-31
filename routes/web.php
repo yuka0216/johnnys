@@ -28,9 +28,7 @@ Route::post('/snowman/profile', 'ArtistController@iwamotoCommentPost')->middlewa
 Route::get('/snowman/checkit', 'ArtistController@snowmancheckit')->middleware('auth');
 Route::get('/snowman/mustgo', 'ArtistController@snowmanmustgo')->middleware('auth');
 Route::get('/snowman/profile/iwamototalk', 'ArtistController@iwamotoCommentIndex')->middleware('auth');
-
-
-
+Route::get('/mypage', 'ArtistController@commentIndex')->middleware('auth');
 Route::get('/home', 'HomeController@index')->name('home');
 
 

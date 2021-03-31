@@ -4,9 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Artist;
-use App\iwamotoComment;
-
+use App\IwamotoComment;
 use Illuminate\Support\Facades\Auth;
+use App\AllComment;
 
 class ArtistController extends Controller
 {
@@ -18,7 +18,7 @@ class ArtistController extends Controller
         $cond_birthYear = $request->cond_birthYear;
         $cond_birthMonth = $request->cond_birthMonth;
         $cond_birthDay = $request->cond_birthDay;
-        $cond_joinYear = $request->cond_joinYear;    
+        $cond_joinYear = $request->cond_joinYear;
 
         $image = "C:\bbs\snowman";
 
@@ -70,21 +70,39 @@ class ArtistController extends Controller
         return view('artist.snowmanprofile');
     }
 
-    public function login()
-    {   
-        return view('artist.login');
-    }
+
     public function iwamotoCommentPost(Request $request)
     {   
+        $this->validate($request, IwamotoComment::$rules);
         $iwamotoComment = new IwamotoComment;
         $form = $request->all();
 
+        if (isset($form['image'])) {
+            $path = $request->file('image')->store('public/image');
+            $iwamotoComment->image_path = basename($path);
+        } else {
+            $iwamotoComment->image_path = null;
+        }
+
         $user = Auth::user()->name;
+        $user_id = Auth::user()->id;
         $form['name'] = $user;
+        $form['user_id'] = $user_id;
+        $form['commented_at'] = "岩本照";
+
         unset($form['_token']);
-        
+        unset($form['image']);
+
         $iwamotoComment->fill($form);
         $iwamotoComment->save();
+
+        $allComment = new AllComment;
+        $allComment->user_id = $iwamotoComment->user_id;
+        $allComment->comment_id = $iwamotoComment->id;
+        $allComment->comment = $iwamotoComment->comment;
+        $allComment->image_path = $iwamotoComment->image_path;
+        $allComment->commented_at = $iwamotoComment->commented_at;
+        $allComment->save();
 
         return redirect('snowman/profile/iwamototalk');
 
@@ -111,4 +129,14 @@ class ArtistController extends Controller
     {   
         return view('artist.sixtones');
     }
+
+
+
+    public function commentIndex()
+    {
+        $id = Auth::user()->id;
+        $myComment = AllComment::where('user_id', $id)->get();
+        return view('artist.mypage', ['myComments' => $myComment]); 
+    }
+
 }

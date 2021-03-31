@@ -11,7 +11,13 @@ class IwamotoComment extends Model
 
     // 以下を追記
     public static $rules = array(
-        'name' => 'required',
         'comment' => 'required',
     );
+
+    public function allComments()
+    {
+        return $this->hasMany('App\AllComment');
+    }
+   
+
 }
