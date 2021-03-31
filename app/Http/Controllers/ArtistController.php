@@ -65,7 +65,7 @@ class ArtistController extends Controller
     }
 
 
-    public function Post(Request $request)
+    public function post(Request $request)
     {   
         
         $name = $request->name;
@@ -96,7 +96,7 @@ class ArtistController extends Controller
         return redirect($redirect);
 
     }
-    public function PostIndex($name)
+    public function postIndex($name)
     {
         $posts = Post::where('commented_at', $name)->get();
         $profile = Artist::where('talk_board', $name)->first();

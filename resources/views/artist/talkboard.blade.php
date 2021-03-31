@@ -7,7 +7,7 @@
                 <h4 class="text-center">talk board</h4>
                 <h2 class="text-center">-{{ $profile->name }}-</h2>
                 <br>
-                <form action="{{ action('ArtistController@Post', ['name' => $name]) }}" method="post" enctype="multipart/form-data">
+                <form action="{{ action('ArtistController@post', ['name' => $name]) }}" method="post" enctype="multipart/form-data">
                 @if (count($errors) > 0)
                     <ul>
                         @foreach($errors->all() as $e)
@@ -39,7 +39,7 @@
                     <br>
                 </form>
             </div>
-            <form action="{{ action('ArtistController@PostIndex', ['name'=>$name]) }}" method="get">
+            <form action="{{ action('ArtistController@postIndex', ['name'=>$name]) }}" method="get">
             @if (count($posts) > 0)
                 @foreach($posts as $post)
                     <table class="table">
