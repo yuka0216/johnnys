@@ -5,7 +5,7 @@
     <div class="col-md-9 mx-auto">
         <div class="border">
                 <h4 class="text-center">talk board</h4>
-                <h2 class="text-center">-{{ $profile->name }}-</h2>
+                <h2 class="text-center">-{{ $profile->名前 }}-</h2>
                 <br>
                 <form action="{{ action('ArtistController@post', ['name' => $name]) }}" method="post" enctype="multipart/form-data">
                 @if (count($errors) > 0)
