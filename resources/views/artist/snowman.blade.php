@@ -26,10 +26,10 @@
                     </div>
                 </div>
                 <div class="col btn-group" style="padding:0px" role="group" aria-label="Basic example">
-                    <a href="http://127.0.0.1:8080/snowman/profile" class="btn btn-secondary col-md-4">TALK</a>
-                    <a href="http://127.0.0.1:8080/snowman/checkit" class="btn btn-secondary col-md-4">CHECK IT</a>
-                    <a href="http://127.0.0.1:8080/snowman/mustgo" class="btn btn-secondary col-md-4">MUST GO</a>
-                    <a href="http://127.0.0.1:8080/snowman/aaa" class="btn btn-secondary col-md-4">AAA</a>
+                    <a href="/snowman/profile" class="btn btn-secondary col-md-4">TALK</a>
+                    <a href="/snowman/checkit" class="btn btn-secondary col-md-4">CHECK IT</a>
+                    <a href="/snowman/mustgo" class="btn btn-secondary col-md-4">MUST GO</a>
+                    <a href="/snowman/aaa" class="btn btn-secondary col-md-4">AAA</a>
                 </div>
                 <div class="col" style="padding-top:20px">
                     <h2 class="text-center">-- NEWS --</h2>

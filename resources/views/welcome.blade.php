@@ -86,8 +86,8 @@
                 </div>
 
                 <div class="links">
-                    <a href="http://127.0.0.1:8080/snowman">Snow Man</a>
-                    <a href="http://127.0.0.1:8080/sixtones">SixTONES</a>
+                    <a href="/snowman">Snow Man</a>
+                    <a href="/sixtones">SixTONES</a>
                 </div>
             </div>
         </div>

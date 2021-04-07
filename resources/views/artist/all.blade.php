@@ -9,31 +9,23 @@
                     <div class="form-group row">
                         <label class="col-md-2">名前</label>
                         <div class="col-md-2">
-                            <input type="text" class="form-control" name="cond_name" value="{{ $cond_name }}">
+                            <input type="text" class="form-control" name="cond_name" value="{{ $searchWordList["名前"] }}">
                         </div>
                         <label class="col-md-2">グループ</label>
                         <div class="col-md-2">
-                            <input type="text" class="form-control" name="cond_group" value="{{ $cond_group }}">
+                            <input type="text" class="form-control" name="cond_group" value="{{ $searchWordList["グループ"] }}">
                         </div>
                         <label class="col-md-2">血液型</label>
                         <div class="col-md-2">
-                            <input type="text" class="form-control" name="cond_blood" value="{{ $cond_blood }}">
+                            <input type="text" class="form-control" name="cond_blood" value="{{ $searchWordList["血液型"] }}">
                         </div>
-                        <label class="col-md-2">誕生日：年</label>
+                        <label class="col-md-2">誕生日</label>
                         <div class="col-md-2">
-                            <input type="text" class="form-control" name="cond_birthYear" value="{{ $cond_birthYear }}">
+                            <input type="text" class="form-control" name="cond_birthDay" value="{{ $searchWordList["誕生日"] }}">
                         </div>
-                        <label class="col-md-2">月</label>
+                        <label class="col-md-2">入所日</label>
                         <div class="col-md-2">
-                            <input type="text" class="form-control" name="cond_birthMonth" value="{{ $cond_birthMonth }}">
-                        </div>
-                        <label class="col-md-2">日</label>
-                        <div class="col-md-2">
-                            <input type="text" class="form-control" name="cond_birthDay" value="{{ $cond_birthDay }}">
-                        </div>
-                        <label class="col-md-2">入所年</label>
-                        <div class="col-md-2">
-                            <input type="text" class="form-control" name="cond_joinYear" value="{{ $cond_joinYear }}">
+                            <input type="text" class="form-control" name="cond_joinYear" value="{{ $searchWordList["入所日"] }}">
                         </div>
 
                         <div class="col-md-2">
@@ -46,7 +38,7 @@
                             </thead>
                                 @foreach($artists as $artist)
                                 <tr><td><a href="{{ asset('/snowman/profile/' . $artist->talk_board ) }}"><img src="{{ asset('image/' . $artist->image_path) }}" class="img-thumbnail" alt="参考画像" width="120" height="120"></td>
-                                <td>{{ $artist->name }}</td><td>{{ $artist->グループ }}</td><td>{{ $artist->誕生日 }}</td><td>{{ $artist->血液型 }}</td><td>{{ $artist->入所日 }}</a></td></tr>
+                                <td>{{ $artist->名前 }}</td><td>{{ $artist->グループ }}</td><td>{{ $artist->誕生日 }}</td><td>{{ $artist->血液型 }}</td><td>{{ $artist->入所日 }}</a></td></tr>
                                 @endforeach
                         </table>
             </div>    
