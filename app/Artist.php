@@ -7,38 +7,43 @@ use Illuminate\Database\Eloquent\Model;
 
 class Artist extends Model
 {
+    const NAME_LABEL = "名前";
+    const GROUP_LABEL = "グループ";
+    const BLOOD_TYPE_LABEL = "血液型";
+    const BIRTHDAY_LABEL = "誕生日";
+    const JOIN_YEAR_LABEL = "入所日";
+
     public static function fetchProfileByName(string $name)
     {
-        $profile = Artist::where('talk_board', $name)->first();
-        return $profile;
+        return Artist::where('talk_board', $name)->first();
     }
-    
-    public static function fetchProfileBySearch(Request $request, $query)
+
+    public static function fetchProfileBySearch(Request $request)
     {
+        $query = self::query();
         $searchWordList = self::makeSearchWordList($request);
 
         $judge = array_filter($searchWordList);
-        if(empty($judge)){
-            $artists = Artist::all();
-            return $artists;
-        }
-        foreach ($searchWordList as $columnName => $searchWord){
-            if($columnName == "血液型" && (!empty($searchWord))) $query->where($columnName, $searchWord);
-            if (!empty($searchWord)) $query->where($columnName, 'LIKE', '%'.$searchWord.'%');
+        if (empty($judge)) {
+            return Artist::all();
         }
 
-        $artists = $query->get();
-        return $artists;
+        foreach ($searchWordList as $columnName => $searchWord) {
+            if ($columnName == self::BLOOD_TYPE_LABEL && (!empty($searchWord))) $query->where($columnName, $searchWord);
+            if (!empty($searchWord)) $query->where($columnName, 'LIKE', '%' . $searchWord . '%');
+        }
+
+        return $query->get();
     }
 
     public static function makeSearchWordList(Request $request)
     {
         $searchWordList = [
-            "名前" => $cond_name = $request->cond_name,
-            "グループ" => $cond_group = $request->cond_group,
-            "血液型" => $request->cond_blood,
-            "誕生日" => $request->cond_birthDay,
-            "入所日" => $request->cond_joinYear,
+            self::NAME_LABEL => $request->cond_name,
+            self::GROUP_LABEL => $request->cond_group,
+            self::BLOOD_TYPE_LABEL => $request->cond_blood,
+            self::BIRTHDAY_LABEL => $request->cond_birthDay,
+            self::JOIN_YEAR_LABEL => $request->cond_joinYear,
         ];
 
         return $searchWordList;
