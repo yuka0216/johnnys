@@ -9,7 +9,7 @@
                     <tr>
                     <td><a href="/snowman/profile/abe"><img class="rounded-full" src="{{ asset('image/abe.jpg') }}" alt=""></a></td>
                     <td><a href="/snowman/profile/miyadate"><img class="rounded-full" src="{{ asset('image/date.jpg') }}" alt=""></a></td>
-                    <td><a href="/snowman/profile/hukazawa"><img class="rounded-full" src="{{ asset('image/hukka.jpg') }}" alt=""></a></td>                        
+                    <td><a href="/snowman/profile/fukazawa"><img class="rounded-full" src="{{ asset('image/hukka.jpg') }}" alt=""></a></td>                        
                     </tr>
                     <tr>
                     <td><a href="/snowman/profile/meguro"><img class="rounded-full" src="{{ asset('image/meme.jpg') }}" alt=""></a></td>

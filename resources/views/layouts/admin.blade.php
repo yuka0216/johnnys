@@ -39,14 +39,8 @@
                     </div>
                 </div>
             </nav>
-            
-            {{-- ここまでナビゲーションバー --}}
-
             <main class="py-4">
-            <div className="h-16 flex items-center md:max-w-screen-md md:mx-auto">
-                {{-- コンテンツをここに入れるため、@yieldで空けておきます。 --}}
-                @yield('content')
-            </div>
+            @yield('content')
             </main>
         </div>
 
