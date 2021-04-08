@@ -15,21 +15,25 @@
 //     return view('welcome');
 // })->where('any','.*');
 
+use Illuminate\Contracts\Routing\UrlRoutable;
+
 Route::get('/', function () {
     return view('welcome');
 });
 
 
+Route::post('/snowman/profile/{threadId}', 'ArtistController@post')->middleware('auth');
+Route::get('/snowman/profile/{threadId}', 'ArtistController@postIndex')->middleware('auth');
+Route::post('/snowman/add', 'ArtistController@addThread')->name('home');
+Route::get('/snowman/add', 'ArtistController@makeCheckBox')->name('home');
+Route::get('/mypage', 'ArtistController@myPostIndex')->middleware('auth');
 Route::get('/all', 'ArtistController@index')->middleware('auth');
+
 Route::get('/snowman', 'ArtistController@snowman')->middleware('auth');
 Route::get('/sixtones', 'ArtistController@sixtones')->middleware('auth');
 Route::get('/snowman/profile', 'ArtistController@snowmanprofile')->middleware('auth');
-Route::post('/snowman/profile/{name}', 'ArtistController@post')->middleware('auth');
 Route::get('/snowman/checkit', 'ArtistController@snowmancheckit')->middleware('auth');
 Route::get('/snowman/mustgo', 'ArtistController@snowmanmustgo')->middleware('auth');
-Route::get('/snowman/profile/{name}', 'ArtistController@postIndex')->middleware('auth');
-Route::get('/mypage', 'ArtistController@myPostIndex')->middleware('auth');
 Route::get('/home', 'HomeController@index')->name('home');
-
 
 Auth::routes();

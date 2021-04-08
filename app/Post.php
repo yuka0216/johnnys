@@ -18,11 +18,14 @@ class Post extends Model
         return $this->belongsTo('App\User');
     }
 
+    public function thread()
+    {
+        return $this->belongsTo('App\Thread');
+    }
+
     public static function postDataSave(Request $request, $user)
     {
-        $name = $request->name;
         $form = $request->all();
-
         $post = new Post;
         if (isset($form['image'])) {
             $path = $request->file('image')->store('public/image');
@@ -31,9 +34,9 @@ class Post extends Model
             $post->image_path = null;
         }
 
+        $form['thread_id'] = $request->threadId;
         $form['name'] = $user->name;
         $form['user_id'] = $user->id;
-        $form['commented_at'] = $name;
 
         unset($form['_token']);
         unset($form['image']);
