@@ -13,12 +13,16 @@ class Post extends Model
         'comment' => 'required',
     );
 
-    
+    public function user()
+    {
+        return $this->belongsTo('App\User');
+    }
+
     public static function postDataSave(Request $request, $user)
     {
         $name = $request->name;
         $form = $request->all();
-        
+
         $post = new Post;
         if (isset($form['image'])) {
             $path = $request->file('image')->store('public/image');
@@ -33,10 +37,8 @@ class Post extends Model
 
         unset($form['_token']);
         unset($form['image']);
-        
+
         $post->fill($form);
         $post->save();
-
     }
-
 }
