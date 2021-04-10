@@ -21,30 +21,31 @@
                 <h4 class="text-center">新規作成</h4>
                 <br>
                 <form action="{{ action('ArtistController@addThread') }}" method="post">
-                    @if (count($errors) > 0)
-                    <ul>
-                        @foreach($errors->all() as $e)
-                        <li>{{ $e }}</li>
-                        @endforeach
-                    </ul>
-                    @endif
-                    {{ csrf_field() }}
                     <div class="form-group col-md-12">
+                        {{ csrf_field() }}
                         <label>スレッド名</label>
                         <textarea class="form-control" name="thread_name">{{ old('thread_name') }}</textarea>
+                        @if($errors->has('thread_name')) <span class="text-danger">{{ $errors->first('thread_name') }}</span> @endif
                         <br>
                         <label for="chk01" class="col-form-label">誰についての話題ですか？</label>
                         <div class="col-md-12">
                             @foreach($chkDatas as $ckey => $cval)
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="checkbox" id="chk01" name="talkAbout" value="{{$cval}}" @if(empty(old()) and $chkChecked[$ckey]=='checked' ) checked="checked" @elseif($ckey==old($ckey))) checked="checked" @endif>
+                                <input class="form-check-input" type="checkbox" id="chk01" name="talkAbout" value="{{$cval}}">
+                                {{--
+                                @if(empty(old()) and $chkChecked[$ckey]=='checked' ) checked="checked" 
+                                @elseif($ckey==old($ckey))) checked="checked" @endif>
+                                --}}
                                 <label class="form-check-label" for="{{$ckey}}">{{$cval}}</label>
                             </div>
                             @endforeach
                         </div>
+                        @if($errors->has('talkAbout')) <span class="text-danger">{{ $errors->first('talkAbout') }}</span> @endif
                         <br>
                         {{ csrf_field() }}
-                        <input type="submit" class="btn btn-primary" value="作成">
+                        <div class="text-right">
+                            <input type="submit" class="btn btn-primary" value="作成">
+                        </div>
                     </div>
                 </form>
             </div>
