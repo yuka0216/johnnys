@@ -13,9 +13,12 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::group(['middleware' => 'api'], function(){
-    Route::get('get', 'ArtistController@index');
-});
+Route::get('mypage', 'PostController@index');
+Route::get('myImage', 'PostController@image');
+
+// group(['middleware' => 'api'], function () {
+//     Route::get('', 'PostController@getPosts');
+// });
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();

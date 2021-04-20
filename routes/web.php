@@ -11,11 +11,16 @@
 |
 */
 
-// Route::get('/{any}', function () {
-//     return view('welcome');
-// })->where('any','.*');
+Route::middleware('auth')->get('api/mypage', 'PostController@index');
+Route::middleware('auth')->get('api/imagepost', 'PostController@image');
 
-use Illuminate\Contracts\Routing\UrlRoutable;
+Route::get('/mypage', function () {
+    return view('artist.app');
+});
+
+// ArtistController@myPostIndex");
+
+
 
 Route::get('/', function () {
     return view('welcome');
@@ -26,7 +31,7 @@ Route::post('/snowman/profile/{threadId}', 'ArtistController@post')->middleware(
 Route::get('/snowman/profile/{threadId}', 'ArtistController@postIndex')->middleware('auth');
 Route::post('/snowman/add', 'ArtistController@addThread')->name('home');
 Route::get('/snowman/add', 'ArtistController@makeCheckBox')->name('home');
-Route::get('/mypage', 'ArtistController@myPostIndex')->middleware('auth');
+// Route::get('/mypage', 'ArtistController@myPostIndex')->middleware('auth');
 Route::get('/all', 'ArtistController@index')->middleware('auth');
 
 Route::get('/snowman', 'ArtistController@snowman')->middleware('auth');

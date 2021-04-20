@@ -50,7 +50,7 @@
                     {{ $post->user->name }}<br>
                     {{ $post->comment }}<br>
                     @if ($post->image_path)
-                    <img src="{{ asset('storage/image/' . $post->image_path) }}" style="width: 100px"><br>
+                    <img src="{{ asset('/images/' . $post->image_path) }}" style="width: 100px"><br>
                     @endif
                     {{ $post->created_at }}
                 </td>
