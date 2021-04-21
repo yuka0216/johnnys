@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use App\Artist;
 use App\Post;
 use App\Thread;
+use App\Image;
 use Illuminate\Support\Facades\Auth;
 
 class ArtistController extends controller

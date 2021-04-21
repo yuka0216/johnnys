@@ -27,7 +27,7 @@
     <!-- <link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox1/2.7.1/css/lightbox.css" rel="stylesheet">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox1/2.7.1/js/lightbox.min.js" type="text/javascript"></script> -->
-
+    <link rel="stylesheet" href="{{ secure_asset('/lightbox/css/lightbox.min.css') }}">
 </head>
 
 <body>
@@ -48,60 +48,60 @@
     <main class="py-4">
         @yield('content')
     </main>
-    </div>
 
     <script src="{{ mix('js/app.js') }}"></script>
     <!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script> -->
 
-    <footer class="bg-dark text-center text-white">
-        <!-- Grid container -->
-        <div class="container p-4 pb-0">
-            <!-- Section: Social media -->
-            <section class="mb-4">
-                <!--johnnys-->
-                <a class="btn btn-outline-light btn-floating m-1" href=@yield('johnnys') role="button">
-                    <i class="far fa-snowflake"></i>
-                </a>
-                <!-- avex -->
-                <a class="btn btn-outline-light btn-floating m-1" href=@yield('record') role="button">
-                    <i class="fas fa-compact-disc"></i>
-                </a>
-
-                <!-- youtube -->
-                <a class="btn btn-outline-light btn-floating m-1" href=@yield('youtube') role="button">
-                    <i class="fab fa-youtube"></i>
-                </a>
-
-
-                <!-- Twitter -->
-                <a class="btn btn-outline-light btn-floating m-1" href=@yield('twitter') role="button">
-                    <i class="fab fa-twitter"></i>
-                </a>
-
-                <!-- weibo -->
-                <a class="btn btn-outline-light btn-floating m-1" href=@yield('weibo') role="button">
-                    <i class="fab fa-weibo"></i>
-                </a>
-
-                <!-- Instagram -->
-                <a class="btn btn-outline-light btn-floating m-1" href=@yield('instagram') role="button">
-                    <i class="fab fa-instagram"></i>
-                </a>
-
-            </section>
-            <!-- Section: Social media -->
-        </div>
-        <!-- Grid container -->
-
-        <!-- Copyright -->
-        <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
-            © 2020 Copyright:
-            <a class="text-white" href="https://www.johnnys-net.jp">johnny&Associates.</a>
-        </div>
-        <!-- Copyright -->
-    </footer>
+    <script src="{{ secure_asset('/lightbox/js/lightbox.min.js') }}"></script>
 </body>
+<footer class="bg-dark text-center text-white">
+    <!-- Grid container -->
+    <div class="container p-4 pb-0">
+        <!-- Section: Social media -->
+        <section class="mb-4">
+            <!--johnnys-->
+            <a class="btn btn-outline-light btn-floating m-1" href=@yield('johnnys') role="button">
+                <i class="far fa-snowflake"></i>
+            </a>
+            <!-- avex -->
+            <a class="btn btn-outline-light btn-floating m-1" href=@yield('record') role="button">
+                <i class="fas fa-compact-disc"></i>
+            </a>
+
+            <!-- youtube -->
+            <a class="btn btn-outline-light btn-floating m-1" href=@yield('youtube') role="button">
+                <i class="fab fa-youtube"></i>
+            </a>
+
+
+            <!-- Twitter -->
+            <a class="btn btn-outline-light btn-floating m-1" href=@yield('twitter') role="button">
+                <i class="fab fa-twitter"></i>
+            </a>
+
+            <!-- weibo -->
+            <a class="btn btn-outline-light btn-floating m-1" href=@yield('weibo') role="button">
+                <i class="fab fa-weibo"></i>
+            </a>
+
+            <!-- Instagram -->
+            <a class="btn btn-outline-light btn-floating m-1" href=@yield('instagram') role="button">
+                <i class="fab fa-instagram"></i>
+            </a>
+
+        </section>
+        <!-- Section: Social media -->
+    </div>
+    <!-- Grid container -->
+
+    <!-- Copyright -->
+    <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+        © 2020 Copyright:
+        <a class="text-white" href="https://www.johnnys-net.jp">johnny&Associates.</a>
+    </div>
+    <!-- Copyright -->
+</footer>
 
 </html>

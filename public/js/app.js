@@ -74669,25 +74669,23 @@ var Main = function Main() {
     })["catch"](function (e) {
       console.log("e", e);
     });
-  }, []); // user_id 1だけを取り出す
-  // const filter_posts_user_id = posts.filter(posts => {
-  //     return posts.user_id == "1";
-  // })
-  // console.log("filter_user_id", filter_posts_user_id);
-
+  }, []);
   var style = {
     width: "100px"
   };
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement("div", {
     className: "container"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement(react_tabs__WEBPACK_IMPORTED_MODULE_2__["Tabs"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement(react_tabs__WEBPACK_IMPORTED_MODULE_2__["TabList"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement(react_tabs__WEBPACK_IMPORTED_MODULE_2__["Tab"], null, "Tweet"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement(react_tabs__WEBPACK_IMPORTED_MODULE_2__["Tab"], null, "Instagram")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement(react_tabs__WEBPACK_IMPORTED_MODULE_2__["TabPanel"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement("h2", null, "\u5168\u3066\u306E\u30B3\u30E1\u30F3\u30C8\u306E\u8868\u793A"), posts.map(function (post) {
+    console.log('postimages', post.images);
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement("div", {
       "class": "card"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement("div", {
       "class": "card-body"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement("p", null, post.comment), post.image_path && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement("img", {
-      src: '/images/' + post.image_path,
-      style: style
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement("p", null, post.comment), post.images && images.map(function (image) {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement("img", {
+        src: '/images/' + image,
+        style: style
+      }));
     }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement("p", null, post.created_at)));
   }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement(react_tabs__WEBPACK_IMPORTED_MODULE_2__["TabPanel"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement("h2", null, "\u30A4\u30F3\u30B9\u30BF\u98A8\u753B\u50CF\u6295\u7A3F\u3060\u3051\u8868\u793A"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement("div", {
     "class": "container",
@@ -74698,10 +74696,10 @@ var Main = function Main() {
     }
   }, images.map(function (image) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement("a", {
-      href: '/images/' + image.image_path,
-      "data-lightbox": "group"
+      href: '/images/' + image,
+      dataLightbox: "group"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement("img", {
-      src: '/images/' + image.image_path,
+      src: '/images/' + image,
       width: "200"
     }));
   }))))));

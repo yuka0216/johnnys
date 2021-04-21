@@ -49,8 +49,10 @@
                 <td>
                     {{ $post->user->name }}<br>
                     {{ $post->comment }}<br>
-                    @if ($post->image_path)
-                    <img src="{{ asset('/images/' . $post->image_path) }}" style="width: 100px"><br>
+                    @if ($post->images !=NUll)
+                    @foreach ($post->images as $image)
+                    <img src="{{ asset('/images/' . $image->image_path) }}" style="width: 100px"><br>
+                    @endforeach
                     @endif
                     {{ $post->created_at }}
                 </td>

@@ -17,6 +17,14 @@ class PostController extends Controller
     public function image()
     {
         $id = Auth::user()->id;
-        return  Post::where('user_id', $id)->where('image_path', '!=', null)->orderBy('created_at', 'desc')->get();
+        $myPosts =  Post::where('user_id', $id)->orderBy('created_at', 'desc')->get();
+        $myPostImageList = [];
+        foreach ($myPosts as $myPost) {
+            if ($myPost->images) {
+                foreach ($myPost->images as $image)
+                    $myPostImageList[] = $image->image_path;
+            }
+        }
+        return $myPostImageList;
     }
 }

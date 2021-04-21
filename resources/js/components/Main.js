@@ -1,15 +1,18 @@
 import { Router, Route, Link } from 'react-router';
+import ReactDOM from 'react-dom';
 import 'react-tabs/style/react-tabs.css';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 import Lightbox from "lightbox-react";
+import LikeButton from './LikeButton';
 
-
+console.log('like', like);
 console.log('main')
 
-const Main = () => {
 
+
+const Main = () => {
 
     const [posts, setPosts] = useState([]);
 
@@ -44,20 +47,14 @@ const Main = () => {
         []
     );
 
-    // user_id 1だけを取り出す
-    // const filter_posts_user_id = posts.filter(posts => {
-    //     return posts.user_id == "1";
-    // })
-    // console.log("filter_user_id", filter_posts_user_id);
-
     const style = {
         width: "100px",
     };
 
-
     return (
 
         <div className="container">
+            <LikeButton />
             <Tabs>
                 <TabList>
                     <Tab>Tweet</Tab>
@@ -72,8 +69,14 @@ const Main = () => {
                                     <div class="card">
                                         <div class="card-body">
                                             <p>{post.comment}</p>
-                                            {post.image_path &&
-                                                (<img src={'/images/' + post.image_path} style={style} />)
+                                            {post.images &&
+                                                images.map((image) => {
+                                                    return (
+                                                        <div>
+                                                            <img src={'/images/' + image} style={style} />
+                                                        </div>
+                                                    )
+                                                })
                                             }
                                             <p>{post.created_at}</p>
                                         </div>
@@ -85,12 +88,13 @@ const Main = () => {
                 </TabPanel>
                 <TabPanel>
                     <div>
+
                         <h2>インスタ風画像投稿だけ表示</h2>
                         <div class="container" style={{ display: "flex", flexWrap: "wrap", width: "100%" }} >
                             {
                                 images.map((image) => {
                                     return (
-                                        <a href={'/images/' + image.image_path} data-lightbox="group"><img src={'/images/' + image.image_path} width="200" /></a>
+                                        <a href={'/images/' + image} data-lightbox="group"><img src={'/images/' + image} width="200" /></a>
                                     )
                                 })
                             }
