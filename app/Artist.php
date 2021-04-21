@@ -13,6 +13,11 @@ class Artist extends Model
     const BIRTHDAY_LABEL = "誕生日";
     const JOIN_YEAR_LABEL = "入所日";
 
+    public function threads()
+    {
+        return $this->hasMany('App\Thread');
+    }
+
     public static function fetchProfileByName(string $name)
     {
         return Artist::where('talk_board', $name)->first();
