@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+
+
 use App\Http\Requests\createThreadRequest;
 use App\Http\Requests\createPostRequest;
 use Illuminate\Http\Request;
@@ -57,7 +59,7 @@ class ArtistController extends controller
         $id = Auth::user()->id;
         $myPosts = Post::where('user_id', $id)->orderBy('created_at', 'desc')->get();
 
-        return view('artist.mypage', ['myPosts' => $myPosts]);
+        return view('artist.app', ['myPosts' => $myPosts]);
     }
 
     public function makeCheckBox() //スレッド新規作成画面の誰の話題か選ぶためのチェックボックス作成（とりあえずネットのコピペ）

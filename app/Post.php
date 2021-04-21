@@ -23,8 +23,9 @@ class Post extends Model
     {
         $form = $request->all();
         $post = new Post;
+
         if (isset($form['image'])) {
-            $path = $request->file('image')->store('public/image');
+            $path = $request->file('image')->storeAs('images', $request->file('image')->hashName(), 'public_uploads');
             $post->image_path = basename($path);
         } else {
             $post->image_path = null;
