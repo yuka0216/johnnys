@@ -9,23 +9,23 @@
                 <div class="form-group row">
                     <label class="col-md-2">名前</label>
                     <div class="col-md-2">
-                        <input type="text" class="form-control" name="cond_name" value="{{ $searchWordList["名前"] }}">
+                        <input type="text" class="form-control" name="cond_name" value="{{ $searchWordList["name"] }}">
                     </div>
                     <label class="col-md-2">グループ</label>
                     <div class="col-md-2">
-                        <input type="text" class="form-control" name="cond_group" value="{{ $searchWordList["グループ"] }}">
+                        <input type="text" class="form-control" name="cond_group" value="{{ $searchWordList["group"] }}">
                     </div>
                     <label class="col-md-2">血液型</label>
                     <div class="col-md-2">
-                        <input type="text" class="form-control" name="cond_blood" value="{{ $searchWordList["血液型"] }}">
+                        <input type="text" class="form-control" name="cond_blood" value="{{ $searchWordList["blood_type"] }}">
                     </div>
                     <label class="col-md-2">誕生日</label>
                     <div class="col-md-2">
-                        <input type="text" class="form-control" name="cond_birthDay" value="{{ $searchWordList["誕生日"] }}">
+                        <input type="text" class="form-control" name="cond_birthDay" value="{{ $searchWordList["birthday"] }}">
                     </div>
                     <label class="col-md-2">入所日</label>
                     <div class="col-md-2">
-                        <input type="text" class="form-control" name="cond_joinYear" value="{{ $searchWordList["入所日"] }}">
+                        <input type="text" class="form-control" name="cond_joined" value="{{ $searchWordList["joined_date"] }}">
                     </div>
 
                     <div class="col-md-2">
@@ -46,11 +46,11 @@
                         @foreach($artists as $artist)
                         <tr>
                             <td><a href="{{ asset('/snowman/profile/' . $artist->id ) }}"><img src="{{ asset('image/' . $artist->image_path) }}" class="img-thumbnail" alt="参考画像" width="120" height="120"></td>
-                            <td>{{ $artist->名前 }}</td>
-                            <td>{{ $artist->グループ }}</td>
-                            <td>{{ $artist->誕生日 }}</td>
-                            <td>{{ $artist->血液型 }}</td>
-                            <td>{{ $artist->入所日 }}</a></td>
+                            <td>{{ $artist->name }}</td>
+                            <td>{{ $artist->group }}</td>
+                            <td>{{ $artist->birthday }}</td>
+                            <td>{{ $artist->blood_type }}</td>
+                            <td>{{ $artist->joined_date }}</a></td>
                         </tr>
                         @endforeach
                     </table>

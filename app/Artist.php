@@ -7,11 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Artist extends Model
 {
-    const NAME_LABEL = "名前";
-    const GROUP_LABEL = "グループ";
-    const BLOOD_TYPE_LABEL = "血液型";
-    const BIRTHDAY_LABEL = "誕生日";
-    const JOIN_YEAR_LABEL = "入所日";
+    const NAME_LABEL = "name";
+    const GROUP_LABEL = "group";
+    const BLOOD_TYPE_LABEL = "blood_type";
+    const BIRTHDAY_LABEL = "birthday";
+    const JOINED_DATE_LABEL = "joined_date";
 
     public function threads()
     {
@@ -48,7 +48,7 @@ class Artist extends Model
             self::GROUP_LABEL => $request->cond_group,
             self::BLOOD_TYPE_LABEL => $request->cond_blood,
             self::BIRTHDAY_LABEL => $request->cond_birthDay,
-            self::JOIN_YEAR_LABEL => $request->cond_joinYear,
+            self::JOINED_DATE_LABEL => $request->cond_joined,
         ];
 
         return $searchWordList;
