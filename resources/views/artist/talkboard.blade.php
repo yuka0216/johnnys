@@ -20,16 +20,10 @@
                 <h2 class="text-center">-{{ $thread_name }}-</h2>
                 <br>
                 <form action="{{ action('ArtistController@post', ['threadId' => $threadId]) }}" method="post" enctype="multipart/form-data">
-                    @if (count($errors) > 0)
-                    <ul>
-                        @foreach($errors->all() as $e)
-                        <li>{{ $e }}</li>
-                        @endforeach
-                    </ul>
-                    @endif
                     {{ csrf_field() }}
                     <div class="form-group col-md-12">
                         <label>コメント</label>
+                        @if($errors->has('comment')) <span class="text-danger">{{ $errors->first('comment') }}</span> @endif
                         <textarea class="form-control" name="comment" rows="5">{{ old('comment')}}</textarea>
                         <div class="input-group">
                             <div class="input-group-prepend">

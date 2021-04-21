@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\createThreadRequest;
+use App\Http\Requests\createPostRequest;
 use Illuminate\Http\Request;
 use App\Artist;
 use App\Post;
@@ -25,7 +27,7 @@ class ArtistController extends controller
         return view('artist.all', ['artists' => $artists, 'image' => $image, 'searchWordList' => $searchWordList]);
     }
 
-    public function post(Request $request)
+    public function post(createPostRequest $request)
     {
         $user = Auth::user();
         $post = Post::postDataSave($request, $user);
@@ -42,7 +44,7 @@ class ArtistController extends controller
         return view('artist.talkboard', ['thread_name' => $thread_name, 'threadId' => $threadId, 'posts' => $posts, 'threadList' => $threadList]);
     }
 
-    public function addThread(Request $request)
+    public function addThread(createThreadRequest $request)
     {
         $thread = Thread::addThread($request);
         $add_id = Thread::max('id');
@@ -73,65 +75,65 @@ class ArtistController extends controller
             "chk08" => "宮舘涼太",
             "chk09" => "目黒蓮",
         ];
-        $chk01b = false;
-        $chk02b = false;
-        $chk03b = false;
-        $chk04b = false;
-        $chk05b = false;
-        $chk06b = false;
-        $chk07b = false;
-        $chk08b = false;
-        $chk09b = false;
+        // $chk01b = false;
+        // $chk02b = false;
+        // $chk03b = false;
+        // $chk04b = false;
+        // $chk05b = false;
+        // $chk06b = false;
+        // $chk07b = false;
+        // $chk08b = false;
+        // $chk09b = false;
 
-        if ($chk01b) {
-            $chkChecked["chk01"] = "checked";
-        } else {
-            $chkChecked["chk01"] = "";
-        }
-        if ($chk02b) {
-            $chkChecked["chk02"] = "checked";
-        } else {
-            $chkChecked["chk02"] = "";
-        }
-        if ($chk03b) {
-            $chkChecked["chk03"] = "checked";
-        } else {
-            $chkChecked["chk03"] = "";
-        }
-        if ($chk04b) {
-            $chkChecked["chk04"] = "checked";
-        } else {
-            $chkChecked["chk04"] = "";
-        }
-        if ($chk05b) {
-            $chkChecked["chk05"] = "checked";
-        } else {
-            $chkChecked["chk05"] = "";
-        }
-        if ($chk06b) {
-            $chkChecked["chk06"] = "checked";
-        } else {
-            $chkChecked["chk06"] = "";
-        }
-        if ($chk07b) {
-            $chkChecked["chk07"] = "checked";
-        } else {
-            $chkChecked["chk07"] = "";
-        }
-        if ($chk08b) {
-            $chkChecked["chk08"] = "checked";
-        } else {
-            $chkChecked["chk08"] = "";
-        }
-        if ($chk09b) {
-            $chkChecked["chk09"] = "checked";
-        } else {
-            $chkChecked["chk09"] = "";
-        }
+        // if ($chk01b) {
+        //     $chkChecked["chk01"] = "checked";
+        // } else {
+        //     $chkChecked["chk01"] = "";
+        // }
+        // if ($chk02b) {
+        //     $chkChecked["chk02"] = "checked";
+        // } else {
+        //     $chkChecked["chk02"] = "";
+        // }
+        // if ($chk03b) {
+        //     $chkChecked["chk03"] = "checked";
+        // } else {
+        //     $chkChecked["chk03"] = "";
+        // }
+        // if ($chk04b) {
+        //     $chkChecked["chk04"] = "checked";
+        // } else {
+        //     $chkChecked["chk04"] = "";
+        // }
+        // if ($chk05b) {
+        //     $chkChecked["chk05"] = "checked";
+        // } else {
+        //     $chkChecked["chk05"] = "";
+        // }
+        // if ($chk06b) {
+        //     $chkChecked["chk06"] = "checked";
+        // } else {
+        //     $chkChecked["chk06"] = "";
+        // }
+        // if ($chk07b) {
+        //     $chkChecked["chk07"] = "checked";
+        // } else {
+        //     $chkChecked["chk07"] = "";
+        // }
+        // if ($chk08b) {
+        //     $chkChecked["chk08"] = "checked";
+        // } else {
+        //     $chkChecked["chk08"] = "";
+        // }
+        // if ($chk09b) {
+        //     $chkChecked["chk09"] = "checked";
+        // } else {
+        //     $chkChecked["chk09"] = "";
+        // }
         return view('artist.addThread', [
             'threadList' => $threadList,
             'chkDatas' => $chkDatas,
-            'chkChecked' => $chkChecked
+            // 'chkChecked' => $chkChecked
         ]);
     }
 
