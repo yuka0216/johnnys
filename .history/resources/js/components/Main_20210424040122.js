@@ -9,29 +9,16 @@ import { Container, Row, Col } from 'react-bootstrap';
 import PostsMap from './PostsMap';
 import InstaViewPostIndex from './InstaViewPostIndex';
 import TwitterViewPostIndex from './TwitterViewPostIndex';
-// import SetPosts from './SetPosts';
+import SetPosts from './SetPosts';
 
 
 console.log('main')
 
+
+
 const Main = () => {
 
-    const [posts, setPosts] = useState([]);
-
-    useEffect(
-        () => {
-            axios
-                .get('/api/mypage')
-                .then((res) => {
-                    console.log('res', res)
-                    setPosts(res.data);
-                })
-                .catch((e) => {
-                    console.log("e", e);
-                })
-        },
-        []
-    );
+    <SetPosts />
 
     return (
         <Container>

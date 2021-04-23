@@ -4,15 +4,19 @@ import 'react-tabs/style/react-tabs.css';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
+import Lightbox from "lightbox-react";
+import LikeButton from './LikeButton';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Container, Row, Col } from 'react-bootstrap';
 import PostsMap from './PostsMap';
 import InstaViewPostIndex from './InstaViewPostIndex';
 import TwitterViewPostIndex from './TwitterViewPostIndex';
-// import SetPosts from './SetPosts';
+import TwitterViewImage from './TwitterViewImage';
 
 
 console.log('main')
+
+
 
 const Main = () => {
 

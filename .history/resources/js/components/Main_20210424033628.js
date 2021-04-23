@@ -4,15 +4,21 @@ import 'react-tabs/style/react-tabs.css';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
+import Lightbox from "lightbox-react";
+import LikeButton from './LikeButton';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Container, Row, Col } from 'react-bootstrap';
+import TwitterViewImage from './TwitterViewImage';
+import InstaViewImage from './InstaViewImage';
+import ImagePathsMap from './ImagePathsMap';
 import PostsMap from './PostsMap';
 import InstaViewPostIndex from './InstaViewPostIndex';
 import TwitterViewPostIndex from './TwitterViewPostIndex';
-// import SetPosts from './SetPosts';
 
 
 console.log('main')
+
+
 
 const Main = () => {
 
@@ -49,9 +55,18 @@ const Main = () => {
                 <TabPanel>
                     <div>
                         <h2>インスタ風画像投稿だけ表示</h2>
-                        <div className="d-flex flex-md-wrap col-md-12">
-                            <PostsMap posts={posts} view={InstaViewPostIndex} />
-                        </div>
+                        <PostsMap posts={posts} view={InstaViewPostIndex} />
+                        {/* <div className="d-flex flex-md-wrap col-md-12">
+                            {
+                                posts.map((post) => {
+                                    return (
+                                        <div className="col-md-3">
+                                            <ImagePathsMap array={post.imagePaths} viewImage={InstaViewImage} />
+                                        </div>
+                                    )
+                                })
+                            }
+                        </div> */}
                     </div>
                 </TabPanel>
             </Tabs>

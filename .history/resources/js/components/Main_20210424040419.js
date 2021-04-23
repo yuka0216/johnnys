@@ -9,29 +9,16 @@ import { Container, Row, Col } from 'react-bootstrap';
 import PostsMap from './PostsMap';
 import InstaViewPostIndex from './InstaViewPostIndex';
 import TwitterViewPostIndex from './TwitterViewPostIndex';
-// import SetPosts from './SetPosts';
+import SetPosts from './SetPosts';
 
 
 console.log('main')
 
+
+
 const Main = () => {
 
-    const [posts, setPosts] = useState([]);
-
-    useEffect(
-        () => {
-            axios
-                .get('/api/mypage')
-                .then((res) => {
-                    console.log('res', res)
-                    setPosts(res.data);
-                })
-                .catch((e) => {
-                    console.log("e", e);
-                })
-        },
-        []
-    );
+    <SetPosts />
 
     return (
         <Container>
@@ -43,14 +30,14 @@ const Main = () => {
                 <TabPanel>
                     <div>
                         <h2>全てのコメントの表示</h2>
-                        <PostsMap posts={posts} view={TwitterViewPostIndex} />
+                        <PostsMap posts={SetPosts} view={TwitterViewPostIndex} />
                     </div>
                 </TabPanel>
                 <TabPanel>
                     <div>
                         <h2>インスタ風画像投稿だけ表示</h2>
                         <div className="d-flex flex-md-wrap col-md-12">
-                            <PostsMap posts={posts} view={InstaViewPostIndex} />
+                            <PostsMap posts={SetPosts} view={InstaViewPostIndex} />
                         </div>
                     </div>
                 </TabPanel>

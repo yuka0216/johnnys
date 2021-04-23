@@ -9,10 +9,12 @@ import { Container, Row, Col } from 'react-bootstrap';
 import PostsMap from './PostsMap';
 import InstaViewPostIndex from './InstaViewPostIndex';
 import TwitterViewPostIndex from './TwitterViewPostIndex';
-// import SetPosts from './SetPosts';
+
 
 
 console.log('main')
+
+
 
 const Main = () => {
 
