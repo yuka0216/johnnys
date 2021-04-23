@@ -6,8 +6,10 @@ import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 import Lightbox from "lightbox-react";
 import LikeButton from './LikeButton';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { Container, Row, Col } from 'react-bootstrap';
 
-console.log('like', like);
+
 console.log('main')
 
 
@@ -30,22 +32,6 @@ const Main = () => {
         },
         []
     );
-    const [images, setImages] = useState([]);
-
-    useEffect(
-        () => {
-            axios
-                .get('/api/imagepost')
-                .then((imagePost) => {
-                    console.log('imagePost', imagePost)
-                    setImages(imagePost.data);
-                })
-                .catch((e) => {
-                    console.log("e", e);
-                })
-        },
-        []
-    );
 
     const style = {
         width: "100px",
@@ -53,8 +39,7 @@ const Main = () => {
 
     return (
 
-        <div className="container">
-            <LikeButton />
+        <Container>
             <Tabs>
                 <TabList>
                     <Tab>Tweet</Tab>
@@ -66,19 +51,20 @@ const Main = () => {
                         {
                             posts.map((post) => {
                                 return (
-                                    <div class="card">
-                                        <div class="card-body">
+                                    <div className="card">
+                                        <div className="card-body">
                                             <p>{post.comment}</p>
-                                            {post.images &&
-                                                images.map((image) => {
+                                            {
+                                                post.imagePaths.map((imagePath) => {
                                                     return (
                                                         <div>
-                                                            <img src={'/images/' + image} style={style} />
+                                                            <img src={'/images/' + imagePath} style={style} />
                                                         </div>
                                                     )
                                                 })
                                             }
                                             <p>{post.created_at}</p>
+                                            <LikeButton />
                                         </div>
                                     </div>
                                 )
@@ -88,13 +74,20 @@ const Main = () => {
                 </TabPanel>
                 <TabPanel>
                     <div>
-
                         <h2>インスタ風画像投稿だけ表示</h2>
-                        <div class="container" style={{ display: "flex", flexWrap: "wrap", width: "100%" }} >
+                        <div className="d-flex flex-md-wrap col-md-12">
                             {
-                                images.map((image) => {
+                                posts.map((post) => {
                                     return (
-                                        <a href={'/images/' + image} data-lightbox="group"><img src={'/images/' + image} width="200" /></a>
+                                        <div className="col-md-3">
+                                            {
+                                                post.imagePaths.map((imagePath) => {
+                                                    return (
+                                                        <a href={'/images/' + imagePath} data-lightbox="group"><img src={'/images/' + imagePath} /></a>
+                                                    )
+                                                })
+                                            }
+                                        </div>
                                     )
                                 })
                             }
@@ -102,7 +95,7 @@ const Main = () => {
                     </div>
                 </TabPanel>
             </Tabs>
-        </div>
+        </Container >
     )
 }
 
