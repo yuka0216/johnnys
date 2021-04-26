@@ -86915,7 +86915,13 @@ var LikeButton = function LikeButton() {
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
     onClick: onClick
-  }, like.liked ? '✔' : '', "\u3044\u3044\u306D\uFF01"), like.count);
+  }, like.liked ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+    src: '/image/ハート.jpg',
+    width: "30px"
+  }) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+    src: '/image/like.png',
+    width: "30px"
+  })), like.count);
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (LikeButton);
@@ -87016,15 +87022,73 @@ __webpack_require__.r(__webpack_exports__);
  //postsとviewを受け取ってpostsをmapで繰り返し処理,
 // return:受け取ったviewコンポーネントにpostを渡す
 
-var Posts = function Posts(props) {
-  return props.posts.map(function (post) {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(props.view, {
+var Posts = function Posts(_ref) {
+  var posts = _ref.posts,
+      view = _ref.view;
+  return posts.map(function (post) {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("view", {
       post: post
     });
   });
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (Posts);
+
+/***/ }),
+
+/***/ "./resources/js/components/PreciousButton.js":
+/*!***************************************************!*\
+  !*** ./resources/js/components/PreciousButton.js ***!
+  \***************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
+var PreciousButton = function PreciousButton() {
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])({
+    count: 0,
+    precioused: false
+  }),
+      _useState2 = _slicedToArray(_useState, 2),
+      precious = _useState2[0],
+      setPrecious = _useState2[1];
+
+  var onClick = function onClick() {
+    setPrecious({
+      count: precious.count + (precious.precioused ? -1 : 1),
+      precioused: !precious.precioused
+    });
+  };
+
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+    onClick: onClick
+  }, precious.precioused ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+    src: '/image/推しが尊い.jpg',
+    width: "200px"
+  }) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+    src: '/image/ハート.jpg',
+    width: "25px"
+  })), precious.count);
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (PreciousButton);
 
 /***/ }),
 
@@ -87066,6 +87130,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _ImagePathsMap__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ImagePathsMap */ "./resources/js/components/ImagePathsMap.js");
 /* harmony import */ var _TwitterViewImage__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./TwitterViewImage */ "./resources/js/components/TwitterViewImage.js");
 /* harmony import */ var _LikeButton__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./LikeButton */ "./resources/js/components/LikeButton.js");
+/* harmony import */ var _PreciousButton__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./PreciousButton */ "./resources/js/components/PreciousButton.js");
+
 
 
 
@@ -87079,7 +87145,7 @@ var TwitterViewPostIndex = function TwitterViewPostIndex(props) {
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, props.post.comment), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_ImagePathsMap__WEBPACK_IMPORTED_MODULE_1__["default"], {
     post: props.post,
     viewImage: _TwitterViewImage__WEBPACK_IMPORTED_MODULE_2__["default"]
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, props.post.created_at), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_LikeButton__WEBPACK_IMPORTED_MODULE_3__["default"], null)));
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, props.post.created_at), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_PreciousButton__WEBPACK_IMPORTED_MODULE_4__["default"], null)));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (TwitterViewPostIndex);
