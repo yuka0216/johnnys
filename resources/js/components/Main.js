@@ -1,4 +1,3 @@
-import { Router, Route, Link } from 'react-router';
 import ReactDOM from 'react-dom';
 import 'react-tabs/style/react-tabs.css';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
@@ -10,18 +9,21 @@ import Posts from './Posts';
 import InstaViewPostIndex from './InstaViewPostIndex';
 import TwitterViewPostIndex from './TwitterViewPostIndex';
 // import SetPosts from './SetPosts';
-
+import { useLocation, Switch, Route, BrowserRouter as Router, } from 'react-router-dom';
 
 console.log('main')
+
+const url = window.location.pathname;
+const userId = String(url);
+console.log(userId);
 
 const Main = () => {
 
     const [posts, setPosts] = useState([]);
-
     useEffect(
         () => {
             axios
-                .get('/api/mypage')
+                .get('/api' + (userId))
                 .then((res) => {
                     console.log('res', res)
                     setPosts(res.data);

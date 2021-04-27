@@ -10,6 +10,7 @@ const TwitterViewPostIndex = (props) => {
     return (
         <div className="card">
             <div className="card-body">
+                <p>{props.post.name}</p>
                 <p>{props.post.comment}</p>
                 <ImagePathsMap post={props.post} viewImage={TwitterViewImage} />
                 <p>{props.post.created_at}</p>

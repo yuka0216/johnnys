@@ -41,7 +41,7 @@
                 <a class="nav-link" href="/all">ALL</a>
                 <a class="nav-link" href="/snowman">Snow Man</a>
                 <a class="nav-link" href="/sixtones">SixTONES</a>
-                <a class="nav-link" href="/mypage">My Page</a>
+                <a class="nav-link" href="/mypage/0">My Page</a>
             </div>
         </div>
     </nav>

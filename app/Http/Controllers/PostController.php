@@ -9,9 +9,9 @@ use Illuminate\Support\Facades\Auth;
 
 class PostController extends Controller
 {
-    public function index()
+    public function index($userId)
     {
-        $id = Auth::user()->id;
+        ($userId == 0) ? $id = Auth::user()->id : $id = $userId;
         $posts = Post::where('user_id', $id)->orderBy('created_at', 'desc')->get();
         return Post::mypageViewModel($posts);
     }
