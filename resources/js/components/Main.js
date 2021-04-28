@@ -10,6 +10,8 @@ import InstaViewPostIndex from './InstaViewPostIndex';
 import TwitterViewPostIndex from './TwitterViewPostIndex';
 // import SetPosts from './SetPosts';
 import { useLocation, Switch, Route, BrowserRouter as Router, } from 'react-router-dom';
+import Search from './search';
+import "../App.css";
 
 console.log('main')
 
@@ -32,12 +34,29 @@ const Main = () => {
         []
     );
 
+    const [searchPosts, setSearchPosts] = useState([]);
+    useEffect(
+        () => {
+            axios
+                .get('/api/search/${searchValue}')
+                .then((res) => {
+                    setSearchPosts(res.data);
+                })
+                .catch((e) => {
+                    console.log("e", e);
+                })
+        },
+        []
+    );
+
+
     return (
         <Container>
             <Tabs>
                 <TabList>
-                    <Tab>Tweet</Tab>
-                    <Tab>Instagram</Tab>
+                    <Tab><img src={'/image/吹き出し.jpg'} width="40px" /></Tab>
+                    <Tab><img src={'/image/カメラ.jpeg'} width="40px" /></Tab>
+                    <Tab><img src={'/image/虫眼鏡.jpg'} width="40px" /></Tab>
                 </TabList>
                 <TabPanel>
                     <div>
@@ -50,6 +69,19 @@ const Main = () => {
                         <h2>インスタ風画像投稿だけ表示</h2>
                         <div className="d-flex flex-md-wrap col-md-12">
                             <Posts posts={posts} viewType="instagram" />
+                        </div>
+                    </div>
+                </TabPanel>
+                <TabPanel>
+                    <div>
+                        <h2>検索ページ</h2>
+                        <Search />
+                        <p className="App-intro">Sharing a few of our favourite movies</p>
+                        <div className="searchIndex">
+                            {searchPosts.map((searchPost) => (
+                                <p>{searchPost.comment}</p>
+                            ))
+                            }
                         </div>
                     </div>
                 </TabPanel>

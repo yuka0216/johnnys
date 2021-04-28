@@ -9848,6 +9848,25 @@ exports.push([module.i, ".react-tabs {\n  -webkit-tap-highlight-color: transpare
 
 /***/ }),
 
+/***/ "./node_modules/css-loader/index.js?!./node_modules/postcss-loader/src/index.js?!./resources/js/App.css":
+/*!**************************************************************************************************************!*\
+  !*** ./node_modules/css-loader??ref--6-1!./node_modules/postcss-loader/src??ref--6-2!./resources/js/App.css ***!
+  \**************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(/*! ../../node_modules/css-loader/lib/css-base.js */ "./node_modules/css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, ".App {\r\n  text-align: center;\r\n}\r\n\r\n.App-header {\r\n  background-color: #282c34;\r\n  height: 70px;\r\n  display: flex;\r\n  flex-direction: column;\r\n  align-items: center;\r\n  justify-content: center;\r\n  font-size: calc(10px + 2vmin);\r\n  color: white;\r\n  padding: 20px;\r\n  cursor: pointer;\r\n}\r\n\r\n.spinner {\r\n  height: 80px;\r\n  margin: auto;\r\n}\r\n\r\n.App-intro {\r\n  font-size: large;\r\n}\r\n\r\n/* new css for movie component */\r\n\r\n* {\r\n  box-sizing: border-box;\r\n}\r\n\r\n.movies {\r\n  display: flex;\r\n  flex-wrap: wrap;\r\n  flex-direction: row;\r\n}\r\n\r\n.App-header h2 {\r\n  margin: 0;\r\n}\r\n\r\n.add-movies {\r\n  text-align: center;\r\n}\r\n\r\n.add-movies button {\r\n  font-size: 16px;\r\n  padding: 8px;\r\n  margin: 0 10px 30px 10px;\r\n}\r\n\r\n.movie {\r\n  padding: 5px 25px 10px 25px;\r\n  max-width: 25%;\r\n}\r\n\r\n.errorMessage {\r\n  margin: auto;\r\n  font-weight: bold;\r\n  color: rgb(161, 15, 15);\r\n}\r\n\r\n\r\n.search {\r\n  display: flex;\r\n  flex-direction: row;\r\n  flex-wrap: wrap;\r\n  justify-content: center;\r\n  margin-top: 10px;\r\n}\r\n\r\n\r\ninput[type=\"submit\"] {\r\n  padding: 5px;\r\n  background-color: transparent;\r\n  color: black;\r\n  border: 1px solid black;\r\n  width: 80px;\r\n  margin-left: 5px;\r\n  cursor: pointer;\r\n}\r\n\r\n\r\ninput[type=\"submit\"]:hover {\r\n  background-color: #282c34;\r\n  color: antiquewhite;\r\n}\r\n\r\n\r\n.search > input[type=\"text\"]{\r\n  width: 40%;\r\n  min-width: 170px;\r\n}\r\n\r\n@media screen and (min-width: 694px) and (max-width: 915px) {\r\n  .movie {\r\n    max-width: 33%;\r\n  }\r\n}\r\n\r\n@media screen and (min-width: 652px) and (max-width: 693px) {\r\n  .movie {\r\n    max-width: 50%;\r\n  }\r\n}\r\n\r\n\r\n@media screen and (max-width: 651px) {\r\n  .movie {\r\n    max-width: 100%;\r\n    margin: auto;\r\n  }\r\n}", ""]);
+
+// exports
+
+
+/***/ }),
+
 /***/ "./node_modules/css-loader/lib/css-base.js":
 /*!*************************************************!*\
   !*** ./node_modules/css-loader/lib/css-base.js ***!
@@ -87849,6 +87868,36 @@ module.exports = function(module) {
 
 /***/ }),
 
+/***/ "./resources/js/App.css":
+/*!******************************!*\
+  !*** ./resources/js/App.css ***!
+  \******************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+var content = __webpack_require__(/*! !../../node_modules/css-loader??ref--6-1!../../node_modules/postcss-loader/src??ref--6-2!./App.css */ "./node_modules/css-loader/index.js?!./node_modules/postcss-loader/src/index.js?!./resources/js/App.css");
+
+if(typeof content === 'string') content = [[module.i, content, '']];
+
+var transform;
+var insertInto;
+
+
+
+var options = {"hmr":true}
+
+options.transform = transform
+options.insertInto = undefined;
+
+var update = __webpack_require__(/*! ../../node_modules/style-loader/lib/addStyles.js */ "./node_modules/style-loader/lib/addStyles.js")(content, options);
+
+if(content.locals) module.exports = content.locals;
+
+if(false) {}
+
+/***/ }),
+
 /***/ "./resources/js/app.js":
 /*!*****************************!*\
   !*** ./resources/js/app.js ***!
@@ -88099,6 +88148,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _InstaViewPostIndex__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./InstaViewPostIndex */ "./resources/js/components/InstaViewPostIndex.js");
 /* harmony import */ var _TwitterViewPostIndex__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./TwitterViewPostIndex */ "./resources/js/components/TwitterViewPostIndex.js");
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var _search__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./search */ "./resources/js/components/search.js");
+/* harmony import */ var _App_css__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../App.css */ "./resources/js/App.css");
+/* harmony import */ var _App_css__WEBPACK_IMPORTED_MODULE_13___default = /*#__PURE__*/__webpack_require__.n(_App_css__WEBPACK_IMPORTED_MODULE_13__);
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -88127,6 +88179,8 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
  // import SetPosts from './SetPosts';
+
+
 
 
 console.log('main');
@@ -88168,7 +88222,29 @@ var Main = function Main() {
       }
     }, _callee, null, [[0, 7]]);
   })), []);
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_7__["Container"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(react_tabs__WEBPACK_IMPORTED_MODULE_3__["Tabs"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(react_tabs__WEBPACK_IMPORTED_MODULE_3__["TabList"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(react_tabs__WEBPACK_IMPORTED_MODULE_3__["Tab"], null, "Tweet"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(react_tabs__WEBPACK_IMPORTED_MODULE_3__["Tab"], null, "Instagram")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(react_tabs__WEBPACK_IMPORTED_MODULE_3__["TabPanel"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("h2", null, "\u5168\u3066\u306E\u30B3\u30E1\u30F3\u30C8\u306E\u8868\u793A"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(_Posts__WEBPACK_IMPORTED_MODULE_8__["default"], {
+
+  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_5__["useState"])([]),
+      _useState4 = _slicedToArray(_useState3, 2),
+      searchPosts = _useState4[0],
+      setSearchPosts = _useState4[1];
+
+  Object(react__WEBPACK_IMPORTED_MODULE_5__["useEffect"])(function () {
+    axios__WEBPACK_IMPORTED_MODULE_4___default.a.get('/api/search/${searchValue}').then(function (res) {
+      setSearchPosts(res.data);
+    })["catch"](function (e) {
+      console.log("e", e);
+    });
+  }, []);
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_7__["Container"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(react_tabs__WEBPACK_IMPORTED_MODULE_3__["Tabs"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(react_tabs__WEBPACK_IMPORTED_MODULE_3__["TabList"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(react_tabs__WEBPACK_IMPORTED_MODULE_3__["Tab"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("img", {
+    src: '/image/吹き出し.jpg',
+    width: "40px"
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(react_tabs__WEBPACK_IMPORTED_MODULE_3__["Tab"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("img", {
+    src: '/image/カメラ.jpeg',
+    width: "40px"
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(react_tabs__WEBPACK_IMPORTED_MODULE_3__["Tab"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("img", {
+    src: '/image/虫眼鏡.jpg',
+    width: "40px"
+  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(react_tabs__WEBPACK_IMPORTED_MODULE_3__["TabPanel"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("h2", null, "\u5168\u3066\u306E\u30B3\u30E1\u30F3\u30C8\u306E\u8868\u793A"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(_Posts__WEBPACK_IMPORTED_MODULE_8__["default"], {
     posts: posts,
     viewType: "twitter"
   }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(react_tabs__WEBPACK_IMPORTED_MODULE_3__["TabPanel"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("h2", null, "\u30A4\u30F3\u30B9\u30BF\u98A8\u753B\u50CF\u6295\u7A3F\u3060\u3051\u8868\u793A"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("div", {
@@ -88176,6 +88252,12 @@ var Main = function Main() {
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(_Posts__WEBPACK_IMPORTED_MODULE_8__["default"], {
     posts: posts,
     viewType: "instagram"
+  })))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(react_tabs__WEBPACK_IMPORTED_MODULE_3__["TabPanel"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("h2", null, "\u691C\u7D22\u30DA\u30FC\u30B8"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(_search__WEBPACK_IMPORTED_MODULE_12__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("p", {
+    className: "App-intro"
+  }, "Sharing a few of our favourite movies"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("div", {
+    className: "searchIndex"
+  }, searchPosts.map(function (searchPost) {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("p", null, searchPost.comment);
   }))))));
 };
 
@@ -88338,6 +88420,72 @@ var TwitterViewPostIndex = function TwitterViewPostIndex(props) {
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (TwitterViewPostIndex);
+
+/***/ }),
+
+/***/ "./resources/js/components/search.js":
+/*!*******************************************!*\
+  !*** ./resources/js/components/search.js ***!
+  \*******************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
+var Search = function Search(props) {
+  console.log('props', props);
+
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(""),
+      _useState2 = _slicedToArray(_useState, 2),
+      searchValue = _useState2[0],
+      setSearchValue = _useState2[1];
+
+  var handleSearchInputChanges = function handleSearchInputChanges(e) {
+    setSearchValue(e.target.value);
+  };
+
+  var resetInputField = function resetInputField() {
+    setSearchValue("");
+  };
+
+  var callSearchFunction = function callSearchFunction(e) {
+    e.preventDefault(); //actionで指定されたURLへのページ遷移＋データ送信を阻害
+
+    props.search(searchValue); //formに入力された文字を引数にとり、search関数を実行
+
+    resetInputField(); //入力値の値をリセットする関数を呼び出し
+  };
+
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+    className: "search"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    value: searchValue,
+    onChange: handleSearchInputChanges,
+    type: "text"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    onClick: callSearchFunction,
+    type: "submit",
+    value: "SEARCH"
+  }));
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Search);
 
 /***/ }),
 

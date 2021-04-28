@@ -12,6 +12,7 @@
 */
 
 Route::middleware('auth')->get('api/mypage/{userId}', 'PostController@index');
+Route::middleware('auth')->get('api/search/{searchValue}', 'PostController@searchIndex');
 
 Route::get('/mypage/{userId}', function () {
     return view('artist.app');

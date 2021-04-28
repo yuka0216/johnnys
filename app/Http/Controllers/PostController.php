@@ -15,4 +15,9 @@ class PostController extends Controller
         $posts = Post::where('user_id', $id)->orderBy('created_at', 'desc')->get();
         return Post::mypageViewModel($posts);
     }
+
+    public function searchIndex($searchValue)
+    {
+        return Post::where('comment', $searchValue)->orderBy('created_at', 'desc')->get();
+    }
 }
