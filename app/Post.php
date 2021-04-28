@@ -63,6 +63,7 @@ class Post extends Model
         foreach ($posts as $post) {
             if ($post->created_at !== null) {
                 $mypageViews[] = [
+                    "name" => $post->user->name,
                     "id" => $post->id,
                     "comment" => $post->comment,
                     "imagePaths" => self::makeImagePaths($post->images),

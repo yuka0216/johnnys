@@ -11,10 +11,13 @@
 |
 */
 
-Route::middleware('auth')->get('api/mypage', 'PostController@index');
-Route::middleware('auth')->get('api/imagepost', 'PostController@image');
+Route::middleware('auth')->get('api/mypage/{userId}', 'PostController@index');
 
-Route::get('/mypage', function () {
+Route::get('/mypage/{userId}', function () {
+    return view('artist.app');
+});
+
+Route::get('/mypage/0', function () {
     return view('artist.app');
 });
 

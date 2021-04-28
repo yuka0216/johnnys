@@ -47,7 +47,7 @@
         <table class="table">
             <tr>
                 <td>
-                    {{ $post->user->name }}<br>
+                    <a href="{{ "/mypage/" . $post->user->id }}">{{ $post->user->name }}</a><br>
                     {{ $post->comment }}<br>
                     @if ($post->images !=NUll)
                     @foreach ($post->images as $image)
