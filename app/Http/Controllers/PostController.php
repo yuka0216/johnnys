@@ -12,11 +12,7 @@ class PostController extends Controller
     public function index()
     {
         $id = Auth::user()->id;
-        return  Post::where('user_id', $id)->orderBy('created_at', 'desc')->get();
-    }
-    public function image()
-    {
-        $id = Auth::user()->id;
-        return  Post::where('user_id', $id)->where('image_path', '!=', null)->orderBy('created_at', 'desc')->get();
+        $posts = Post::where('user_id', $id)->orderBy('created_at', 'desc')->get();
+        return Post::mypageViewModel($posts);
     }
 }

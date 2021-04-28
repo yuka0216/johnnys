@@ -74,7 +74,7 @@ const Main = () => {
                 </TabPanel>
                 <TabPanel>
                     <div>
-                        <h2>インスタ風画像投稿だけ表示</h2>
+                        <h2>インスタ風画像投稿だけを表示</h2>
                         <div className="d-flex flex-md-wrap col-md-12">
                             {
                                 posts.map((post) => {
