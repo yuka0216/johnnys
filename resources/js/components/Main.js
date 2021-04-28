@@ -21,16 +21,13 @@ const Main = () => {
 
     const [posts, setPosts] = useState([]);
     useEffect(
-        () => {
-            axios
-                .get('/api' + (userId))
-                .then((res) => {
-                    console.log('res', res)
-                    setPosts(res.data);
-                })
-                .catch((e) => {
-                    console.log("e", e);
-                })
+        async () => {
+            try {
+                const res = await axios.get('/api' + (userId))
+                setPosts(res.data);
+            } catch (e) {
+                console.log("e", e);
+            }
         },
         []
     );
