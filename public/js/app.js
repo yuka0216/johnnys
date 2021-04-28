@@ -86995,12 +86995,12 @@ var Main = function Main() {
   }, []);
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_7__["Container"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(react_tabs__WEBPACK_IMPORTED_MODULE_3__["Tabs"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(react_tabs__WEBPACK_IMPORTED_MODULE_3__["TabList"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(react_tabs__WEBPACK_IMPORTED_MODULE_3__["Tab"], null, "Tweet"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(react_tabs__WEBPACK_IMPORTED_MODULE_3__["Tab"], null, "Instagram")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(react_tabs__WEBPACK_IMPORTED_MODULE_3__["TabPanel"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("h2", null, "\u5168\u3066\u306E\u30B3\u30E1\u30F3\u30C8\u306E\u8868\u793A"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(_Posts__WEBPACK_IMPORTED_MODULE_8__["default"], {
     posts: posts,
-    view: _TwitterViewPostIndex__WEBPACK_IMPORTED_MODULE_10__["default"]
+    viewType: "twitter"
   }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(react_tabs__WEBPACK_IMPORTED_MODULE_3__["TabPanel"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("h2", null, "\u30A4\u30F3\u30B9\u30BF\u98A8\u753B\u50CF\u6295\u7A3F\u3060\u3051\u8868\u793A"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("div", {
     className: "d-flex flex-md-wrap col-md-12"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(_Posts__WEBPACK_IMPORTED_MODULE_8__["default"], {
     posts: posts,
-    view: _InstaViewPostIndex__WEBPACK_IMPORTED_MODULE_9__["default"]
+    viewType: "instagram"
   }))))));
 };
 
@@ -87019,16 +87019,30 @@ var Main = function Main() {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _TwitterViewPostIndex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./TwitterViewPostIndex */ "./resources/js/components/TwitterViewPostIndex.js");
+/* harmony import */ var _InstaViewPostIndex__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./InstaViewPostIndex */ "./resources/js/components/InstaViewPostIndex.js");
+
+
  //postsとviewを受け取ってpostsをmapで繰り返し処理,
 // return:受け取ったviewコンポーネントにpostを渡す
 
 var Posts = function Posts(_ref) {
   var posts = _ref.posts,
-      view = _ref.view;
-  return posts.map(function (post) {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("view", {
+      viewType = _ref.viewType;
+
+  var postView = function postView(post, viewType) {
+    if (viewType == "twitter") return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_TwitterViewPostIndex__WEBPACK_IMPORTED_MODULE_1__["default"], {
+      key: post.id,
       post: post
     });
+    if (viewType == "instagram") return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_InstaViewPostIndex__WEBPACK_IMPORTED_MODULE_2__["default"], {
+      key: post.id,
+      post: post
+    });
+  };
+
+  return posts.map(function (post) {
+    return postView(post, viewType);
   });
 };
 
