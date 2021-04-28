@@ -6,7 +6,7 @@ import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Container, Row, Col } from 'react-bootstrap';
-import PostsMap from './PostsMap';
+import Posts from './Posts';
 import InstaViewPostIndex from './InstaViewPostIndex';
 import TwitterViewPostIndex from './TwitterViewPostIndex';
 // import SetPosts from './SetPosts';
@@ -43,14 +43,14 @@ const Main = () => {
                 <TabPanel>
                     <div>
                         <h2>全てのコメントの表示</h2>
-                        <PostsMap posts={posts} view={TwitterViewPostIndex} />
+                        <Posts posts={posts} view={TwitterViewPostIndex} />
                     </div>
                 </TabPanel>
                 <TabPanel>
                     <div>
                         <h2>インスタ風画像投稿だけ表示</h2>
                         <div className="d-flex flex-md-wrap col-md-12">
-                            <PostsMap posts={posts} view={InstaViewPostIndex} />
+                            <Posts posts={posts} view={InstaViewPostIndex} />
                         </div>
                     </div>
                 </TabPanel>

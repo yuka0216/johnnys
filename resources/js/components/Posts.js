@@ -3,7 +3,7 @@ import React from 'react';
 //postsとviewを受け取ってpostsをmapで繰り返し処理,
 // return:受け取ったviewコンポーネントにpostを渡す
 
-const PostsMap = (props) => {
+const Posts = (props) => {
     return (
         props.posts.map((post) => {
             return (
@@ -13,4 +13,4 @@ const PostsMap = (props) => {
     )
 }
 
-export default PostsMap;
+export default Posts;
