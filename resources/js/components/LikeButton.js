@@ -13,7 +13,7 @@ const LikeButton = () => {
     return (
         <>
             <button onClick={onClick}>
-                {like.liked ? '✔' : ''}いいね！
+                {like.liked ? <img src={'/image/ハート.jpg'} width="30px" /> : <img src={'/image/like.png'} width="30px" />}
             </button>
             {like.count}
         </>
