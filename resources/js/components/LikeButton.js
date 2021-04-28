@@ -9,7 +9,6 @@ const LikeButton = () => {
             liked: !like.liked
         });
     }
-    console.log('like', like);
 
     return (
         <>
