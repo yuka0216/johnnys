@@ -87997,6 +87997,7 @@ var ImagePathsMap = function ImagePathsMap(props) {
   // console.log('props', props);
   return props.post.imagePaths.map(function (imagePath) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(props.viewImage, {
+      key: imagePath,
       imagePath: imagePath
     });
   });
@@ -88151,6 +88152,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _search__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./search */ "./resources/js/components/search.js");
 /* harmony import */ var _App_css__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../App.css */ "./resources/js/App.css");
 /* harmony import */ var _App_css__WEBPACK_IMPORTED_MODULE_13___default = /*#__PURE__*/__webpack_require__.n(_App_css__WEBPACK_IMPORTED_MODULE_13__);
+/* harmony import */ var _SearchPosts__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./SearchPosts */ "./resources/js/components/SearchPosts.js");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -88183,6 +88185,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
+
 console.log('main');
 var url = window.location.pathname;
 var userId = String(url);
@@ -88193,6 +88196,11 @@ var Main = function Main() {
       _useState2 = _slicedToArray(_useState, 2),
       posts = _useState2[0],
       setPosts = _useState2[1];
+
+  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_5__["useState"])([]),
+      _useState4 = _slicedToArray(_useState3, 2),
+      searchPosts = _useState4[0],
+      setSearchPosts = _useState4[1];
 
   Object(react__WEBPACK_IMPORTED_MODULE_5__["useEffect"])( /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
     var res;
@@ -88206,7 +88214,8 @@ var Main = function Main() {
 
           case 3:
             res = _context.sent;
-            setPosts(res.data);
+            setPosts(res.data); // console.log("res", res);
+
             _context.next = 10;
             break;
 
@@ -88223,18 +88232,14 @@ var Main = function Main() {
     }, _callee, null, [[0, 7]]);
   })), []);
 
-  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_5__["useState"])([]),
-      _useState4 = _slicedToArray(_useState3, 2),
-      searchPosts = _useState4[0],
-      setSearchPosts = _useState4[1];
-
-  Object(react__WEBPACK_IMPORTED_MODULE_5__["useEffect"])(function () {
-    axios__WEBPACK_IMPORTED_MODULE_4___default.a.get('/api/search/${searchValue}').then(function (res) {
-      setSearchPosts(res.data);
-    })["catch"](function (e) {
-      console.log("e", e);
+  var search = function search(searchValue) {
+    axios__WEBPACK_IMPORTED_MODULE_4___default.a.get('/api/search/' + searchValue).then(function (response) {
+      var searchPosts = response.data;
+      console.log('searchPosts', searchPosts);
+      setSearchPosts(searchPosts);
     });
-  }, []);
+  };
+
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_7__["Container"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(react_tabs__WEBPACK_IMPORTED_MODULE_3__["Tabs"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(react_tabs__WEBPACK_IMPORTED_MODULE_3__["TabList"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(react_tabs__WEBPACK_IMPORTED_MODULE_3__["Tab"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("img", {
     src: '/image/吹き出し.jpg',
     width: "40px"
@@ -88252,13 +88257,11 @@ var Main = function Main() {
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(_Posts__WEBPACK_IMPORTED_MODULE_8__["default"], {
     posts: posts,
     viewType: "instagram"
-  })))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(react_tabs__WEBPACK_IMPORTED_MODULE_3__["TabPanel"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("h2", null, "\u691C\u7D22\u30DA\u30FC\u30B8"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(_search__WEBPACK_IMPORTED_MODULE_12__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("p", {
-    className: "App-intro"
-  }, "Sharing a few of our favourite movies"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("div", {
-    className: "searchIndex"
-  }, searchPosts.map(function (searchPost) {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("p", null, searchPost.comment);
-  }))))));
+  })))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(react_tabs__WEBPACK_IMPORTED_MODULE_3__["TabPanel"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("h2", null, "\u691C\u7D22\u30DA\u30FC\u30B8"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(_search__WEBPACK_IMPORTED_MODULE_12__["default"], {
+    search: search
+  }), searchPosts.map(function (searchPost) {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("p", null, searchPost.comment));
+  })))));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (Main);
@@ -88363,6 +88366,31 @@ var PreciousButton = function PreciousButton() {
 
 /***/ }),
 
+/***/ "./resources/js/components/SearchPosts.js":
+/*!************************************************!*\
+  !*** ./resources/js/components/SearchPosts.js ***!
+  \************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+
+
+var SearchPosts = function SearchPosts(_ref) {
+  var searchPosts = _ref.searchPosts;
+  console.log("searchPosts", searchPosts);
+  searchPosts.map(function (searchPost) {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, searchPost.comment));
+  });
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (SearchPosts);
+
+/***/ }),
+
 /***/ "./resources/js/components/TwitterViewImage.js":
 /*!*****************************************************!*\
   !*** ./resources/js/components/TwitterViewImage.js ***!
@@ -88449,8 +88477,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 var Search = function Search(props) {
-  console.log('props', props);
-
+  // console.log('props', props.search);
   var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(""),
       _useState2 = _slicedToArray(_useState, 2),
       searchValue = _useState2[0],
@@ -88462,7 +88489,8 @@ var Search = function Search(props) {
 
   var resetInputField = function resetInputField() {
     setSearchValue("");
-  };
+  }; // console.log('searchValue', searchValue);
+
 
   var callSearchFunction = function callSearchFunction(e) {
     e.preventDefault(); //actionで指定されたURLへのページ遷移＋データ送信を阻害

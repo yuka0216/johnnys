@@ -12,6 +12,7 @@ import TwitterViewPostIndex from './TwitterViewPostIndex';
 import { useLocation, Switch, Route, BrowserRouter as Router, } from 'react-router-dom';
 import Search from './search';
 import "../App.css";
+import SearchPosts from './SearchPosts';
 
 console.log('main')
 
@@ -22,11 +23,14 @@ console.log(userId);
 const Main = () => {
 
     const [posts, setPosts] = useState([]);
+    const [searchPosts, setSearchPosts] = useState([]);
+
     useEffect(
         async () => {
             try {
                 const res = await axios.get('/api' + (userId))
                 setPosts(res.data);
+                // console.log("res", res);
             } catch (e) {
                 console.log("e", e);
             }
@@ -34,20 +38,15 @@ const Main = () => {
         []
     );
 
-    const [searchPosts, setSearchPosts] = useState([]);
-    useEffect(
-        () => {
-            axios
-                .get('/api/search/${searchValue}')
-                .then((res) => {
-                    setSearchPosts(res.data);
-                })
-                .catch((e) => {
-                    console.log("e", e);
-                })
-        },
-        []
-    );
+    const search = (searchValue) => {
+        axios.get('/api/search/' + (searchValue))
+            .then(response => {
+                const searchPosts = response.data;
+                console.log('searchPosts', searchPosts);
+                setSearchPosts(searchPosts);
+            })
+    }
+
 
 
     return (
@@ -75,14 +74,16 @@ const Main = () => {
                 <TabPanel>
                     <div>
                         <h2>検索ページ</h2>
-                        <Search />
-                        <p className="App-intro">Sharing a few of our favourite movies</p>
-                        <div className="searchIndex">
-                            {searchPosts.map((searchPost) => (
-                                <p>{searchPost.comment}</p>
-                            ))
-                            }
-                        </div>
+                        <Search search={search} />
+                        {
+                            searchPosts.map((searchPost) => {
+                                return (
+                                    <div>
+                                        <p>{searchPost.comment}</p>
+                                    </div>
+                                )
+                            })
+                        }
                     </div>
                 </TabPanel>
             </Tabs>

@@ -11,13 +11,13 @@ class PostController extends Controller
 {
     public function index(int $userId)
     {
-        $id = ($userId === 0) ? Auth::id() : $userId;
+        $id = $userId;
         $posts = Post::where('user_id', $id)->orderBy('created_at', 'desc')->get();
         return Post::mypageViewModel($posts);
     }
 
     public function searchIndex($searchValue)
     {
-        return Post::where('comment', $searchValue)->orderBy('created_at', 'desc')->get();
+        return Post::where('comment', 'like', "%$searchValue%")->orderBy('created_at', 'desc')->get();
     }
 }

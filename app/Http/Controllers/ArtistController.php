@@ -63,6 +63,7 @@ class ArtistController extends controller
         return view('artist.app', ['myPosts' => $myPosts]);
     }
 
+
     public function makeCheckBox() //スレッド新規作成画面の誰の話題か選ぶためのチェックボックス作成（とりあえずネットのコピペ）
     {
         $threadList = self::makeThreadList();
@@ -139,6 +140,7 @@ class ArtistController extends controller
             // 'chkChecked' => $chkChecked
         ]);
     }
+
 
     public function snowman()
     {
