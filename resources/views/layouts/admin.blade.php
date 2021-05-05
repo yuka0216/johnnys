@@ -42,6 +42,7 @@
                 <a class="nav-link" href="/snowman">Snow Man</a>
                 <a class="nav-link" href="/sixtones">SixTONES</a>
                 <a class="nav-link" href="/mypage/{{Auth::id()}}">My Page</a>
+                <a class="nav-link" href="/setting">setting</a>
             </div>
         </div>
     </nav>

@@ -6,13 +6,12 @@ import React, { useState, useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Container, Row, Col } from 'react-bootstrap';
 import Posts from './Posts';
-import InstaViewPostIndex from './InstaViewPostIndex';
-import TwitterViewPostIndex from './TwitterViewPostIndex';
-// import SetPosts from './SetPosts';
-import { useLocation, Switch, Route, BrowserRouter as Router, } from 'react-router-dom';
 import Search from './search';
 import "../App.css";
 import SearchPosts from './SearchPosts';
+import ImagePathsMap from './ImagePathsMap';
+import TwitterViewImage from './TwitterViewImage';
+import Top from './Top';
 
 const url = window.location.pathname;
 const userId = String(url);
@@ -49,11 +48,13 @@ const Main = () => {
 
     return (
         <Container>
+            {/* <Top userId={userId} /> */}
             <Tabs>
                 <TabList>
                     <Tab><img src={'/image/吹き出し.jpg'} width="40px" /></Tab>
                     <Tab><img src={'/image/カメラ.jpeg'} width="40px" /></Tab>
                     <Tab><img src={'/image/虫眼鏡.jpg'} width="40px" /></Tab>
+                    <Tab><img src={'/image/マイク.png'} width="40px" /></Tab>
                 </TabList>
                 <TabPanel>
                     <div>
@@ -75,6 +76,11 @@ const Main = () => {
                         <Search search={search} />
                         <SearchPosts searchPosts={searchPosts} />
                     </div>
+                </TabPanel>
+                <TabPanel>
+                    <h2>コンサート参戦履歴</h2>
+                    <p>追加するボタン</p>
+                    <p>ブログみたいに投稿一覧表示</p>
                 </TabPanel>
             </Tabs>
         </Container >

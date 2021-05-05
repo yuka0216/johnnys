@@ -13,6 +13,7 @@
 
 Route::middleware('auth')->get('api/mypage/{userId}', 'PostController@index');
 Route::middleware('auth')->get('api/search/{searchValue}', 'PostController@searchIndex');
+Route::middleware('auth')->get('api/profile/mypage/{userId}', 'ProfileController@fetchProfileByUserId');
 
 Route::get('/mypage/{userId}', function () {
     return view('artist.app');
@@ -35,9 +36,9 @@ Route::post('/snowman/profile/{threadId}', 'ArtistController@post')->middleware(
 Route::get('/snowman/profile/{threadId}', 'ArtistController@postIndex')->middleware('auth');
 Route::post('/snowman/add', 'ArtistController@addThread')->name('home');
 Route::get('/snowman/add', 'ArtistController@makeCheckBox')->name('home');
-// Route::get('/mypage', 'ArtistController@myPostIndex')->middleware('auth');
 Route::get('/all', 'ArtistController@index')->middleware('auth');
-
+Route::post('/setting', 'ArtistController@profile')->middleware('auth');
+Route::get('/setting', 'ArtistController@setting')->middleware('auth');
 Route::get('/snowman', 'ArtistController@snowman')->middleware('auth');
 Route::get('/sixtones', 'ArtistController@sixtones')->middleware('auth');
 Route::get('/snowman/profile', 'ArtistController@snowmanprofile')->middleware('auth');

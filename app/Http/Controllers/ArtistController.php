@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 use App\Artist;
 use App\Post;
 use App\Thread;
-use App\Image;
+use App\Profile;
 use Illuminate\Support\Facades\Auth;
 
 class ArtistController extends controller
@@ -63,6 +63,18 @@ class ArtistController extends controller
         return view('artist.app', ['myPosts' => $myPosts]);
     }
 
+    public function profile(Request $request)
+    {
+        $user = Auth::user();
+        $profile = Profile::profileDataSave($request, $user);
+
+        return redirect("mypage/" . $user->id);
+    }
+
+    public function setting()
+    {
+        return view('artist.setting');
+    }
 
     public function makeCheckBox() //スレッド新規作成画面の誰の話題か選ぶためのチェックボックス作成（とりあえずネットのコピペ）
     {
