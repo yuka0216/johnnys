@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 
 
-const Search = (props) => {
-    // console.log('props', props.search);
+const Search = ({ search }) => {
     const [searchValue, setSearchValue] = useState("");
 
     const handleSearchInputChanges = (e) => {
@@ -13,10 +12,9 @@ const Search = (props) => {
         setSearchValue("")
     }
 
-    // console.log('searchValue', searchValue);
     const callSearchFunction = (e) => {
         e.preventDefault();  //actionで指定されたURLへのページ遷移＋データ送信を阻害
-        props.search(searchValue); //formに入力された文字を引数にとり、search関数を実行
+        search(searchValue); //formに入力された文字を引数にとり、search関数を実行
         resetInputField(); //入力値の値をリセットする関数を呼び出し
     }
 
@@ -29,7 +27,6 @@ const Search = (props) => {
             />
             <input onClick={callSearchFunction} type="submit" value="SEARCH" />
         </form >
-
     );
 }
 

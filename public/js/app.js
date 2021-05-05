@@ -88186,10 +88186,8 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
-console.log('main');
 var url = window.location.pathname;
 var userId = String(url);
-console.log(userId);
 
 var Main = function Main() {
   var _useState = Object(react__WEBPACK_IMPORTED_MODULE_5__["useState"])([]),
@@ -88203,42 +88201,89 @@ var Main = function Main() {
       setSearchPosts = _useState4[1];
 
   Object(react__WEBPACK_IMPORTED_MODULE_5__["useEffect"])( /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
-    var res;
     return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
       while (1) {
         switch (_context.prev = _context.next) {
           case 0:
-            _context.prev = 0;
-            _context.next = 3;
-            return axios__WEBPACK_IMPORTED_MODULE_4___default.a.get('/api' + userId);
+            initPosts();
 
-          case 3:
-            res = _context.sent;
-            setPosts(res.data); // console.log("res", res);
-
-            _context.next = 10;
-            break;
-
-          case 7:
-            _context.prev = 7;
-            _context.t0 = _context["catch"](0);
-            console.log("e", _context.t0);
-
-          case 10:
+          case 1:
           case "end":
             return _context.stop();
         }
       }
-    }, _callee, null, [[0, 7]]);
+    }, _callee);
   })), []);
 
-  var search = function search(searchValue) {
-    axios__WEBPACK_IMPORTED_MODULE_4___default.a.get('/api/search/' + searchValue).then(function (response) {
-      var searchPosts = response.data;
-      console.log('searchPosts', searchPosts);
-      setSearchPosts(searchPosts);
-    });
-  };
+  var initPosts = /*#__PURE__*/function () {
+    var _ref2 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
+      var res;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
+        while (1) {
+          switch (_context2.prev = _context2.next) {
+            case 0:
+              _context2.prev = 0;
+              _context2.next = 3;
+              return axios__WEBPACK_IMPORTED_MODULE_4___default.a.get('/api' + userId);
+
+            case 3:
+              res = _context2.sent;
+              setPosts(res.data);
+              _context2.next = 10;
+              break;
+
+            case 7:
+              _context2.prev = 7;
+              _context2.t0 = _context2["catch"](0);
+              console.log("e", _context2.t0);
+
+            case 10:
+            case "end":
+              return _context2.stop();
+          }
+        }
+      }, _callee2, null, [[0, 7]]);
+    }));
+
+    return function initPosts() {
+      return _ref2.apply(this, arguments);
+    };
+  }();
+
+  var search = /*#__PURE__*/function () {
+    var _ref3 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3(searchValue) {
+      var res;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
+        while (1) {
+          switch (_context3.prev = _context3.next) {
+            case 0:
+              _context3.prev = 0;
+              _context3.next = 3;
+              return axios__WEBPACK_IMPORTED_MODULE_4___default.a.get('/api/search/' + searchValue);
+
+            case 3:
+              res = _context3.sent;
+              setSearchPosts(res.data);
+              _context3.next = 10;
+              break;
+
+            case 7:
+              _context3.prev = 7;
+              _context3.t0 = _context3["catch"](0);
+              console.log("e", _context3.t0);
+
+            case 10:
+            case "end":
+              return _context3.stop();
+          }
+        }
+      }, _callee3, null, [[0, 7]]);
+    }));
+
+    return function search(_x) {
+      return _ref3.apply(this, arguments);
+    };
+  }();
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_7__["Container"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(react_tabs__WEBPACK_IMPORTED_MODULE_3__["Tabs"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(react_tabs__WEBPACK_IMPORTED_MODULE_3__["TabList"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(react_tabs__WEBPACK_IMPORTED_MODULE_3__["Tab"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("img", {
     src: '/image/吹き出し.jpg',
@@ -88259,8 +88304,8 @@ var Main = function Main() {
     viewType: "instagram"
   })))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(react_tabs__WEBPACK_IMPORTED_MODULE_3__["TabPanel"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("h2", null, "\u691C\u7D22\u30DA\u30FC\u30B8"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(_search__WEBPACK_IMPORTED_MODULE_12__["default"], {
     search: search
-  }), searchPosts.map(function (searchPost) {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("p", null, searchPost.comment));
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(_SearchPosts__WEBPACK_IMPORTED_MODULE_14__["default"], {
+    searchPosts: searchPosts
   })))));
 };
 
@@ -88382,7 +88427,7 @@ __webpack_require__.r(__webpack_exports__);
 var SearchPosts = function SearchPosts(_ref) {
   var searchPosts = _ref.searchPosts;
   console.log("searchPosts", searchPosts);
-  searchPosts.map(function (searchPost) {
+  return searchPosts.map(function (searchPost) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, searchPost.comment));
   });
 };
@@ -88476,8 +88521,9 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
-var Search = function Search(props) {
-  // console.log('props', props.search);
+var Search = function Search(_ref) {
+  var search = _ref.search;
+
   var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(""),
       _useState2 = _slicedToArray(_useState, 2),
       searchValue = _useState2[0],
@@ -88489,13 +88535,12 @@ var Search = function Search(props) {
 
   var resetInputField = function resetInputField() {
     setSearchValue("");
-  }; // console.log('searchValue', searchValue);
-
+  };
 
   var callSearchFunction = function callSearchFunction(e) {
     e.preventDefault(); //actionで指定されたURLへのページ遷移＋データ送信を阻害
 
-    props.search(searchValue); //formに入力された文字を引数にとり、search関数を実行
+    search(searchValue); //formに入力された文字を引数にとり、search関数を実行
 
     resetInputField(); //入力値の値をリセットする関数を呼び出し
   };

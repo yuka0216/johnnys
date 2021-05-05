@@ -14,11 +14,8 @@ import Search from './search';
 import "../App.css";
 import SearchPosts from './SearchPosts';
 
-console.log('main')
-
 const url = window.location.pathname;
 const userId = String(url);
-console.log(userId);
 
 const Main = () => {
 
@@ -27,27 +24,28 @@ const Main = () => {
 
     useEffect(
         async () => {
-            try {
-                const res = await axios.get('/api' + (userId))
-                setPosts(res.data);
-                // console.log("res", res);
-            } catch (e) {
-                console.log("e", e);
-            }
+            initPosts()
         },
         []
     );
 
-    const search = (searchValue) => {
-        axios.get('/api/search/' + (searchValue))
-            .then(response => {
-                const searchPosts = response.data;
-                console.log('searchPosts', searchPosts);
-                setSearchPosts(searchPosts);
-            })
+    const initPosts = async () => {
+        try {
+            const res = await axios.get('/api' + (userId))
+            setPosts(res.data);
+        } catch (e) {
+            console.log("e", e);
+        }
     }
 
-
+    const search = async (searchValue) => {
+        try {
+            const res = await axios.get('/api/search/' + (searchValue))
+            setSearchPosts(res.data);
+        } catch (e) {
+            console.log("e", e);
+        }
+    }
 
     return (
         <Container>
@@ -75,22 +73,13 @@ const Main = () => {
                     <div>
                         <h2>検索ページ</h2>
                         <Search search={search} />
-                        {
-                            searchPosts.map((searchPost) => {
-                                return (
-                                    <div>
-                                        <p>{searchPost.comment}</p>
-                                    </div>
-                                )
-                            })
-                        }
+                        <SearchPosts searchPosts={searchPosts} />
                     </div>
                 </TabPanel>
             </Tabs>
         </Container >
     )
 }
-
 
 export default Main;
 
