@@ -8,7 +8,7 @@ const ImagePathsMap = (props) => {
     return (
         props.post.imagePaths.map((imagePath) => {
             return (
-                <props.viewImage imagePath={imagePath} />
+                <props.viewImage key={imagePath} imagePath={imagePath} />
             )
         })
     )

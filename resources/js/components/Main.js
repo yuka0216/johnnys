@@ -10,34 +10,50 @@ import InstaViewPostIndex from './InstaViewPostIndex';
 import TwitterViewPostIndex from './TwitterViewPostIndex';
 // import SetPosts from './SetPosts';
 import { useLocation, Switch, Route, BrowserRouter as Router, } from 'react-router-dom';
-
-console.log('main')
+import Search from './search';
+import "../App.css";
+import SearchPosts from './SearchPosts';
 
 const url = window.location.pathname;
 const userId = String(url);
-console.log(userId);
 
 const Main = () => {
 
     const [posts, setPosts] = useState([]);
+    const [searchPosts, setSearchPosts] = useState([]);
+
     useEffect(
         async () => {
-            try {
-                const res = await axios.get('/api' + (userId))
-                setPosts(res.data);
-            } catch (e) {
-                console.log("e", e);
-            }
+            initPosts()
         },
         []
     );
+
+    const initPosts = async () => {
+        try {
+            const res = await axios.get('/api' + (userId))
+            setPosts(res.data);
+        } catch (e) {
+            console.log("e", e);
+        }
+    }
+
+    const search = async (searchValue) => {
+        try {
+            const res = await axios.get('/api/search/' + (searchValue))
+            setSearchPosts(res.data);
+        } catch (e) {
+            console.log("e", e);
+        }
+    }
 
     return (
         <Container>
             <Tabs>
                 <TabList>
-                    <Tab>Tweet</Tab>
-                    <Tab>Instagram</Tab>
+                    <Tab><img src={'/image/吹き出し.jpg'} width="40px" /></Tab>
+                    <Tab><img src={'/image/カメラ.jpeg'} width="40px" /></Tab>
+                    <Tab><img src={'/image/虫眼鏡.jpg'} width="40px" /></Tab>
                 </TabList>
                 <TabPanel>
                     <div>
@@ -53,11 +69,17 @@ const Main = () => {
                         </div>
                     </div>
                 </TabPanel>
+                <TabPanel>
+                    <div>
+                        <h2>検索ページ</h2>
+                        <Search search={search} />
+                        <SearchPosts searchPosts={searchPosts} />
+                    </div>
+                </TabPanel>
             </Tabs>
         </Container >
     )
 }
-
 
 export default Main;
 
