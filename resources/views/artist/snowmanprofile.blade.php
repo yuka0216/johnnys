@@ -2,28 +2,28 @@
 @section('title', 'profile')
 @section('content')
 <div class="container ">
-    <div class="row">
-        <div class="col-md-9 mx-auto">
-            <h3 class="text-center">talk about ...?</h2>
-                <table class="mx-auto">
-                    <tr>
-                        <td><a href="/snowman/profile/6"><img class="rounded-full" src="{{ asset('image/abe.jpg') }}" alt=""></a></td>
-                        <td><a href="/snowman/profile/8"><img class="rounded-full" src="{{ asset('image/date.jpg') }}" alt=""></a></td>
-                        <td><a href="/snowman/profile/4"><img class="rounded-full" src="{{ asset('image/hukka.jpg') }}" alt=""></a></td>
-                    </tr>
-                    <tr>
-                        <td><a href="/snowman/profile/9"><img class="rounded-full" src="{{ asset('image/meme.jpg') }}" alt=""></a></td>
-                        <td><a href="/snowman/profile/7"><img class="rounded-full" src="{{ asset('image/mukai.jpg') }}" alt=""></a></td>
-                        <td><a href="/snowman/profile/5"><img class="rounded-full" src="{{ asset('image/raul.jpg') }}" alt=""></a></td>
-                    </tr>
-                    <tr>
-                        <td><a href="/snowman/profile/1"><img class="rounded-full" src="{{ asset('image/sakkun.jpg') }}" alt=""></a></td>
-                        <td><a href="/snowman/profile/3"><img class="rounded-full" src="{{ asset('image/shoppi.jpg') }}" alt=""></a></td>
-                        <td><a href="/snowman/profile/2"><img class="rounded-full" src="{{ asset('image/iwamoto.jpg') }}" alt=""></a></td>
-                    </tr>
-                </table>
-        </div>
+  <div class="row">
+    <div class="col-md-9 mx-auto">
+      <h3 class="text-center">talk about ...?</h2>
+        <table class="mx-auto">
+          <tr>
+            <td><a href="/snowman/profile/6"><img class="rounded-full" src="{{ asset('image/abe.jpg') }}" alt=""></a></td>
+            <td><a href="/snowman/profile/8"><img class="rounded-full" src="{{ asset('image/date.jpg') }}" alt=""></a></td>
+            <td><a href="/snowman/profile/4"><img class="rounded-full" src="{{ asset('image/hukka.jpg') }}" alt=""></a></td>
+          </tr>
+          <tr>
+            <td><a href="/snowman/profile/9"><img class="rounded-full" src="{{ asset('image/meme.jpg') }}" alt=""></a></td>
+            <td><a href="/snowman/profile/7"><img class="rounded-full" src="{{ asset('image/mukai.jpg') }}" alt=""></a></td>
+            <td><a href="/snowman/profile/5"><img class="rounded-full" src="{{ asset('image/raul.jpg') }}" alt=""></a></td>
+          </tr>
+          <tr>
+            <td><a href="/snowman/profile/1"><img class="rounded-full" src="{{ asset('image/sakkun.jpg') }}" alt=""></a></td>
+            <td><a href="/snowman/profile/3"><img class="rounded-full" src="{{ asset('image/shoppi.jpg') }}" alt=""></a></td>
+            <td><a href="/snowman/profile/2"><img class="rounded-full" src="{{ asset('image/iwamoto.jpg') }}" alt=""></a></td>
+          </tr>
+        </table>
     </div>
+  </div>
 </div>
 
 @endsection

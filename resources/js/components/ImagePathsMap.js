@@ -4,14 +4,14 @@ import React from 'react';
 // 受け取ったviewImageコンポーネントにimagePathを渡す
 
 const ImagePathsMap = (props) => {
-    // console.log('props', props);
-    return (
-        props.post.imagePaths.map((imagePath) => {
-            return (
-                <props.viewImage key={imagePath} imagePath={imagePath} />
-            )
-        })
-    )
+  // console.log('props', props);
+  return (
+    props.post.imagePaths.map((imagePath) => {
+      return (
+        <props.viewImage key={imagePath} imagePath={imagePath} />
+      )
+    })
+  )
 }
 
 

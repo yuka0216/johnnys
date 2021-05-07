@@ -2,55 +2,55 @@
 @section('title', 'addThread')
 @section('content')
 <div class="container">
-    <div class="row py-4">
-        <div class="col-md-3 order-1" id="sticky-sidebar">
-            <div class="sticky-top">
-                <div class="nav flex-column">
-                    <p>talk about...?</p>
-                    <a href="{{ action('ArtistController@makeCheckBox') }}" role="button" class="btn btn-primary">新規作成</a>
-                    @foreach ($threadList as $thread)
-                    <a href="/snowman/profile/{{ $thread->id }}" class="nav-link" style="color:black">{{ $thread->thread_name }}</a>
-                    @endforeach
-                </div>
-            </div>
+  <div class="row py-4">
+    <div class="col-md-3 order-1" id="sticky-sidebar">
+      <div class="sticky-top">
+        <div class="nav flex-column">
+          <p>talk about...?</p>
+          <a href="{{ action('ArtistController@makeCheckBox') }}" role="button" class="btn btn-primary">新規作成</a>
+          @foreach ($threadList as $thread)
+          <a href="/snowman/profile/{{ $thread->id }}" class="nav-link" style="color:black">{{ $thread->thread_name }}</a>
+          @endforeach
         </div>
-        <div class="col-md-8 order-2" id="main">
-            <!-- <div class="row"> -->
-            <!-- <div class="col-md-12 mx-auto"> -->
-            <div class="border">
-                <h4 class="text-center">新規作成</h4>
-                <br>
-                <form action="{{ action('ArtistController@addThread') }}" method="post">
-                    <div class="form-group col-md-12">
-                        {{ csrf_field() }}
-                        <label>スレッド名</label>
-                        <textarea class="form-control" name="thread_name">{{ old('thread_name') }}</textarea>
-                        @if($errors->has('thread_name')) <span class="text-danger">{{ $errors->first('thread_name') }}</span> @endif
-                        <br>
-                        <label for="chk01" class="col-form-label">誰についての話題ですか？</label>
-                        <div class="col-md-12">
-                            @foreach($chkDatas as $ckey => $cval)
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="checkbox" id="chk01" name="talkAbout" value="{{$cval}}">
-                                {{--
+      </div>
+    </div>
+    <div class="col-md-8 order-2" id="main">
+      <!-- <div class="row"> -->
+      <!-- <div class="col-md-12 mx-auto"> -->
+      <div class="border">
+        <h4 class="text-center">新規作成</h4>
+        <br>
+        <form action="{{ action('ArtistController@addThread') }}" method="post">
+          <div class="form-group col-md-12">
+            {{ csrf_field() }}
+            <label>スレッド名</label>
+            <textarea class="form-control" name="thread_name">{{ old('thread_name') }}</textarea>
+            @if($errors->has('thread_name')) <span class="text-danger">{{ $errors->first('thread_name') }}</span> @endif
+            <br>
+            <label for="chk01" class="col-form-label">誰についての話題ですか？</label>
+            <div class="col-md-12">
+              @foreach($chkDatas as $ckey => $cval)
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" id="chk01" name="talkAbout" value="{{$cval}}">
+                {{--
                                 @if(empty(old()) and $chkChecked[$ckey]=='checked' ) checked="checked" 
                                 @elseif($ckey==old($ckey))) checked="checked" @endif>
                                 --}}
-                                <label class="form-check-label" for="{{$ckey}}">{{$cval}}</label>
-                            </div>
-                            @endforeach
-                        </div>
-                        @if($errors->has('talkAbout')) <span class="text-danger">{{ $errors->first('talkAbout') }}</span> @endif
-                        <br>
-                        {{ csrf_field() }}
-                        <div class="text-right">
-                            <input type="submit" class="btn btn-primary" value="作成">
-                        </div>
-                    </div>
-                </form>
+                <label class="form-check-label" for="{{$ckey}}">{{$cval}}</label>
+              </div>
+              @endforeach
             </div>
-        </div>
+            @if($errors->has('talkAbout')) <span class="text-danger">{{ $errors->first('talkAbout') }}</span> @endif
+            <br>
+            {{ csrf_field() }}
+            <div class="text-right">
+              <input type="submit" class="btn btn-primary" value="作成">
+            </div>
+          </div>
+        </form>
+      </div>
     </div>
+  </div>
 </div>
 @endsection
 

@@ -6,13 +6,13 @@ import InstaViewPostIndex from './InstaViewPostIndex';
 // return:受け取ったviewコンポーネントにpostを渡す
 
 const Posts = ({ posts, viewType }) => {
-    const postView = (post, viewType) => {
-        if (viewType == "twitter") return <TwitterViewPostIndex key={post.id} post={post} />
-        if (viewType == "instagram") return <InstaViewPostIndex key={post.id} post={post} />
-    }
-    return (
-        posts.map((post) => postView(post, viewType))
-    )
+  const postView = (post, viewType) => {
+    if (viewType == "twitter") return <TwitterViewPostIndex key={post.id} post={post} />
+    if (viewType == "instagram") return <InstaViewPostIndex key={post.id} post={post} />
+  }
+  return (
+    posts.map((post) => postView(post, viewType))
+  )
 }
 
 export default Posts;

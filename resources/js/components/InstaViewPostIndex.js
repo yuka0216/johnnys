@@ -6,9 +6,9 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 //postを受け取ってImagePathsMapにpostとviewImageを渡す
 
 const InstaViewPostIndex = (props) => {
-    return (
-        <ImagePathsMap post={props.post} viewImage={InstaViewImage} />
-    )
+  return (
+    <ImagePathsMap post={props.post} viewImage={InstaViewImage} />
+  )
 }
 
 export default InstaViewPostIndex;
