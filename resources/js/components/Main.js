@@ -1,4 +1,3 @@
-import ReactDOM from 'react-dom';
 import 'react-tabs/style/react-tabs.css';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import axios from 'axios';
@@ -9,24 +8,23 @@ import Posts from './Posts';
 import Search from './search';
 import "../App.css";
 import SearchPosts from './SearchPosts';
-import ImagePathsMap from './ImagePathsMap';
-import TwitterViewImage from './TwitterViewImage';
-import Top from './Top';
+import Form from './Form';
+import Profile from './Profile';
 
-const url = window.location.pathname;
-const userId = String(url);
 
 const Main = () => {
 
     const [posts, setPosts] = useState([]);
     const [searchPosts, setSearchPosts] = useState([]);
+    const [profile, setProfile] = useState([]);
 
-    useEffect(
-        async () => {
-            initPosts()
-        },
-        []
-    );
+    const url = window.location.pathname;
+    const userId = String(url);
+
+    useEffect(() => {
+        initPosts()
+        initProfile()
+    }, []);
 
     const initPosts = async () => {
         try {
@@ -46,15 +44,26 @@ const Main = () => {
         }
     }
 
+    const initProfile = async () => {
+        try {
+            const res = await axios.get('/api/profile' + (userId))
+            console.log("res", res);
+            setProfile(res.data);
+        } catch (e) {
+            console.log("e", e);
+        }
+    }
+
     return (
         <Container>
-            {/* <Top userId={userId} /> */}
+            <Profile />
             <Tabs>
                 <TabList>
                     <Tab><img src={'/image/吹き出し.jpg'} width="40px" /></Tab>
                     <Tab><img src={'/image/カメラ.jpeg'} width="40px" /></Tab>
                     <Tab><img src={'/image/虫眼鏡.jpg'} width="40px" /></Tab>
                     <Tab><img src={'/image/マイク.png'} width="40px" /></Tab>
+                    <Tab><img src={'/image/設定.png'} width="40px" /></Tab>
                 </TabList>
                 <TabPanel>
                     <div>
@@ -82,10 +91,13 @@ const Main = () => {
                     <p>追加するボタン</p>
                     <p>ブログみたいに投稿一覧表示</p>
                 </TabPanel>
+                <TabPanel>
+                    <Form />
+                </TabPanel>
             </Tabs>
         </Container >
     )
 }
 
-export default Main;
 
+export default Main;

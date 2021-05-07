@@ -14,7 +14,7 @@ const TwitterViewPostIndex = (props) => {
                 <p>{props.post.comment}</p>
                 <ImagePathsMap post={props.post} viewImage={TwitterViewImage} />
                 <p>{props.post.created_at}</p>
-                <PreciousButton />
+                <LikeButton />
             </div>
         </div>
     )

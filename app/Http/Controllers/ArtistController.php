@@ -2,8 +2,6 @@
 
 namespace App\Http\Controllers;
 
-
-
 use App\Http\Requests\createThreadRequest;
 use App\Http\Requests\createPostRequest;
 use Illuminate\Http\Request;
@@ -63,17 +61,21 @@ class ArtistController extends controller
         return view('artist.app', ['myPosts' => $myPosts]);
     }
 
-    public function profile(Request $request)
+    public function profileEdit(Request $request)
     {
-        $user = Auth::user();
-        $profile = Profile::profileDataSave($request, $user);
+        $user_id = Auth::id();
+        $profile = Profile::where('user_id', $user_id)->first();
+        $profile = (!empty($profile)) ? Profile::profileDataUpdate($request, $profile) : Profile::profileDataSave($request, $user_id);
 
-        return redirect("mypage/" . $user->id);
+        return redirect("mypage/" . $user_id);
     }
 
-    public function setting()
+    public function setting(Request $request)
     {
-        return view('artist.setting');
+        $user_id = Auth::id();
+        $profile = Profile::where('user_id', $user_id)->first();
+
+        return view('artist.setting', ['profile' => $profile]);
     }
 
     public function makeCheckBox() //スレッド新規作成画面の誰の話題か選ぶためのチェックボックス作成（とりあえずネットのコピペ）

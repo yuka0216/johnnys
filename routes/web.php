@@ -37,7 +37,7 @@ Route::get('/snowman/profile/{threadId}', 'ArtistController@postIndex')->middlew
 Route::post('/snowman/add', 'ArtistController@addThread')->name('home');
 Route::get('/snowman/add', 'ArtistController@makeCheckBox')->name('home');
 Route::get('/all', 'ArtistController@index')->middleware('auth');
-Route::post('/setting', 'ArtistController@profile')->middleware('auth');
+Route::post('/setting', 'ArtistController@profileEdit')->middleware('auth');
 Route::get('/setting', 'ArtistController@setting')->middleware('auth');
 Route::get('/snowman', 'ArtistController@snowman')->middleware('auth');
 Route::get('/sixtones', 'ArtistController@sixtones')->middleware('auth');

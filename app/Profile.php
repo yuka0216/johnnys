@@ -14,11 +14,33 @@ class Profile extends Model
         return $this->belongsTo('App/User');
     }
 
-    public static function profileDataSave(Request $request, $user)
+    public static function profileDataUpdate(Request $request, $profile)
+    {
+        $form = $request->all();
+
+        if (isset($form['profile_image_path'])) {
+            $path = $request->file('profile_image_path')->storeAs('image', $request->file('profile_image_path')->hashName(), 'public_uploads');
+            $profile->profile_image_path = basename($path);
+        }
+
+        unset($form['profile_image_path']);
+        unset($form['_token']);
+
+        $profile->fill($form)->save();
+    }
+
+    public static function profileDataSave(Request $request, $user_id)
     {
         $form = $request->all();
         $profile = new Profile;
-        $form['user_id'] = $user->id;
+        $form['user_id'] = $user_id;
+        if (isset($form['profile_image_path'])) {
+            $path = $request->file('profile_image_path')->storeAs('image', $request->file('profile_image_path')->hashName(), 'public_uploads');
+            $profile->profile_image_path = basename($path);
+        }
+
+        unset($form['_token']);
+        unset($form['profile_image_path']);
 
         $profile->fill($form);
         $profile->save();
