@@ -16,7 +16,7 @@ const EditLink = ({ profileName }) => {
         <Switch>
           <Route path='/edit'>
             <Form />
-            {/* <ProfileEdit profileName={profileName} /> */}
+            <ProfileEdit profileName={profileName} />
           </Route>
         </Switch>
       </div>

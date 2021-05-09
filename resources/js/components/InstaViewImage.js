@@ -1,12 +1,9 @@
 import React from 'react';
 
-//imagePathを受け取って表示
+const InstaViewImage = ({ imagePath }) => (
+  <div className="col-md-3">
+    <a href={'/images/' + imagePath} data-lightbox="group"><img src={'/images/' + imagePath} /></a>
+  </div>
+)
 
-const InstaViewImage = (props) => {
-  return (
-    <div className="col-md-3">
-      <a href={'/images/' + props.imagePath} data-lightbox="group"><img src={'/images/' + props.imagePath} /></a>
-    </div>
-  )
-}
 export default InstaViewImage;

@@ -8,7 +8,6 @@ const LikeButton = () => {
     setLikeCount(likeCount + (like ? -1 : 1));
   }
 
-
   return (
     <>
       <button onClick={onClick}>
@@ -18,4 +17,5 @@ const LikeButton = () => {
     </>
   );
 }
+
 export default LikeButton;

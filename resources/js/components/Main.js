@@ -11,12 +11,11 @@ import SearchPosts from './SearchPosts';
 import Form from './Form';
 import Profile from './Profile';
 
-
 const Main = () => {
 
   const [posts, setPosts] = useState([]);
   const [searchPosts, setSearchPosts] = useState([]);
-  const [profile, setProfile] = useState([]);
+  const [profiles, setProfiles] = useState([]);
 
   const url = window.location.pathname;
   const userId = String(url);
@@ -47,8 +46,7 @@ const Main = () => {
   const initProfile = async () => {
     try {
       const res = await axios.get('/api/profile' + (userId))
-      console.log("res", res);
-      setProfile(res.data);
+      setProfiles(res.data);
     } catch (e) {
       console.log("e", e);
     }
@@ -56,7 +54,7 @@ const Main = () => {
 
   return (
     <Container>
-      <Profile />
+      <Profile profiles={profiles} />
       <Tabs>
         <TabList>
           <Tab><img src={'/image/吹き出し.jpg'} width="40px" /></Tab>
@@ -98,6 +96,5 @@ const Main = () => {
     </Container >
   )
 }
-
 
 export default Main;
