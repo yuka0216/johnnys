@@ -15,12 +15,12 @@ class PostController extends Controller
 
         $id = $userId;
         $posts = Post::where('user_id', $id)->orderBy('created_at', 'desc')->get();
-        return Post::mypageViewModel($posts);
+        return Post::mypageViewModel($posts, $userId);
     }
 
     public function searchIndex($searchValue)
     {
         $searchPosts = Post::where('comment', 'like', "%$searchValue%")->orderBy('created_at', 'desc')->get();
-        return Post::mypageViewModel($searchPosts);
+        return Post::mypageViewModel($searchPosts, $searchValue);
     }
 }

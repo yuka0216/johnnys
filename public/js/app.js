@@ -87792,8 +87792,18 @@ var InstaViewPostIndex = function InstaViewPostIndex(_ref) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_2__);
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -87808,26 +87818,169 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
-var LikeButton = function LikeButton() {
-  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false),
+
+var LikeButton = function LikeButton(_ref) {
+  var postID = _ref.postID,
+      postFavorite = _ref.postFavorite,
+      userID = _ref.userID;
+  // const [userID, setUserID] = useState([]);
+  console.log("userID", userID);
+
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_2__["useState"])([]),
       _useState2 = _slicedToArray(_useState, 2),
-      like = _useState2[0],
-      setLike = _useState2[1];
+      favorite = _useState2[0],
+      setFavorite = _useState2[1];
 
-  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(0),
+  Object(react__WEBPACK_IMPORTED_MODULE_2__["useEffect"])(function () {
+    // initUser()
+    initFavorite();
+  }, []); // const initUser = async () => {
+  //   try {
+  //     const res = await axios.get('/api/user')
+  //     setUserID(res.data.id);
+  //     // initFavorite(userID);
+  //   } catch (e) {
+  //     console.log("initUserError", e);
+  //   }
+  // }
+
+  var initFavorite = /*#__PURE__*/function () {
+    var _ref2 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+      var res;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              _context.prev = 0;
+              _context.next = 3;
+              return axios__WEBPACK_IMPORTED_MODULE_1___default.a.get('/api/check/favorite/' + postID + '/' + userID[1]);
+
+            case 3:
+              res = _context.sent;
+              // console.log("res", res.data);
+              setFavorite(res.data);
+              _context.next = 10;
+              break;
+
+            case 7:
+              _context.prev = 7;
+              _context.t0 = _context["catch"](0);
+              console.log("initFavoriteError", _context.t0);
+
+            case 10:
+            case "end":
+              return _context.stop();
+          }
+        }
+      }, _callee, null, [[0, 7]]);
+    }));
+
+    return function initFavorite() {
+      return _ref2.apply(this, arguments);
+    };
+  }();
+
+  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_2__["useState"])(favorite),
       _useState4 = _slicedToArray(_useState3, 2),
-      likeCount = _useState4[0],
-      setLikeCount = _useState4[1];
+      like = _useState4[0],
+      setLike = _useState4[1];
 
-  var onClick = function onClick() {
-    setLike(!like);
-    setLikeCount(likeCount + (like ? -1 : 1));
-  };
+  var _useState5 = Object(react__WEBPACK_IMPORTED_MODULE_2__["useState"])(postFavorite),
+      _useState6 = _slicedToArray(_useState5, 2),
+      likeCount = _useState6[0],
+      setLikeCount = _useState6[1]; // console.log("postID", postID);
 
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+
+  console.log("favorite", favorite);
+  console.log("like", like);
+
+  var onClick = /*#__PURE__*/function () {
+    var _ref3 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
+      var del, res;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
+        while (1) {
+          switch (_context2.prev = _context2.next) {
+            case 0:
+              if (!(like == true)) {
+                _context2.next = 13;
+                break;
+              }
+
+              _context2.prev = 1;
+              _context2.next = 4;
+              return axios__WEBPACK_IMPORTED_MODULE_1___default.a["delete"]('/api/favorite/' + postID + '/' + userID, {
+                post_id: postID,
+                user_id: userID
+              });
+
+            case 4:
+              del = _context2.sent;
+
+              (function (response) {
+                console.log(response);
+              });
+
+              setLikeCount(likeCount - 1);
+              setLike(!like);
+              _context2.next = 13;
+              break;
+
+            case 10:
+              _context2.prev = 10;
+              _context2.t0 = _context2["catch"](1);
+              console.log("delError", _context2.t0);
+
+            case 13:
+              if (!(like == false)) {
+                _context2.next = 27;
+                break;
+              }
+
+              _context2.prev = 14;
+              _context2.next = 17;
+              return axios__WEBPACK_IMPORTED_MODULE_1___default.a.post('/api/favorite', {
+                post_id: postID,
+                user_id: userID
+              });
+
+            case 17:
+              res = _context2.sent;
+
+              (function (response) {
+                console.log(response);
+              });
+
+              _context2.next = 24;
+              break;
+
+            case 21:
+              _context2.prev = 21;
+              _context2.t1 = _context2["catch"](14);
+              console.log("onClickError", _context2.t1);
+
+            case 24:
+              ;
+              setLikeCount(likeCount + 1);
+              setLike(!like);
+
+            case 27:
+            case "end":
+              return _context2.stop();
+          }
+        }
+      }, _callee2, null, [[1, 10], [14, 21]]);
+    }));
+
+    return function onClick() {
+      return _ref3.apply(this, arguments);
+    };
+  }(); // console.log("like", like);
+
+
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_2___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("button", {
     onClick: onClick
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-    src: like ? '/image/ハート.jpg' : '/image/like.png',
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("img", {
+    src: like ? '/image/like.png' : '/image/ハート.jpg',
     width: "30px"
   })), likeCount);
 };
@@ -87911,11 +88064,16 @@ var Main = function Main() {
       profiles = _useState6[0],
       setProfiles = _useState6[1];
 
+  var _useState7 = Object(react__WEBPACK_IMPORTED_MODULE_4__["useState"])([]),
+      _useState8 = _slicedToArray(_useState7, 2),
+      userID = _useState8[0],
+      setUserID = _useState8[1];
+
   var url = window.location.pathname;
   var userId = String(url);
   Object(react__WEBPACK_IMPORTED_MODULE_4__["useEffect"])(function () {
     initPosts();
-    initProfile();
+    initUser();
   }, []);
 
   var initPosts = /*#__PURE__*/function () {
@@ -88025,6 +88183,42 @@ var Main = function Main() {
     };
   }();
 
+  var initUser = /*#__PURE__*/function () {
+    var _ref4 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4() {
+      var res;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee4$(_context4) {
+        while (1) {
+          switch (_context4.prev = _context4.next) {
+            case 0:
+              _context4.prev = 0;
+              _context4.next = 3;
+              return axios__WEBPACK_IMPORTED_MODULE_3___default.a.get('/api/user');
+
+            case 3:
+              res = _context4.sent;
+              setUserID(res.data.id); // initFavorite(userID);
+
+              _context4.next = 10;
+              break;
+
+            case 7:
+              _context4.prev = 7;
+              _context4.t0 = _context4["catch"](0);
+              console.log("initUserError", _context4.t0);
+
+            case 10:
+            case "end":
+              return _context4.stop();
+          }
+        }
+      }, _callee4, null, [[0, 7]]);
+    }));
+
+    return function initUser() {
+      return _ref4.apply(this, arguments);
+    };
+  }();
+
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["Container"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement(_Profile__WEBPACK_IMPORTED_MODULE_12__["default"], {
     profiles: profiles
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement(react_tabs__WEBPACK_IMPORTED_MODULE_2__["Tabs"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement(react_tabs__WEBPACK_IMPORTED_MODULE_2__["TabList"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement(react_tabs__WEBPACK_IMPORTED_MODULE_2__["Tab"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement("img", {
@@ -88044,6 +88238,7 @@ var Main = function Main() {
     width: "40px"
   }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement(react_tabs__WEBPACK_IMPORTED_MODULE_2__["TabPanel"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement("h2", null, "\u5168\u3066\u306E\u30B3\u30E1\u30F3\u30C8\u306E\u8868\u793A"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement(_Posts__WEBPACK_IMPORTED_MODULE_7__["default"], {
     posts: posts,
+    userID: userID,
     viewType: "twitter"
   }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement(react_tabs__WEBPACK_IMPORTED_MODULE_2__["TabPanel"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement("h2", null, "\u30A4\u30F3\u30B9\u30BF\u98A8\u753B\u50CF\u6295\u7A3F\u3060\u3051\u8868\u793A"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement("div", {
     className: "d-flex flex-md-wrap col-md-12"
@@ -88080,12 +88275,14 @@ __webpack_require__.r(__webpack_exports__);
 
 var Posts = function Posts(_ref) {
   var posts = _ref.posts,
-      viewType = _ref.viewType;
+      viewType = _ref.viewType,
+      userID = _ref.userID;
 
   var postView = function postView(post, viewType) {
     if (viewType == "twitter") return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_TwitterViewPostIndex__WEBPACK_IMPORTED_MODULE_1__["default"], {
       key: post.id,
-      post: post
+      post: post,
+      userID: userID
     });
     if (viewType == "instagram") return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_InstaViewPostIndex__WEBPACK_IMPORTED_MODULE_2__["default"], {
       key: post.id,
@@ -88094,7 +88291,7 @@ var Posts = function Posts(_ref) {
   };
 
   return posts.map(function (post) {
-    return postView(post, viewType);
+    return postView(post, viewType, userID);
   });
 };
 
@@ -88125,7 +88322,7 @@ var Profile = function Profile(_ref) {
       className: "d-block mx-auto",
       src: "/image/".concat(profile.profile_image_path),
       width: "100px"
-    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, profile.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, profile.favorite), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, profile.free_writing));
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, profile.user_id), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, profile.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, profile.favorite), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, profile.free_writing));
   });
 };
 
@@ -88210,7 +88407,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var TwitterViewPostIndex = function TwitterViewPostIndex(_ref) {
-  var post = _ref.post;
+  var post = _ref.post,
+      userID = _ref.userID;
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "card"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -88219,7 +88417,11 @@ var TwitterViewPostIndex = function TwitterViewPostIndex(_ref) {
     key: post.id,
     post: post,
     viewType: "twitter"
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, post.created_at), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_LikeButton__WEBPACK_IMPORTED_MODULE_2__["default"], null)));
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, post.created_at), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_LikeButton__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    postID: post.id,
+    postFavorite: post.favorite,
+    userID: userID
+  })));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (TwitterViewPostIndex);

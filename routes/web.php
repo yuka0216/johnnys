@@ -14,6 +14,12 @@
 Route::middleware('auth')->get('api/mypage/{userId}', 'PostController@index');
 Route::middleware('auth')->get('api/search/{searchValue}', 'PostController@searchIndex');
 Route::middleware('auth')->get('api/profile/mypage/{userId}', 'ProfileController@fetchProfileByUserId');
+Route::middleware('auth')->get('api/favorite', 'LikeController@store');
+Route::middleware('auth')->post('api/favorite', 'LikeController@store');
+Route::middleware('auth')->delete('api/favorite/{postID}/{userID}', 'LikeController@delete');
+
+Route::middleware('auth')->get('api/user', 'UserController@user');
+Route::middleware('auth')->get('api/check/favorite/{postID}/{userID}', 'LikeController@check');
 
 Route::get('/mypage/{userId}', function () {
     return view('artist.app');

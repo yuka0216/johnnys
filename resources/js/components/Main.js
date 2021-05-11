@@ -16,13 +16,14 @@ const Main = () => {
   const [posts, setPosts] = useState([]);
   const [searchPosts, setSearchPosts] = useState([]);
   const [profiles, setProfiles] = useState([]);
+  const [userID, setUserID] = useState([]);
 
   const url = window.location.pathname;
   const userId = String(url);
 
   useEffect(() => {
     initPosts()
-    initProfile()
+    initUser()
   }, []);
 
   const initPosts = async () => {
@@ -55,6 +56,16 @@ const Main = () => {
     }
   }
 
+  const initUser = async () => {
+    try {
+      const res = await axios.get('/api/user')
+      setUserID(res.data.id);
+      // initFavorite(userID);
+    } catch (e) {
+      console.log("initUserError", e);
+    }
+  }
+
   return (
     <Container>
       <Profile profiles={profiles} />
@@ -69,7 +80,7 @@ const Main = () => {
         <TabPanel>
           <div>
             <h2>全てのコメントの表示</h2>
-            <Posts posts={posts} viewType="twitter" />
+            <Posts posts={posts} userID={userID} viewType="twitter" />
           </div>
         </TabPanel>
         <TabPanel>
