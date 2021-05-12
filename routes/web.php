@@ -19,18 +19,9 @@ Route::get('/mypage/{userId}', function () {
     return view('artist.app');
 });
 
-Route::get('/mypage/0', function () {
-    return view('artist.app');
-});
-
-// ArtistController@myPostIndex");
-
-
-
 Route::get('/', function () {
     return view('welcome');
 });
-
 
 Route::post('/snowman/profile/{threadId}', 'ArtistController@post')->middleware('auth');
 Route::get('/snowman/profile/{threadId}', 'ArtistController@postIndex')->middleware('auth');
