@@ -18,6 +18,7 @@ class PostController extends Controller
 
     public function searchIndex($searchValue)
     {
-        return Post::where('comment', 'like', "%$searchValue%")->orderBy('created_at', 'desc')->get();
+        $searchPosts = Post::where('comment', 'like', "%$searchValue%")->orderBy('created_at', 'desc')->get();
+        return Post::mypageViewModel($searchPosts);
     }
 }

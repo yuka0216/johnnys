@@ -6,9 +6,9 @@
 //     document.getElementsByClassName("custom-file-label")[0].innerHTML = file.name;
 // }, false);
 
-$(function() {
-    $('#inputGroupFile').on('change', function() {
-        let file = $(this).prop('files')[0];
-        $('.custom-file-label').text(file.name);
-    });
+$(function () {
+  $('#inputGroupFile').on('change', function () {
+    let file = $(this).prop('files')[0];
+    $('.custom-file-label').text(file.name);
+  });
 });

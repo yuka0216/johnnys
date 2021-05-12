@@ -1,18 +1,15 @@
 import React from 'react';
+import TwitterViewImage from './TwitterViewImage';
+import InstaViewImage from './InstaViewImage';
 
-// postとviewImageを受け取ってpostの中のImagePathsをmapで繰り返し処理
-// 受け取ったviewImageコンポーネントにimagePathを渡す
-
-const ImagePathsMap = (props) => {
-    // console.log('props', props);
-    return (
-        props.post.imagePaths.map((imagePath) => {
-            return (
-                <props.viewImage key={imagePath} imagePath={imagePath} />
-            )
-        })
-    )
+const ImagePathsMap = ({ post, viewType }) => {
+  const postView = (viewType, imagePath) => {
+    if (viewType == "twitter") return <TwitterViewImage key={imagePath} imagePath={imagePath} />
+    if (viewType == "instagram") return <InstaViewImage key={imagePath} imagePath={imagePath} />
+  }
+  return (
+    post.imagePaths.map((imagePath) => postView(viewType, imagePath))
+  )
 }
-
 
 export default ImagePathsMap;
