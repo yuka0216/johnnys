@@ -87822,9 +87822,9 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 var LikeButton = function LikeButton(_ref) {
   var postID = _ref.postID,
       postFavorite = _ref.postFavorite,
-      userID = _ref.userID;
+      user = _ref.user;
   // const [userID, setUserID] = useState([]);
-  console.log("userID", userID);
+  console.log("user", user);
 
   var _useState = Object(react__WEBPACK_IMPORTED_MODULE_2__["useState"])([]),
       _useState2 = _slicedToArray(_useState, 2),
@@ -87853,12 +87853,12 @@ var LikeButton = function LikeButton(_ref) {
             case 0:
               _context.prev = 0;
               _context.next = 3;
-              return axios__WEBPACK_IMPORTED_MODULE_1___default.a.get('/api/check/favorite/' + postID + '/' + userID[1]);
+              return axios__WEBPACK_IMPORTED_MODULE_1___default.a.get('/api/check/favorite/' + postID + '/' + user.id);
 
             case 3:
               res = _context.sent;
               // console.log("res", res.data);
-              setFavorite(res.data);
+              setLike(res.data);
               _context.next = 10;
               break;
 
@@ -87880,7 +87880,7 @@ var LikeButton = function LikeButton(_ref) {
     };
   }();
 
-  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_2__["useState"])(favorite),
+  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_2__["useState"])(false),
       _useState4 = _slicedToArray(_useState3, 2),
       like = _useState4[0],
       setLike = _useState4[1];
@@ -87888,10 +87888,8 @@ var LikeButton = function LikeButton(_ref) {
   var _useState5 = Object(react__WEBPACK_IMPORTED_MODULE_2__["useState"])(postFavorite),
       _useState6 = _slicedToArray(_useState5, 2),
       likeCount = _useState6[0],
-      setLikeCount = _useState6[1]; // console.log("postID", postID);
+      setLikeCount = _useState6[1];
 
-
-  console.log("favorite", favorite);
   console.log("like", like);
 
   var onClick = /*#__PURE__*/function () {
@@ -87908,9 +87906,9 @@ var LikeButton = function LikeButton(_ref) {
 
               _context2.prev = 1;
               _context2.next = 4;
-              return axios__WEBPACK_IMPORTED_MODULE_1___default.a["delete"]('/api/favorite/' + postID + '/' + userID, {
+              return axios__WEBPACK_IMPORTED_MODULE_1___default.a["delete"]('/api/favorite/' + postID + '/' + user.id, {
                 post_id: postID,
-                user_id: userID
+                user_id: user.id
               });
 
             case 4:
@@ -87940,7 +87938,7 @@ var LikeButton = function LikeButton(_ref) {
               _context2.next = 17;
               return axios__WEBPACK_IMPORTED_MODULE_1___default.a.post('/api/favorite', {
                 post_id: postID,
-                user_id: userID
+                user_id: user.id
               });
 
             case 17:
@@ -87980,7 +87978,7 @@ var LikeButton = function LikeButton(_ref) {
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_2___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("button", {
     onClick: onClick
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("img", {
-    src: like ? '/image/like.png' : '/image/ハート.jpg',
+    src: like ? '/image/ハート.jpg' : '/image/like.png',
     width: "30px"
   })), likeCount);
 };
@@ -88064,57 +88062,55 @@ var Main = function Main() {
       profiles = _useState6[0],
       setProfiles = _useState6[1];
 
-  var _useState7 = Object(react__WEBPACK_IMPORTED_MODULE_4__["useState"])([]),
+  var _useState7 = Object(react__WEBPACK_IMPORTED_MODULE_4__["useState"])(),
       _useState8 = _slicedToArray(_useState7, 2),
-      userID = _useState8[0],
-      setUserID = _useState8[1];
+      user = _useState8[0],
+      setUser = _useState8[1];
 
-  var url = window.location.pathname;
-  var userId = String(url);
   Object(react__WEBPACK_IMPORTED_MODULE_4__["useEffect"])(function () {
-    initPosts();
-    initUser();
+    init();
   }, []);
 
-  var initPosts = /*#__PURE__*/function () {
+  var init = /*#__PURE__*/function () {
     var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
-      var res;
+      var _user, url, targetUserId;
+
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
               _context.prev = 0;
               _context.next = 3;
-              return axios__WEBPACK_IMPORTED_MODULE_3___default.a.get('/api' + userId);
+              return initUser();
 
             case 3:
-              res = _context.sent;
-              setPosts(res.data);
+              _user = _context.sent;
+              url = window.location.pathname;
+              targetUserId = String(url);
+              initPosts(targetUserId);
               _context.next = 12;
               break;
 
-            case 7:
-              _context.prev = 7;
+            case 9:
+              _context.prev = 9;
               _context.t0 = _context["catch"](0);
-              console.log("e", _context.t0.response.status);
-              if (_context.t0.response.status == 404) alert(_context.t0.response.data.message);
-              if (_context.t0.response.status == 500) alert("ステータスコード500");
+              console.log("e", _context.t0);
 
             case 12:
             case "end":
               return _context.stop();
           }
         }
-      }, _callee, null, [[0, 7]]);
+      }, _callee, null, [[0, 9]]);
     }));
 
-    return function initPosts() {
+    return function init() {
       return _ref.apply(this, arguments);
     };
   }();
 
-  var search = /*#__PURE__*/function () {
-    var _ref2 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2(searchValue) {
+  var initPosts = /*#__PURE__*/function () {
+    var _ref2 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2(targetUserId) {
       var res;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
         while (1) {
@@ -88122,20 +88118,22 @@ var Main = function Main() {
             case 0:
               _context2.prev = 0;
               _context2.next = 3;
-              return axios__WEBPACK_IMPORTED_MODULE_3___default.a.get('/api/search/' + searchValue);
+              return axios__WEBPACK_IMPORTED_MODULE_3___default.a.get('/api' + targetUserId);
 
             case 3:
               res = _context2.sent;
-              setSearchPosts(res.data);
-              _context2.next = 10;
+              setPosts(res.data);
+              _context2.next = 12;
               break;
 
             case 7:
               _context2.prev = 7;
               _context2.t0 = _context2["catch"](0);
-              console.log("e", _context2.t0);
+              console.log("e", _context2.t0.response.status);
+              if (_context2.t0.response.status == 404) alert(_context2.t0.response.data.message);
+              if (_context2.t0.response.status == 500) alert("ステータスコード500");
 
-            case 10:
+            case 12:
             case "end":
               return _context2.stop();
           }
@@ -88143,13 +88141,13 @@ var Main = function Main() {
       }, _callee2, null, [[0, 7]]);
     }));
 
-    return function search(_x) {
+    return function initPosts(_x) {
       return _ref2.apply(this, arguments);
     };
   }();
 
-  var initProfile = /*#__PURE__*/function () {
-    var _ref3 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
+  var search = /*#__PURE__*/function () {
+    var _ref3 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3(searchValue) {
       var res;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
         while (1) {
@@ -88157,11 +88155,11 @@ var Main = function Main() {
             case 0:
               _context3.prev = 0;
               _context3.next = 3;
-              return axios__WEBPACK_IMPORTED_MODULE_3___default.a.get('/api/profile' + userId);
+              return axios__WEBPACK_IMPORTED_MODULE_3___default.a.get('/api/search/' + searchValue);
 
             case 3:
               res = _context3.sent;
-              setProfiles(res.data);
+              setSearchPosts(res.data);
               _context3.next = 10;
               break;
 
@@ -88178,12 +88176,12 @@ var Main = function Main() {
       }, _callee3, null, [[0, 7]]);
     }));
 
-    return function initProfile() {
+    return function search(_x2) {
       return _ref3.apply(this, arguments);
     };
   }();
 
-  var initUser = /*#__PURE__*/function () {
+  var initProfile = /*#__PURE__*/function () {
     var _ref4 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4() {
       var res;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee4$(_context4) {
@@ -88192,30 +88190,66 @@ var Main = function Main() {
             case 0:
               _context4.prev = 0;
               _context4.next = 3;
-              return axios__WEBPACK_IMPORTED_MODULE_3___default.a.get('/api/user');
+              return axios__WEBPACK_IMPORTED_MODULE_3___default.a.get('/api/profile' + userId);
 
             case 3:
               res = _context4.sent;
-              setUserID(res.data.id); // initFavorite(userID);
-
-              _context4.next = 10;
+              setProfiles(res.data);
+              console.log("profiles", profiles);
+              _context4.next = 11;
               break;
 
-            case 7:
-              _context4.prev = 7;
+            case 8:
+              _context4.prev = 8;
               _context4.t0 = _context4["catch"](0);
-              console.log("initUserError", _context4.t0);
+              console.log("e", _context4.t0);
 
-            case 10:
+            case 11:
             case "end":
               return _context4.stop();
           }
         }
-      }, _callee4, null, [[0, 7]]);
+      }, _callee4, null, [[0, 8]]);
+    }));
+
+    return function initProfile() {
+      return _ref4.apply(this, arguments);
+    };
+  }();
+
+  var initUser = /*#__PURE__*/function () {
+    var _ref5 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee5() {
+      var res, _user2;
+
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee5$(_context5) {
+        while (1) {
+          switch (_context5.prev = _context5.next) {
+            case 0:
+              _context5.prev = 0;
+              _context5.next = 3;
+              return axios__WEBPACK_IMPORTED_MODULE_3___default.a.get('/api/user');
+
+            case 3:
+              res = _context5.sent;
+              _user2 = res.data;
+              setUser(_user2);
+              return _context5.abrupt("return", _user2);
+
+            case 9:
+              _context5.prev = 9;
+              _context5.t0 = _context5["catch"](0);
+              console.log("initUserError", _context5.t0);
+
+            case 12:
+            case "end":
+              return _context5.stop();
+          }
+        }
+      }, _callee5, null, [[0, 9]]);
     }));
 
     return function initUser() {
-      return _ref4.apply(this, arguments);
+      return _ref5.apply(this, arguments);
     };
   }();
 
@@ -88238,7 +88272,7 @@ var Main = function Main() {
     width: "40px"
   }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement(react_tabs__WEBPACK_IMPORTED_MODULE_2__["TabPanel"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement("h2", null, "\u5168\u3066\u306E\u30B3\u30E1\u30F3\u30C8\u306E\u8868\u793A"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement(_Posts__WEBPACK_IMPORTED_MODULE_7__["default"], {
     posts: posts,
-    userID: userID,
+    user: user,
     viewType: "twitter"
   }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement(react_tabs__WEBPACK_IMPORTED_MODULE_2__["TabPanel"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement("h2", null, "\u30A4\u30F3\u30B9\u30BF\u98A8\u753B\u50CF\u6295\u7A3F\u3060\u3051\u8868\u793A"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement("div", {
     className: "d-flex flex-md-wrap col-md-12"
@@ -88276,13 +88310,13 @@ __webpack_require__.r(__webpack_exports__);
 var Posts = function Posts(_ref) {
   var posts = _ref.posts,
       viewType = _ref.viewType,
-      userID = _ref.userID;
+      user = _ref.user;
 
   var postView = function postView(post, viewType) {
     if (viewType == "twitter") return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_TwitterViewPostIndex__WEBPACK_IMPORTED_MODULE_1__["default"], {
       key: post.id,
       post: post,
-      userID: userID
+      user: user
     });
     if (viewType == "instagram") return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_InstaViewPostIndex__WEBPACK_IMPORTED_MODULE_2__["default"], {
       key: post.id,
@@ -88291,7 +88325,7 @@ var Posts = function Posts(_ref) {
   };
 
   return posts.map(function (post) {
-    return postView(post, viewType, userID);
+    return postView(post, viewType, user);
   });
 };
 
@@ -88408,7 +88442,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var TwitterViewPostIndex = function TwitterViewPostIndex(_ref) {
   var post = _ref.post,
-      userID = _ref.userID;
+      user = _ref.user;
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "card"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -88420,7 +88454,7 @@ var TwitterViewPostIndex = function TwitterViewPostIndex(_ref) {
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, post.created_at), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_LikeButton__WEBPACK_IMPORTED_MODULE_2__["default"], {
     postID: post.id,
     postFavorite: post.favorite,
-    userID: userID
+    user: user
   })));
 };
 

@@ -16,19 +16,28 @@ const Main = () => {
   const [posts, setPosts] = useState([]);
   const [searchPosts, setSearchPosts] = useState([]);
   const [profiles, setProfiles] = useState([]);
-  const [userID, setUserID] = useState([]);
+  const [user, setUser] = useState();
 
-  const url = window.location.pathname;
-  const userId = String(url);
 
   useEffect(() => {
-    initPosts()
-    initUser()
+    init()
   }, []);
 
-  const initPosts = async () => {
+
+  const init = async () => {
     try {
-      const res = await axios.get('/api' + (userId))
+      const user = await initUser();
+      const url = window.location.pathname;
+      const targetUserId = String(url);
+      initPosts(targetUserId);
+    } catch (e) {
+      console.log("e", e);
+    }
+  }
+
+  const initPosts = async (targetUserId) => {
+    try {
+      const res = await axios.get('/api' + (targetUserId))
       setPosts(res.data);
     } catch (e) {
       console.log("e", e.response.status);
@@ -51,6 +60,7 @@ const Main = () => {
     try {
       const res = await axios.get('/api/profile' + (userId))
       setProfiles(res.data);
+      console.log("profiles", profiles);
     } catch (e) {
       console.log("e", e);
     }
@@ -59,8 +69,9 @@ const Main = () => {
   const initUser = async () => {
     try {
       const res = await axios.get('/api/user')
-      setUserID(res.data.id);
-      // initFavorite(userID);
+      const user = res.data;
+      setUser(user);
+      return user;
     } catch (e) {
       console.log("initUserError", e);
     }
@@ -80,7 +91,7 @@ const Main = () => {
         <TabPanel>
           <div>
             <h2>全てのコメントの表示</h2>
-            <Posts posts={posts} userID={userID} viewType="twitter" />
+            <Posts posts={posts} user={user} viewType="twitter" />
           </div>
         </TabPanel>
         <TabPanel>

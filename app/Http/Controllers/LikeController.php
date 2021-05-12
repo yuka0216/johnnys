@@ -23,7 +23,8 @@ class LikeController extends Controller
 
     public function check($postID, $userID)
     {
-        $check = Favorite::where('post_id', $postID)->where('user_id', $userID)->first();
-        return (empty($check)) ? "false" : "true";
+        $favorite = Favorite::where('post_id', $postID)->where('user_id', $userID)->first();
+        $isFavorite = (!empty($favorite));
+        return response()->json($isFavorite);
     }
 }

@@ -1,9 +1,9 @@
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 
-const LikeButton = ({ postID, postFavorite, userID }) => {
+const LikeButton = ({ postID, postFavorite, user }) => {
   // const [userID, setUserID] = useState([]);
-  console.log("userID", userID);
+  console.log("user", user);
 
   const [favorite, setFavorite] = useState([]);
 
@@ -24,28 +24,25 @@ const LikeButton = ({ postID, postFavorite, userID }) => {
 
   const initFavorite = async () => {
     try {
-      const res = await axios.get('/api/check/favorite/' + postID + '/' + userID[1])
+      const res = await axios.get('/api/check/favorite/' + postID + '/' + user.id)
       // console.log("res", res.data);
-      setFavorite(res.data);
+      setLike(res.data);
     } catch (e) {
       console.log("initFavoriteError", e);
     }
   }
 
-  const [like, setLike] = useState(favorite);
+  const [like, setLike] = useState(false);
   const [likeCount, setLikeCount] = useState(postFavorite);
 
-
-  // console.log("postID", postID);
-  console.log("favorite", favorite);
   console.log("like", like);
 
   const onClick = async () => {
     if (like == true) {
       try {
-        const del = await axios.delete('/api/favorite/' + (postID) + '/' + (userID), {
+        const del = await axios.delete('/api/favorite/' + (postID) + '/' + (user.id), {
           post_id: postID,
-          user_id: userID
+          user_id: user.id
         })
         response => {
           console.log(response)
@@ -60,7 +57,7 @@ const LikeButton = ({ postID, postFavorite, userID }) => {
       try {
         const res = await axios.post('/api/favorite', {
           post_id: postID,
-          user_id: userID
+          user_id: user.id
         })
         response => {
           console.log(response);
@@ -79,7 +76,7 @@ const LikeButton = ({ postID, postFavorite, userID }) => {
   return (
     <>
       <button onClick={onClick}>
-        <img src={like ? '/image/like.png' : '/image/ハート.jpg'} width="30px" />
+        <img src={like ? '/image/ハート.jpg' : '/image/like.png'} width="30px" />
       </button>
       {likeCount}
     </>
