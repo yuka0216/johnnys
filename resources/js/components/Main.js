@@ -30,6 +30,7 @@ const Main = () => {
       const url = window.location.pathname;
       const targetUserId = String(url);
       initPosts(targetUserId);
+      initProfile(targetUserId);
     } catch (e) {
       console.log("e", e);
     }
@@ -56,9 +57,9 @@ const Main = () => {
     }
   }
 
-  const initProfile = async () => {
+  const initProfile = async (targetUserId) => {
     try {
-      const res = await axios.get('/api/profile' + (userId))
+      const res = await axios.get('/api/profile' + (targetUserId))
       setProfiles(res.data);
       console.log("profiles", profiles);
     } catch (e) {

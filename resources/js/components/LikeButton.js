@@ -2,30 +2,15 @@ import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 
 const LikeButton = ({ postID, postFavorite, user }) => {
-  // const [userID, setUserID] = useState([]);
-  console.log("user", user);
-
-  const [favorite, setFavorite] = useState([]);
+  console.log("postFavorite", postFavorite);
 
   useEffect(() => {
-    // initUser()
     initFavorite()
   }, []);
-
-  // const initUser = async () => {
-  //   try {
-  //     const res = await axios.get('/api/user')
-  //     setUserID(res.data.id);
-  //     // initFavorite(userID);
-  //   } catch (e) {
-  //     console.log("initUserError", e);
-  //   }
-  // }
 
   const initFavorite = async () => {
     try {
       const res = await axios.get('/api/check/favorite/' + postID + '/' + user.id)
-      // console.log("res", res.data);
       setLike(res.data);
     } catch (e) {
       console.log("initFavoriteError", e);
@@ -34,8 +19,6 @@ const LikeButton = ({ postID, postFavorite, user }) => {
 
   const [like, setLike] = useState(false);
   const [likeCount, setLikeCount] = useState(postFavorite);
-
-  console.log("like", like);
 
   const onClick = async () => {
     if (like == true) {

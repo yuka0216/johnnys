@@ -87798,12 +87798,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_2__);
-
-
-function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
-
-function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
-
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -87818,31 +87812,21 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+
+
 
 var LikeButton = function LikeButton(_ref) {
   var postID = _ref.postID,
       postFavorite = _ref.postFavorite,
       user = _ref.user;
-  // const [userID, setUserID] = useState([]);
-  console.log("user", user);
-
-  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_2__["useState"])([]),
-      _useState2 = _slicedToArray(_useState, 2),
-      favorite = _useState2[0],
-      setFavorite = _useState2[1];
-
+  console.log("postFavorite", postFavorite);
   Object(react__WEBPACK_IMPORTED_MODULE_2__["useEffect"])(function () {
-    // initUser()
     initFavorite();
-  }, []); // const initUser = async () => {
-  //   try {
-  //     const res = await axios.get('/api/user')
-  //     setUserID(res.data.id);
-  //     // initFavorite(userID);
-  //   } catch (e) {
-  //     console.log("initUserError", e);
-  //   }
-  // }
+  }, []);
 
   var initFavorite = /*#__PURE__*/function () {
     var _ref2 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
@@ -87857,7 +87841,6 @@ var LikeButton = function LikeButton(_ref) {
 
             case 3:
               res = _context.sent;
-              // console.log("res", res.data);
               setLike(res.data);
               _context.next = 10;
               break;
@@ -87880,17 +87863,15 @@ var LikeButton = function LikeButton(_ref) {
     };
   }();
 
-  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_2__["useState"])(false),
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_2__["useState"])(false),
+      _useState2 = _slicedToArray(_useState, 2),
+      like = _useState2[0],
+      setLike = _useState2[1];
+
+  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_2__["useState"])(postFavorite),
       _useState4 = _slicedToArray(_useState3, 2),
-      like = _useState4[0],
-      setLike = _useState4[1];
-
-  var _useState5 = Object(react__WEBPACK_IMPORTED_MODULE_2__["useState"])(postFavorite),
-      _useState6 = _slicedToArray(_useState5, 2),
-      likeCount = _useState6[0],
-      setLikeCount = _useState6[1];
-
-  console.log("like", like);
+      likeCount = _useState4[0],
+      setLikeCount = _useState4[1];
 
   var onClick = /*#__PURE__*/function () {
     var _ref3 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
@@ -88088,20 +88069,21 @@ var Main = function Main() {
               url = window.location.pathname;
               targetUserId = String(url);
               initPosts(targetUserId);
-              _context.next = 12;
+              initProfile(targetUserId);
+              _context.next = 13;
               break;
 
-            case 9:
-              _context.prev = 9;
+            case 10:
+              _context.prev = 10;
               _context.t0 = _context["catch"](0);
               console.log("e", _context.t0);
 
-            case 12:
+            case 13:
             case "end":
               return _context.stop();
           }
         }
-      }, _callee, null, [[0, 9]]);
+      }, _callee, null, [[0, 10]]);
     }));
 
     return function init() {
@@ -88182,7 +88164,7 @@ var Main = function Main() {
   }();
 
   var initProfile = /*#__PURE__*/function () {
-    var _ref4 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4() {
+    var _ref4 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4(targetUserId) {
       var res;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee4$(_context4) {
         while (1) {
@@ -88190,7 +88172,7 @@ var Main = function Main() {
             case 0:
               _context4.prev = 0;
               _context4.next = 3;
-              return axios__WEBPACK_IMPORTED_MODULE_3___default.a.get('/api/profile' + userId);
+              return axios__WEBPACK_IMPORTED_MODULE_3___default.a.get('/api/profile' + targetUserId);
 
             case 3:
               res = _context4.sent;
@@ -88212,7 +88194,7 @@ var Main = function Main() {
       }, _callee4, null, [[0, 8]]);
     }));
 
-    return function initProfile() {
+    return function initProfile(_x3) {
       return _ref4.apply(this, arguments);
     };
   }();
