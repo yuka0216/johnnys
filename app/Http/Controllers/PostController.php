@@ -11,6 +11,8 @@ class PostController extends Controller
 {
     public function index(int $userId)
     {
+        if ($userId < 1) return response()->json(["message" => "urlが違います"], 404);
+
         $id = $userId;
         $posts = Post::where('user_id', $id)->orderBy('created_at', 'desc')->get();
         return Post::mypageViewModel($posts);

@@ -30,7 +30,10 @@ const Main = () => {
       const res = await axios.get('/api' + (userId))
       setPosts(res.data);
     } catch (e) {
-      console.log("e", e);
+      console.log("e", e.response.status);
+      if (e.response.status == 404) alert(e.response.data.message);
+      if (e.response.status == 500) alert("ステータスコード500");
+
     }
   }
 

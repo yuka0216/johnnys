@@ -87932,15 +87932,17 @@ var Main = function Main() {
             case 3:
               res = _context.sent;
               setPosts(res.data);
-              _context.next = 10;
+              _context.next = 12;
               break;
 
             case 7:
               _context.prev = 7;
               _context.t0 = _context["catch"](0);
-              console.log("e", _context.t0);
+              console.log("e", _context.t0.response.status);
+              if (_context.t0.response.status == 404) alert(_context.t0.response.data.message);
+              if (_context.t0.response.status == 500) alert("ステータスコード500");
 
-            case 10:
+            case 12:
             case "end":
               return _context.stop();
           }
