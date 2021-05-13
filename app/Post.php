@@ -56,7 +56,7 @@ class Post extends Model
         $image->save();
     }
 
-    public static function mypageViewModel(Collection $posts, $userId)
+    public static function mypageViewModel(Collection $posts, $loginId)
     {
         $mypageViews = [];
 
@@ -69,18 +69,24 @@ class Post extends Model
                     "comment" => $post->comment,
                     "imagePaths" => self::makeImagePaths($post->images),
                     "created_at" => $post->created_at->format('Y/m/d h:m:s'),
-                    "favorite" => self::countFavorite($post)
+                    "likeCount" => self::countFavorite($post),
+                    "isLiked" => self::isFavorite($post, $loginId)
                 ];
             }
         }
         return $mypageViews;
     }
 
+    private static function isFavorite($post, $loginId)
+    {
+        $favorite = Favorite::where('post_id', $post->id)->where('user_id', $loginId)->count();
+        return (!empty($favorite));
+    }
+
     private static function countFavorite($post)
     {
         return Favorite::where('post_id', $post->id)->count();
     }
-
 
     private static function makeImagePaths(Collection $images)
     {

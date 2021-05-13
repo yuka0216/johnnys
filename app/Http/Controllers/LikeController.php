@@ -21,10 +21,24 @@ class LikeController extends Controller
         Favorite::where('post_id', $postID)->where('user_id', $userID)->delete();
     }
 
-    public function check($postID, $userID)
+    public function favorite($postID, $userID)
+    {
+        $favorite = [
+            "count" => self::count($postID, $userID),
+            "isFavorite" => self::isFavorite($postID, $userID)
+        ];
+        return response()->json($favorite);
+    }
+
+    private static function count($postID, $userID)
+    {
+        return Favorite::where('post_id', $postID)->where('user_id', $userID)->count();
+    }
+
+    private static function isFavorite($postID, $userID)
     {
         $favorite = Favorite::where('post_id', $postID)->where('user_id', $userID)->first();
         $isFavorite = (!empty($favorite));
-        return response()->json($isFavorite);
+        return $isFavorite;
     }
 }

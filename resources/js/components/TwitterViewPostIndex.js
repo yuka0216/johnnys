@@ -10,7 +10,7 @@ const TwitterViewPostIndex = ({ post, user }) => {
         <p>{post.comment}</p>
         <ImagePathsMap key={post.id} post={post} viewType="twitter" />
         <p>{post.created_at}</p>
-        <LikeButton postID={post.id} postFavorite={post.favorite} user={user} />
+        <LikeButton post={post} user={user} />
       </div>
     </div>
   )

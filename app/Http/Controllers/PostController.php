@@ -9,13 +9,12 @@ use Illuminate\Support\Facades\Auth;
 
 class PostController extends Controller
 {
-    public function index(int $userId)
+    public function index(int $targetUserId, $loginId)
     {
-        if ($userId < 1) return response()->json(["message" => "urlが違います"], 404);
+        if ($targetUserId < 1) return response()->json(["message" => "urlが違います"], 404);
 
-        $id = $userId;
-        $posts = Post::where('user_id', $id)->orderBy('created_at', 'desc')->get();
-        return Post::mypageViewModel($posts, $userId);
+        $posts = Post::where('user_id', $targetUserId)->orderBy('created_at', 'desc')->get();
+        return Post::mypageViewModel($posts, $loginId);
     }
 
     public function searchIndex($searchValue)

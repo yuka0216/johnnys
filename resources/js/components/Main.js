@@ -29,16 +29,16 @@ const Main = () => {
       const user = await initUser();
       const url = window.location.pathname;
       const targetUserId = String(url);
-      initPosts(targetUserId);
+      initPosts(targetUserId, user);
       initProfile(targetUserId);
     } catch (e) {
       console.log("e", e);
     }
   }
 
-  const initPosts = async (targetUserId) => {
+  const initPosts = async (targetUserId, user) => {
     try {
-      const res = await axios.get('/api' + (targetUserId))
+      const res = await axios.get('/api' + (targetUserId) + '/' + (user.id))
       setPosts(res.data);
     } catch (e) {
       console.log("e", e.response.status);
@@ -56,6 +56,8 @@ const Main = () => {
       console.log("e", e);
     }
   }
+
+
 
   const initProfile = async (targetUserId) => {
     try {

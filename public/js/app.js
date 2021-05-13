@@ -87798,6 +87798,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_2__);
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -87812,88 +87818,55 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
-function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
-
-function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
-
-
-
 
 var LikeButton = function LikeButton(_ref) {
-  var postID = _ref.postID,
-      postFavorite = _ref.postFavorite,
+  var post = _ref.post,
       user = _ref.user;
-  console.log("postFavorite", postFavorite);
-  Object(react__WEBPACK_IMPORTED_MODULE_2__["useEffect"])(function () {
-    initFavorite();
-  }, []);
 
-  var initFavorite = /*#__PURE__*/function () {
-    var _ref2 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
-      var res;
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
-        while (1) {
-          switch (_context.prev = _context.next) {
-            case 0:
-              _context.prev = 0;
-              _context.next = 3;
-              return axios__WEBPACK_IMPORTED_MODULE_1___default.a.get('/api/check/favorite/' + postID + '/' + user.id);
-
-            case 3:
-              res = _context.sent;
-              setLike(res.data);
-              _context.next = 10;
-              break;
-
-            case 7:
-              _context.prev = 7;
-              _context.t0 = _context["catch"](0);
-              console.log("initFavoriteError", _context.t0);
-
-            case 10:
-            case "end":
-              return _context.stop();
-          }
-        }
-      }, _callee, null, [[0, 7]]);
-    }));
-
-    return function initFavorite() {
-      return _ref2.apply(this, arguments);
-    };
-  }();
-
-  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_2__["useState"])(false),
+  // useEffect(() => {
+  //   initFavorite()
+  // }, []);
+  // const initFavorite = async () => {
+  //   try {
+  //     const res = await axios.get('/api/check/favorite/' + post.id + '/' + user.id)
+  //     console.log("res", res);
+  //     setLike(res.data.isFavorite);
+  //     setLikeCount(res.data.count);
+  //   } catch (e) {
+  //     console.log("initFavoriteError", e);
+  //   }
+  // }
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_2__["useState"])(post.isLiked),
       _useState2 = _slicedToArray(_useState, 2),
       like = _useState2[0],
       setLike = _useState2[1];
 
-  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_2__["useState"])(postFavorite),
+  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_2__["useState"])(post.likeCount),
       _useState4 = _slicedToArray(_useState3, 2),
       likeCount = _useState4[0],
       setLikeCount = _useState4[1];
 
   var onClick = /*#__PURE__*/function () {
-    var _ref3 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
+    var _ref2 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
       var del, res;
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
         while (1) {
-          switch (_context2.prev = _context2.next) {
+          switch (_context.prev = _context.next) {
             case 0:
               if (!(like == true)) {
-                _context2.next = 13;
+                _context.next = 13;
                 break;
               }
 
-              _context2.prev = 1;
-              _context2.next = 4;
-              return axios__WEBPACK_IMPORTED_MODULE_1___default.a["delete"]('/api/favorite/' + postID + '/' + user.id, {
-                post_id: postID,
+              _context.prev = 1;
+              _context.next = 4;
+              return axios__WEBPACK_IMPORTED_MODULE_1___default.a["delete"]('/api/favorite/' + post.id + '/' + user.id, {
+                post_id: post.id,
                 user_id: user.id
               });
 
             case 4:
-              del = _context2.sent;
+              del = _context.sent;
 
               (function (response) {
                 console.log(response);
@@ -87901,41 +87874,41 @@ var LikeButton = function LikeButton(_ref) {
 
               setLikeCount(likeCount - 1);
               setLike(!like);
-              _context2.next = 13;
+              _context.next = 13;
               break;
 
             case 10:
-              _context2.prev = 10;
-              _context2.t0 = _context2["catch"](1);
-              console.log("delError", _context2.t0);
+              _context.prev = 10;
+              _context.t0 = _context["catch"](1);
+              console.log("delError", _context.t0);
 
             case 13:
               if (!(like == false)) {
-                _context2.next = 27;
+                _context.next = 27;
                 break;
               }
 
-              _context2.prev = 14;
-              _context2.next = 17;
+              _context.prev = 14;
+              _context.next = 17;
               return axios__WEBPACK_IMPORTED_MODULE_1___default.a.post('/api/favorite', {
-                post_id: postID,
+                post_id: post.id,
                 user_id: user.id
               });
 
             case 17:
-              res = _context2.sent;
+              res = _context.sent;
 
               (function (response) {
                 console.log(response);
               });
 
-              _context2.next = 24;
+              _context.next = 24;
               break;
 
             case 21:
-              _context2.prev = 21;
-              _context2.t1 = _context2["catch"](14);
-              console.log("onClickError", _context2.t1);
+              _context.prev = 21;
+              _context.t1 = _context["catch"](14);
+              console.log("onClickError", _context.t1);
 
             case 24:
               ;
@@ -87944,14 +87917,14 @@ var LikeButton = function LikeButton(_ref) {
 
             case 27:
             case "end":
-              return _context2.stop();
+              return _context.stop();
           }
         }
-      }, _callee2, null, [[1, 10], [14, 21]]);
+      }, _callee, null, [[1, 10], [14, 21]]);
     }));
 
     return function onClick() {
-      return _ref3.apply(this, arguments);
+      return _ref2.apply(this, arguments);
     };
   }(); // console.log("like", like);
 
@@ -88068,7 +88041,7 @@ var Main = function Main() {
               _user = _context.sent;
               url = window.location.pathname;
               targetUserId = String(url);
-              initPosts(targetUserId);
+              initPosts(targetUserId, _user);
               initProfile(targetUserId);
               _context.next = 13;
               break;
@@ -88092,7 +88065,7 @@ var Main = function Main() {
   }();
 
   var initPosts = /*#__PURE__*/function () {
-    var _ref2 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2(targetUserId) {
+    var _ref2 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2(targetUserId, user) {
       var res;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
         while (1) {
@@ -88100,7 +88073,7 @@ var Main = function Main() {
             case 0:
               _context2.prev = 0;
               _context2.next = 3;
-              return axios__WEBPACK_IMPORTED_MODULE_3___default.a.get('/api' + targetUserId);
+              return axios__WEBPACK_IMPORTED_MODULE_3___default.a.get('/api' + targetUserId + '/' + user.id);
 
             case 3:
               res = _context2.sent;
@@ -88123,7 +88096,7 @@ var Main = function Main() {
       }, _callee2, null, [[0, 7]]);
     }));
 
-    return function initPosts(_x) {
+    return function initPosts(_x, _x2) {
       return _ref2.apply(this, arguments);
     };
   }();
@@ -88158,7 +88131,7 @@ var Main = function Main() {
       }, _callee3, null, [[0, 7]]);
     }));
 
-    return function search(_x2) {
+    return function search(_x3) {
       return _ref3.apply(this, arguments);
     };
   }();
@@ -88194,7 +88167,7 @@ var Main = function Main() {
       }, _callee4, null, [[0, 8]]);
     }));
 
-    return function initProfile(_x3) {
+    return function initProfile(_x4) {
       return _ref4.apply(this, arguments);
     };
   }();
@@ -88434,8 +88407,7 @@ var TwitterViewPostIndex = function TwitterViewPostIndex(_ref) {
     post: post,
     viewType: "twitter"
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, post.created_at), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_LikeButton__WEBPACK_IMPORTED_MODULE_2__["default"], {
-    postID: post.id,
-    postFavorite: post.favorite,
+    post: post,
     user: user
   })));
 };

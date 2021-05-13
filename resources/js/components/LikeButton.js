@@ -1,30 +1,31 @@
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 
-const LikeButton = ({ postID, postFavorite, user }) => {
-  console.log("postFavorite", postFavorite);
+const LikeButton = ({ post, user }) => {
 
-  useEffect(() => {
-    initFavorite()
-  }, []);
+  // useEffect(() => {
+  //   initFavorite()
+  // }, []);
 
-  const initFavorite = async () => {
-    try {
-      const res = await axios.get('/api/check/favorite/' + postID + '/' + user.id)
-      setLike(res.data);
-    } catch (e) {
-      console.log("initFavoriteError", e);
-    }
-  }
+  // const initFavorite = async () => {
+  //   try {
+  //     const res = await axios.get('/api/check/favorite/' + post.id + '/' + user.id)
+  //     console.log("res", res);
+  //     setLike(res.data.isFavorite);
+  //     setLikeCount(res.data.count);
+  //   } catch (e) {
+  //     console.log("initFavoriteError", e);
+  //   }
+  // }
 
-  const [like, setLike] = useState(false);
-  const [likeCount, setLikeCount] = useState(postFavorite);
+  const [like, setLike] = useState(post.isLiked);
+  const [likeCount, setLikeCount] = useState(post.likeCount);
 
   const onClick = async () => {
     if (like == true) {
       try {
-        const del = await axios.delete('/api/favorite/' + (postID) + '/' + (user.id), {
-          post_id: postID,
+        const del = await axios.delete('/api/favorite/' + (post.id) + '/' + (user.id), {
+          post_id: post.id,
           user_id: user.id
         })
         response => {
@@ -39,7 +40,7 @@ const LikeButton = ({ postID, postFavorite, user }) => {
     if (like == false) {
       try {
         const res = await axios.post('/api/favorite', {
-          post_id: postID,
+          post_id: post.id,
           user_id: user.id
         })
         response => {
