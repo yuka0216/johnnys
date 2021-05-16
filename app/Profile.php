@@ -14,6 +14,16 @@ class Profile extends Model
         return $this->belongsTo('App/User');
     }
 
+    public static function profileEdit(Request $request, $user_id)
+    {
+        $profile = Profile::where('user_id', $user_id)->first();
+        if (!empty($profile)) {
+            Profile::profileDataUpdate($request, $profile);
+        } else {
+            Profile::profileDataSave($request, $user_id);
+        }
+    }
+
     public static function profileDataUpdate(Request $request, $profile)
     {
         $form = $request->all();
