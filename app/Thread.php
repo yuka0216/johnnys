@@ -27,7 +27,7 @@ class Thread extends Model
         $form = $request->all();
         $thread = new Thread;
 
-        $form['artist_id'] = Artist::where('名前', $selectedName)->value('id');
+        $form['artist_id'] = Artist::where('name', $selectedName)->value('id');
         $form['thread_name'] = $request->thread_name;
 
         unset($form['_token']);

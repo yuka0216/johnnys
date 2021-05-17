@@ -181,28 +181,4 @@ class ArtistController extends controller
             // 'chkChecked' => $chkChecked
         ]);
     }
-
-
-    public function snowman()
-    {
-        return view('artist.snowman');
-    }
-    public function snowmanprofile()
-    {
-        return view('artist.snowmanprofile');
-    }
-    public function snowmancheckit()
-    {
-        return view('artist.snowmancheckit');
-    }
-
-    public function snowmanmustgo()
-    {
-        return view('artist.snowmanmustgo');
-    }
-
-    public function sixtones()
-    {
-        return view('artist.sixtones');
-    }
 }
