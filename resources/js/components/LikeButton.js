@@ -1,5 +1,7 @@
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
+import Liked from './Liked';
+import NotLiked from './NotLiked';
 
 const LikeButton = ({ post, user }) => {
 
@@ -21,41 +23,17 @@ const LikeButton = ({ post, user }) => {
   const [like, setLike] = useState(post.isLiked);
   const [likeCount, setLikeCount] = useState(post.likeCount);
 
-  const onClick = async () => {
-    if (like == true) {
-      try {
-        const del = await axios.delete('/api/favorite/' + (post.id) + '/' + (user.id), {
-          post_id: post.id,
-          user_id: user.id
-        })
-        response => {
-          console.log(response)
-        }
-        setLikeCount(likeCount - 1);
-        setLike(!like);
-      } catch (e) {
-        console.log("delError", e);
-      }
-    }
-    if (like == false) {
-      try {
-        const res = await axios.post('/api/favorite', {
-          post_id: post.id,
-          user_id: user.id
-        })
-        response => {
-          console.log(response);
-        }
-      } catch (e) {
-        console.log("onClickError", e);
-      };
-
+  const onClick = () => {
+    if (like) {
+      <Liked post={post} user={user} />
+      setLikeCount(likeCount - 1);
+      setLike(!like);
+    } else {
+      <NotLiked post={post} user={user} />
       setLikeCount(likeCount + 1);
       setLike(!like);
     }
   }
-
-  // console.log("like", like);
 
   return (
     <>
