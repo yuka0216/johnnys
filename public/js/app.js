@@ -88387,7 +88387,7 @@ var Profile = function Profile(_ref) {
       className: "text-center"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
       className: "d-block mx-auto",
-      src: "/image/".concat(profile.profile_image_path),
+      src: "/images/".concat(profile.profile_image_path),
       width: "100px"
     }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, profile.user_id), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, profile.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, profile.favorite), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, profile.free_writing));
   });

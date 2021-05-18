@@ -9,6 +9,7 @@ use App\Artist;
 use App\Post;
 use App\Thread;
 use App\Profile;
+use App\Image;
 use Illuminate\Support\Facades\Auth;
 
 class ArtistController extends controller
@@ -39,10 +40,36 @@ class ArtistController extends controller
     public function postIndex($threadId)
     {
         $posts = Post::where('thread_id', $threadId)->orderBy('created_at', 'desc')->get();
+        $postList = Post::makePostIndex($posts);
         $threadList = self::makeThreadList();
         $thread_name = Thread::where('id', $threadId)->value('thread_name'); // $posts->thread->thread_nameとしたかったがpostsが何もないスレッドだとエラーが生じる
 
-        return view('artist.talkboard', ['thread_name' => $thread_name, 'threadId' => $threadId, 'posts' => $posts, 'threadList' => $threadList]);
+        return view('artist.talkboard', ['thread_name' => $thread_name, 'threadId' => $threadId, 'postList' => $postList, 'threadList' => $threadList]);
+    }
+
+    public function postEdit(Request $request)
+    {
+        $post = Post::find($request->id);
+        $image = Image::where('post_id', $request->id)->value('image_path');
+        $threadId = $request->threadId;
+        return view('artist.postEdit', ['post' => $post, 'image' => $image, 'threadId' => $threadId]);
+    }
+
+    public function postUpdate(Request $request)
+    {
+        $post = Post::find($request->id);
+        Post::postUpdate($request, $post);
+
+        return redirect("snowman/profile/" . $post->thread_id);
+    }
+
+    public function postDelete(Request $request)
+    {
+        $threadId = Post::where('id', $request->id)->value('thread_id');
+        Post::where('id', $request->id)->delete();
+        Image::where('post_id', $request->id)->delete();
+
+        return redirect("snowman/profile/" . $threadId);
     }
 
     public function addThread(createThreadRequest $request)
