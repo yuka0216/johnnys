@@ -29,7 +29,7 @@ class Profile extends Model
         $form = $request->all();
 
         if (isset($form['profile_image_path'])) {
-            $path = $request->file('profile_image_path')->storeAs('image', $request->file('profile_image_path')->hashName(), 'public_uploads');
+            $path = $request->file('profile_image_path')->storeAs('images', $request->file('profile_image_path')->hashName(), 'public_uploads');
             $profile->profile_image_path = basename($path);
         }
 
@@ -45,7 +45,7 @@ class Profile extends Model
         $profile = new Profile;
         $form['user_id'] = $user_id;
         if (isset($form['profile_image_path'])) {
-            $path = $request->file('profile_image_path')->storeAs('image', $request->file('profile_image_path')->hashName(), 'public_uploads');
+            $path = $request->file('profile_image_path')->storeAs('images', $request->file('profile_image_path')->hashName(), 'public_uploads');
             $profile->profile_image_path = basename($path);
         }
 

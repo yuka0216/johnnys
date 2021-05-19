@@ -42,5 +42,8 @@ Route::get('/snowman/profile', 'ArtistController@snowmanprofile')->middleware('a
 Route::get('/snowman/checkit', 'ArtistController@snowmancheckit')->middleware('auth');
 Route::get('/snowman/mustgo', 'ArtistController@snowmanmustgo')->middleware('auth');
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/snowman/Edit', 'ArtistController@postEdit')->middleware('auth');
+Route::post('/snowman/Edit', 'ArtistController@postUpdate')->middleware('auth');
+Route::get('/snowman/delete', 'ArtistController@postDelete')->middleware('auth');
 
 Auth::routes();

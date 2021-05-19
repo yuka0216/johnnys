@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\Model;
 use App\Favorite;
+use App\Profile;
 use Illuminate\Database\Eloquent\Collection;
 
 class Post extends Model
@@ -33,11 +34,9 @@ class Post extends Model
         $post = new Post;
         $image = new Image;
 
-
         $form['thread_id'] = $request->threadId;
         $form['name'] = $user->name;
         $form['user_id'] = $user->id;
-
 
         $post->fill($form);
         $post->save();
@@ -52,9 +51,56 @@ class Post extends Model
         unset($form['_token']);
         unset($form['image']);
 
-
         $image->save();
     }
+
+    public static function makePostIndex(Collection $posts)
+    {
+        $postList = [];
+
+        foreach ($posts as $post) {
+            $postList[] = [
+                "id" => $post->id,
+                "user_id" => $post->user->id,
+                "name" => $post->user->name,
+                "comment" => $post->comment,
+                "images" => $post->images,
+                "created_at" => $post->created_at,
+                "profile_image" => self::profileImage($post)
+            ];
+        }
+
+        return $postList;
+    }
+
+    public static function profileImage($post)
+    {
+        $profileImage = Profile::where('user_id', $post->user->id)->value('profile_image_path');
+        return $profileImage;
+    }
+
+    public static function postUpdate(Request $request, $post)
+    {
+        $form = $request->all();
+        $post->fill($form)->save();
+
+        if (isset($form['image'])) {
+            $image = Image::where('post_id', $form['id'])->first();
+            if (!empty($image)) {
+                $path = $request->file('image')->storeAs('images', $request->file('image')->hashName(), 'public_uploads');
+                $image->image_path = basename($path);
+            } else {
+                $image = new Image;
+                $path = $request->file('image')->storeAs('images', $request->file('image')->hashName(), 'public_uploads');
+                $image->image_path = basename($path);
+            }
+            unset($form['_token']);
+            unset($form['image']);
+            $image->save();
+        }
+    }
+
+
 
     public static function mypageViewModel(Collection $posts, $loginId)
     {
