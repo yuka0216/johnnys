@@ -45,11 +45,26 @@ class Handler extends ExceptionHandler
      * @param  \Illuminate\Http\Request  $request
      * @param  \Exception  $exception
      * @return \Symfony\Component\HttpFoundation\Response
-     *
+
      * @throws \Exception
      */
     public function render($request, Exception $exception)
     {
         return parent::render($request, $exception);
     }
+
+    //     protected function renderHttpException(\Symfony\Component\HttpKernel\Exception\HttpException $e)
+    // {
+    // 　　// ステータスコードを確認し、404であれば404
+    //     if ($e->getStatusCode() == 404) {
+    //         return response()->view('errors.404', [], 404);
+    //     }
+    //     $service = new ErrorHandlerService();
+    // 　　// エラーログ書き込み処理
+    //     $service->errorRenderCreateLog($e,'例外エラーが発生（render内）');
+    // 　　// エラーメール送信処理
+    //     $service->errorRenderSendMail($e);
+    // 　　// 共通エラーページ呼び出し
+    //     return response()->view('errors.500', [], 500);
+    // }
 }

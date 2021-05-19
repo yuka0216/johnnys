@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Adapter\Repository\PostRepository;
 use App\Http\Requests\createThreadRequest;
 use App\Http\Requests\createPostRequest;
 use Illuminate\Http\Request;
@@ -10,6 +11,7 @@ use App\Post;
 use App\Thread;
 use App\Profile;
 use App\Image;
+use Domain\Model\ValueObject\PostThreadId;
 use Illuminate\Support\Facades\Auth;
 
 class ArtistController extends controller
@@ -37,14 +39,14 @@ class ArtistController extends controller
         return redirect("snowman/profile/" . $request->threadId);
     }
 
-    public function postIndex($threadId)
+    public function postIndex($threadId, PostRepository $postRepository)
     {
-        $posts = Post::where('thread_id', $threadId)->orderBy('created_at', 'desc')->get();
-        $postList = Post::makePostIndex($posts);
+        $postThreadId = new PostThreadId($threadId);
+        $posts = $postRepository->findAll($postThreadId);
         $threadList = self::makeThreadList();
         $thread_name = Thread::where('id', $threadId)->value('thread_name'); // $posts->thread->thread_nameとしたかったがpostsが何もないスレッドだとエラーが生じる
 
-        return view('artist.talkboard', ['thread_name' => $thread_name, 'threadId' => $threadId, 'postList' => $postList, 'threadList' => $threadList]);
+        return view('artist.talkboard', ['thread_name' => $thread_name, 'threadId' => $threadId, 'posts' => $posts, 'threadList' => $threadList]);
     }
 
     public function postEdit(Request $request)

@@ -42,26 +42,23 @@
       </div>
     </div>
     <form action="{{ action('ArtistController@postIndex', ['threadId' => $threadId]) }}" method="get"></form>
-    @if (count($postList) > 0)
-    @foreach($postList as $post)
+    @if (count($posts) > 0)
+    @foreach($posts as $post)
     <table class="table">
       <tr>
         <td>
-          <a href="{{ "/mypage/" . $post['user_id'] }}"><img class="rounded-full" src="{{ asset('/images/' . $post['profile_image'])}}" width="50" height="50" align="right">{{ $post['name'] }}</a>
-          <br>
-          <br>
-          {{ $post['comment'] }}
-          @if ($post['images'] !=NUll)
-          @foreach ($post['images'] as $image)
+          <a href="{{ "/mypage/" . $post->userId()->value() }}"></a><br>
+          {{ $post->comment()->value() }}<br>
+          @if (!empty($post->images))
+          @foreach ($post->images as $image)
           <img src="{{ asset('/images/' . $image->image_path) }}" style="width: 100px"><br>
           @endforeach
           @endif
-          <br>
-          {{ $post['created_at'] }}
-          @if ($post['user_id'] == Auth::id())
+          {{ $post->createdAt() }}
+          @if ($post->userId()->value() == Auth::id())
           <div align="right">
-            <a href="{{ action('ArtistController@postEdit', ['id' => $post['id']]) }}">編集</a>
-            <a href="{{ action('ArtistController@postDelete', ['id' => $post['id']]) }}">削除</a>
+            <a href="{{ action('ArtistController@postEdit', ['id' => $post->id()->value()]) }}">編集</a>
+            <a href="{{ action('ArtistController@postDelete', ['id' => $post->id()->value()]) }}">削除</a>
           </div>
           @endif
         </td>
