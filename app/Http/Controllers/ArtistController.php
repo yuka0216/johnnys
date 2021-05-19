@@ -64,13 +64,11 @@ class ArtistController extends controller
     public function profileEdit(Request $request)
     {
         $user_id = Auth::id();
-        $profile = Profile::where('user_id', $user_id)->first();
-        $profile = (!empty($profile)) ? Profile::profileDataUpdate($request, $profile) : Profile::profileDataSave($request, $user_id);
-
+        Profile::profileEdit($request, $user_id);
         return redirect("mypage/" . $user_id);
     }
 
-    public function setting(Request $request)
+    public function setting()
     {
         $user_id = Auth::id();
         $profile = Profile::where('user_id', $user_id)->first();
