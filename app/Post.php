@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\Model;
-use App\Image_path;
+use App\Favorite;
 use Illuminate\Database\Eloquent\Collection;
 
 class Post extends Model
@@ -56,23 +56,38 @@ class Post extends Model
         $image->save();
     }
 
-    public static function mypageViewModel(Collection $posts)
+    public static function mypageViewModel(Collection $posts, $loginId)
     {
         $mypageViews = [];
 
         foreach ($posts as $post) {
             if ($post->created_at !== null) {
                 $mypageViews[] = [
-                    "name" => $post->user->name,
                     "id" => $post->id,
+                    "user_id" => $post->user_id,
+                    "name" => $post->user->name,
                     "comment" => $post->comment,
                     "imagePaths" => self::makeImagePaths($post->images),
-                    "created_at" => $post->created_at->format('Y/m/d h:m:s')
+                    "created_at" => $post->created_at->format('Y/m/d h:m:s'),
+                    "likeCount" => self::countFavorite($post),
+                    "isLiked" => self::isFavorite($post, $loginId)
                 ];
             }
         }
         return $mypageViews;
     }
+
+    private static function isFavorite($post, $loginId)
+    {
+        $favorite = Favorite::where('post_id', $post->id)->where('user_id', $loginId)->count();
+        return (!empty($favorite));
+    }
+
+    private static function countFavorite($post)
+    {
+        return Favorite::where('post_id', $post->id)->count();
+    }
+
     private static function makeImagePaths(Collection $images)
     {
         if (empty($images)) return [];

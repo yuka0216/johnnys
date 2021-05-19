@@ -87792,8 +87792,12 @@ var InstaViewPostIndex = function InstaViewPostIndex(_ref) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _Liked__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Liked */ "./resources/js/components/Liked.js");
+/* harmony import */ var _NotLiked__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./NotLiked */ "./resources/js/components/NotLiked.js");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -87808,31 +87812,136 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
-var LikeButton = function LikeButton() {
-  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false),
+
+
+
+var LikeButton = function LikeButton(_ref) {
+  var post = _ref.post,
+      user = _ref.user;
+
+  // useEffect(() => {
+  //   initFavorite()
+  // }, []);
+  // const initFavorite = async () => {
+  //   try {
+  //     const res = await axios.get('/api/check/favorite/' + post.id + '/' + user.id)
+  //     console.log("res", res);
+  //     setLike(res.data.isFavorite);
+  //     setLikeCount(res.data.count);
+  //   } catch (e) {
+  //     console.log("initFavoriteError", e);
+  //   }
+  // }
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(post.isLiked),
       _useState2 = _slicedToArray(_useState, 2),
       like = _useState2[0],
       setLike = _useState2[1];
 
-  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(0),
+  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(post.likeCount),
       _useState4 = _slicedToArray(_useState3, 2),
       likeCount = _useState4[0],
       setLikeCount = _useState4[1];
 
   var onClick = function onClick() {
-    setLike(!like);
-    setLikeCount(likeCount + (like ? -1 : 1));
+    if (like) {
+      /*#__PURE__*/
+      react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Liked__WEBPACK_IMPORTED_MODULE_2__["default"], {
+        post: post,
+        user: user
+      });
+      setLikeCount(likeCount - 1);
+      setLike(!like);
+    } else {
+      /*#__PURE__*/
+      react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_NotLiked__WEBPACK_IMPORTED_MODULE_3__["default"], {
+        post: post,
+        user: user
+      });
+      setLikeCount(likeCount + 1);
+      setLike(!like);
+    }
   };
 
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_1___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
     onClick: onClick
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("img", {
     src: like ? '/image/ハート.jpg' : '/image/like.png',
     width: "30px"
   })), likeCount);
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (LikeButton);
+
+/***/ }),
+
+/***/ "./resources/js/components/Liked.js":
+/*!******************************************!*\
+  !*** ./resources/js/components/Liked.js ***!
+  \******************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_2__);
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+
+
+
+var Liked = /*#__PURE__*/function () {
+  var _ref2 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee(_ref) {
+    var post, user, setLike, setLikeCount, del;
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+      while (1) {
+        switch (_context.prev = _context.next) {
+          case 0:
+            post = _ref.post, user = _ref.user, setLike = _ref.setLike, setLikeCount = _ref.setLikeCount;
+            _context.prev = 1;
+            _context.next = 4;
+            return axios__WEBPACK_IMPORTED_MODULE_1___default.a["delete"]('/api/favorite/' + post.id + '/' + user.id, {
+              post_id: post.id,
+              user_id: user.id
+            });
+
+          case 4:
+            del = _context.sent;
+
+            (function (response) {
+              console.log(response);
+            });
+
+            _context.next = 11;
+            break;
+
+          case 8:
+            _context.prev = 8;
+            _context.t0 = _context["catch"](1);
+            console.log("delError", _context.t0);
+
+          case 11:
+          case "end":
+            return _context.stop();
+        }
+      }
+    }, _callee, null, [[1, 8]]);
+  }));
+
+  return function Liked(_x) {
+    return _ref2.apply(this, arguments);
+  };
+}();
+
+/* harmony default export */ __webpack_exports__["default"] = (Liked);
 
 /***/ }),
 
@@ -87911,52 +88020,56 @@ var Main = function Main() {
       profiles = _useState6[0],
       setProfiles = _useState6[1];
 
-  var url = window.location.pathname;
-  var userId = String(url);
+  var _useState7 = Object(react__WEBPACK_IMPORTED_MODULE_4__["useState"])(),
+      _useState8 = _slicedToArray(_useState7, 2),
+      user = _useState8[0],
+      setUser = _useState8[1];
+
   Object(react__WEBPACK_IMPORTED_MODULE_4__["useEffect"])(function () {
-    initPosts();
-    initProfile();
+    init();
   }, []);
 
-  var initPosts = /*#__PURE__*/function () {
+  var init = /*#__PURE__*/function () {
     var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
-      var res;
+      var _user, url, targetUserId;
+
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
               _context.prev = 0;
               _context.next = 3;
-              return axios__WEBPACK_IMPORTED_MODULE_3___default.a.get('/api' + userId);
+              return initUser();
 
             case 3:
-              res = _context.sent;
-              setPosts(res.data);
-              _context.next = 12;
+              _user = _context.sent;
+              url = window.location.pathname;
+              targetUserId = String(url);
+              initPosts(targetUserId, _user);
+              initProfile(targetUserId);
+              _context.next = 13;
               break;
 
-            case 7:
-              _context.prev = 7;
+            case 10:
+              _context.prev = 10;
               _context.t0 = _context["catch"](0);
-              console.log("e", _context.t0.response.status);
-              if (_context.t0.response.status == 404) alert(_context.t0.response.data.message);
-              if (_context.t0.response.status == 500) alert("ステータスコード500");
+              console.log("e", _context.t0);
 
-            case 12:
+            case 13:
             case "end":
               return _context.stop();
           }
         }
-      }, _callee, null, [[0, 7]]);
+      }, _callee, null, [[0, 10]]);
     }));
 
-    return function initPosts() {
+    return function init() {
       return _ref.apply(this, arguments);
     };
   }();
 
-  var search = /*#__PURE__*/function () {
-    var _ref2 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2(searchValue) {
+  var initPosts = /*#__PURE__*/function () {
+    var _ref2 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2(targetUserId, user) {
       var res;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
         while (1) {
@@ -87964,20 +88077,22 @@ var Main = function Main() {
             case 0:
               _context2.prev = 0;
               _context2.next = 3;
-              return axios__WEBPACK_IMPORTED_MODULE_3___default.a.get('/api/search/' + searchValue);
+              return axios__WEBPACK_IMPORTED_MODULE_3___default.a.get('/api' + targetUserId + '/' + user.id);
 
             case 3:
               res = _context2.sent;
-              setSearchPosts(res.data);
-              _context2.next = 10;
+              setPosts(res.data);
+              _context2.next = 12;
               break;
 
             case 7:
               _context2.prev = 7;
               _context2.t0 = _context2["catch"](0);
-              console.log("e", _context2.t0);
+              console.log("e", _context2.t0.response.status);
+              if (_context2.t0.response.status == 404) alert(_context2.t0.response.data.message);
+              if (_context2.t0.response.status == 500) alert("ステータスコード500");
 
-            case 10:
+            case 12:
             case "end":
               return _context2.stop();
           }
@@ -87985,13 +88100,13 @@ var Main = function Main() {
       }, _callee2, null, [[0, 7]]);
     }));
 
-    return function search(_x) {
+    return function initPosts(_x, _x2) {
       return _ref2.apply(this, arguments);
     };
   }();
 
-  var initProfile = /*#__PURE__*/function () {
-    var _ref3 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
+  var search = /*#__PURE__*/function () {
+    var _ref3 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3(searchValue) {
       var res;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
         while (1) {
@@ -87999,11 +88114,11 @@ var Main = function Main() {
             case 0:
               _context3.prev = 0;
               _context3.next = 3;
-              return axios__WEBPACK_IMPORTED_MODULE_3___default.a.get('/api/profile' + userId);
+              return axios__WEBPACK_IMPORTED_MODULE_3___default.a.get('/api/search/' + searchValue);
 
             case 3:
               res = _context3.sent;
-              setProfiles(res.data);
+              setSearchPosts(res.data);
               _context3.next = 10;
               break;
 
@@ -88020,8 +88135,80 @@ var Main = function Main() {
       }, _callee3, null, [[0, 7]]);
     }));
 
-    return function initProfile() {
+    return function search(_x3) {
       return _ref3.apply(this, arguments);
+    };
+  }();
+
+  var initProfile = /*#__PURE__*/function () {
+    var _ref4 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4(targetUserId) {
+      var res;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee4$(_context4) {
+        while (1) {
+          switch (_context4.prev = _context4.next) {
+            case 0:
+              _context4.prev = 0;
+              _context4.next = 3;
+              return axios__WEBPACK_IMPORTED_MODULE_3___default.a.get('/api/profile' + targetUserId);
+
+            case 3:
+              res = _context4.sent;
+              setProfiles(res.data);
+              console.log("profiles", profiles);
+              _context4.next = 11;
+              break;
+
+            case 8:
+              _context4.prev = 8;
+              _context4.t0 = _context4["catch"](0);
+              console.log("e", _context4.t0);
+
+            case 11:
+            case "end":
+              return _context4.stop();
+          }
+        }
+      }, _callee4, null, [[0, 8]]);
+    }));
+
+    return function initProfile(_x4) {
+      return _ref4.apply(this, arguments);
+    };
+  }();
+
+  var initUser = /*#__PURE__*/function () {
+    var _ref5 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee5() {
+      var res, _user2;
+
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee5$(_context5) {
+        while (1) {
+          switch (_context5.prev = _context5.next) {
+            case 0:
+              _context5.prev = 0;
+              _context5.next = 3;
+              return axios__WEBPACK_IMPORTED_MODULE_3___default.a.get('/api/user');
+
+            case 3:
+              res = _context5.sent;
+              _user2 = res.data;
+              setUser(_user2);
+              return _context5.abrupt("return", _user2);
+
+            case 9:
+              _context5.prev = 9;
+              _context5.t0 = _context5["catch"](0);
+              console.log("initUserError", _context5.t0);
+
+            case 12:
+            case "end":
+              return _context5.stop();
+          }
+        }
+      }, _callee5, null, [[0, 9]]);
+    }));
+
+    return function initUser() {
+      return _ref5.apply(this, arguments);
     };
   }();
 
@@ -88044,6 +88231,7 @@ var Main = function Main() {
     width: "40px"
   }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement(react_tabs__WEBPACK_IMPORTED_MODULE_2__["TabPanel"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement("h2", null, "\u5168\u3066\u306E\u30B3\u30E1\u30F3\u30C8\u306E\u8868\u793A"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement(_Posts__WEBPACK_IMPORTED_MODULE_7__["default"], {
     posts: posts,
+    user: user,
     viewType: "twitter"
   }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement(react_tabs__WEBPACK_IMPORTED_MODULE_2__["TabPanel"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement("h2", null, "\u30A4\u30F3\u30B9\u30BF\u98A8\u753B\u50CF\u6295\u7A3F\u3060\u3051\u8868\u793A"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement("div", {
     className: "d-flex flex-md-wrap col-md-12"
@@ -88058,6 +88246,80 @@ var Main = function Main() {
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (Main);
+
+/***/ }),
+
+/***/ "./resources/js/components/NotLiked.js":
+/*!*********************************************!*\
+  !*** ./resources/js/components/NotLiked.js ***!
+  \*********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_2__);
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+
+
+
+var NotLiked = /*#__PURE__*/function () {
+  var _ref2 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee(_ref) {
+    var post, user, res;
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+      while (1) {
+        switch (_context.prev = _context.next) {
+          case 0:
+            post = _ref.post, user = _ref.user;
+            _context.prev = 1;
+            _context.next = 4;
+            return axios__WEBPACK_IMPORTED_MODULE_1___default.a.post('/api/favorite', {
+              post_id: post.id,
+              user_id: user.id
+            });
+
+          case 4:
+            res = _context.sent;
+
+            (function (response) {
+              console.log(response);
+            });
+
+            _context.next = 11;
+            break;
+
+          case 8:
+            _context.prev = 8;
+            _context.t0 = _context["catch"](1);
+            console.log("onClickError", _context.t0);
+
+          case 11:
+            ;
+
+          case 12:
+          case "end":
+            return _context.stop();
+        }
+      }
+    }, _callee, null, [[1, 8]]);
+  }));
+
+  return function NotLiked(_x) {
+    return _ref2.apply(this, arguments);
+  };
+}();
+
+/* harmony default export */ __webpack_exports__["default"] = (NotLiked);
 
 /***/ }),
 
@@ -88080,12 +88342,14 @@ __webpack_require__.r(__webpack_exports__);
 
 var Posts = function Posts(_ref) {
   var posts = _ref.posts,
-      viewType = _ref.viewType;
+      viewType = _ref.viewType,
+      user = _ref.user;
 
   var postView = function postView(post, viewType) {
     if (viewType == "twitter") return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_TwitterViewPostIndex__WEBPACK_IMPORTED_MODULE_1__["default"], {
       key: post.id,
-      post: post
+      post: post,
+      user: user
     });
     if (viewType == "instagram") return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_InstaViewPostIndex__WEBPACK_IMPORTED_MODULE_2__["default"], {
       key: post.id,
@@ -88094,7 +88358,7 @@ var Posts = function Posts(_ref) {
   };
 
   return posts.map(function (post) {
-    return postView(post, viewType);
+    return postView(post, viewType, user);
   });
 };
 
@@ -88125,7 +88389,7 @@ var Profile = function Profile(_ref) {
       className: "d-block mx-auto",
       src: "/image/".concat(profile.profile_image_path),
       width: "100px"
-    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, profile.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, profile.favorite), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, profile.free_writing));
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, profile.user_id), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, profile.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, profile.favorite), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, profile.free_writing));
   });
 };
 
@@ -88210,7 +88474,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var TwitterViewPostIndex = function TwitterViewPostIndex(_ref) {
-  var post = _ref.post;
+  var post = _ref.post,
+      user = _ref.user;
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "card"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -88219,7 +88484,10 @@ var TwitterViewPostIndex = function TwitterViewPostIndex(_ref) {
     key: post.id,
     post: post,
     viewType: "twitter"
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, post.created_at), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_LikeButton__WEBPACK_IMPORTED_MODULE_2__["default"], null)));
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, post.created_at), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_LikeButton__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    post: post,
+    user: user
+  })));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (TwitterViewPostIndex);

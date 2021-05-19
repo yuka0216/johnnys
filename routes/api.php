@@ -16,6 +16,7 @@ use Illuminate\Http\Request;
 Route::get('mypage', 'PostController@index');
 Route::get('myImage', 'PostController@image');
 
+Route::post('api/favorite', 'LikeController@store');
 // group(['middleware' => 'api'], function () {
 //     Route::get('', 'PostController@getPosts');
 // });

@@ -16,18 +16,29 @@ const Main = () => {
   const [posts, setPosts] = useState([]);
   const [searchPosts, setSearchPosts] = useState([]);
   const [profiles, setProfiles] = useState([]);
+  const [user, setUser] = useState();
 
-  const url = window.location.pathname;
-  const userId = String(url);
 
   useEffect(() => {
-    initPosts()
-    initProfile()
+    init()
   }, []);
 
-  const initPosts = async () => {
+
+  const init = async () => {
     try {
-      const res = await axios.get('/api' + (userId))
+      const user = await initUser();
+      const url = window.location.pathname;
+      const targetUserId = String(url);
+      initPosts(targetUserId, user);
+      initProfile(targetUserId);
+    } catch (e) {
+      console.log("e", e);
+    }
+  }
+
+  const initPosts = async (targetUserId, user) => {
+    try {
+      const res = await axios.get('/api' + (targetUserId) + '/' + (user.id))
       setPosts(res.data);
     } catch (e) {
       console.log("e", e.response.status);
@@ -46,12 +57,26 @@ const Main = () => {
     }
   }
 
-  const initProfile = async () => {
+
+
+  const initProfile = async (targetUserId) => {
     try {
-      const res = await axios.get('/api/profile' + (userId))
+      const res = await axios.get('/api/profile' + (targetUserId))
       setProfiles(res.data);
+      console.log("profiles", profiles);
     } catch (e) {
       console.log("e", e);
+    }
+  }
+
+  const initUser = async () => {
+    try {
+      const res = await axios.get('/api/user')
+      const user = res.data;
+      setUser(user);
+      return user;
+    } catch (e) {
+      console.log("initUserError", e);
     }
   }
 
@@ -69,7 +94,7 @@ const Main = () => {
         <TabPanel>
           <div>
             <h2>全てのコメントの表示</h2>
-            <Posts posts={posts} viewType="twitter" />
+            <Posts posts={posts} user={user} viewType="twitter" />
           </div>
         </TabPanel>
         <TabPanel>
