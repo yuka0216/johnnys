@@ -10,7 +10,7 @@ class UserEmail
 {
     private $value;
 
-    public function __construct(str $value)
+    public function __construct(string $value)
     {
         if (strpos($value, '@') === false) {
             throw new Exception("@を含んだ値を指定してください");
@@ -18,7 +18,7 @@ class UserEmail
         $this->value = $value;
     }
 
-    public function value(): str
+    public function value(): string
     {
         return $this->value;
     }

@@ -13,7 +13,7 @@ class PostComment
     private const MAX_LENGTH = 100;
     private $value;
 
-    public function __construct(str $value)
+    public function __construct(string $value)
     {
         if (empty($value)) {
             throw new Exception("PostCommentは必須入力です");
@@ -25,7 +25,7 @@ class PostComment
         $this->value = $value;
     }
 
-    public function value(): str
+    public function value(): string
     {
         return $this->value;
     }
