@@ -10,40 +10,39 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+//api routing
+Route::group(['prefix' => 'api', 'middleware' => 'auth'], function () {
+    Route::get('mypage/{userId}', 'PostController@index');
+    Route::get('search/{searchValue}', 'PostController@searchIndex');
+    Route::get('profile/mypage/{userId}', 'ProfileController@fetchProfileByUserId');
+});
 
-Route::middleware('auth')->get('api/mypage/{targetUserId}/{loginId}', 'PostController@index');
-Route::middleware('auth')->get('api/search/{searchValue}', 'PostController@searchIndex');
-Route::middleware('auth')->get('api/profile/mypage/{userId}', 'ProfileController@fetchProfileByUserId');
-Route::middleware('auth')->get('api/favorite', 'LikeController@store');
-Route::middleware('auth')->post('api/favorite', 'LikeController@store');
-Route::middleware('auth')->delete('api/favorite/{postID}/{userID}', 'LikeController@delete');
+//Snow Manページのrouting
+Route::group(['prefix' => 'snowman', 'middleware' => 'auth'], function () {
+    Route::get('profile/{threadId}', 'ArtistController@postIndex');
+    Route::post('profile/{threadId}', 'ArtistController@post');
 
-Route::middleware('auth')->get('api/user', 'UserController@user');
-Route::middleware('auth')->get('api/check/favorite/{postID}/{userID}', 'LikeController@favorite');
+    Route::get('add', 'ArtistController@makeCheckBox');
+    Route::post('add', 'ArtistController@addThread');
 
-Route::get('/mypage/{userId}', function () {
-    return view('artist.app');
+    Route::view('/', 'artist.snowman');
+    Route::view('profile', 'artist.snowmanprofile');
+    Route::view('checkit', 'artist.snowmancheckit');
+    Route::view('mustgo', 'artist.snowmanmustgo');
+});
+
+//その他
+Route::group(['middleware' => 'auth'], function () {
+    Route::get('/setting', 'ArtistController@setting');
+    Route::post('/setting', 'ArtistController@profileEdit');
+    Route::get('/all', 'ArtistController@index');
+    Route::view('/sixtones', 'artist.sixtones');
+    Route::view('/mypage/{userId}', 'artist.app');
+    Route::get('/home', 'HomeController@index')->name('home');
 });
 
 Route::get('/', function () {
     return view('welcome');
 });
-
-Route::post('/snowman/profile/{threadId}', 'ArtistController@post')->middleware('auth');
-Route::get('/snowman/profile/{threadId}', 'ArtistController@postIndex')->middleware('auth');
-Route::post('/snowman/add', 'ArtistController@addThread')->name('home');
-Route::get('/snowman/add', 'ArtistController@makeCheckBox')->name('home');
-Route::get('/all', 'ArtistController@index')->middleware('auth');
-Route::post('/setting', 'ArtistController@profileEdit')->middleware('auth');
-Route::get('/setting', 'ArtistController@setting')->middleware('auth');
-Route::get('/snowman', 'ArtistController@snowman')->middleware('auth');
-Route::get('/sixtones', 'ArtistController@sixtones')->middleware('auth');
-Route::get('/snowman/profile', 'ArtistController@snowmanprofile')->middleware('auth');
-Route::get('/snowman/checkit', 'ArtistController@snowmancheckit')->middleware('auth');
-Route::get('/snowman/mustgo', 'ArtistController@snowmanmustgo')->middleware('auth');
-Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/snowman/Edit', 'ArtistController@postEdit')->middleware('auth');
-Route::post('/snowman/Edit', 'ArtistController@postUpdate')->middleware('auth');
-Route::get('/snowman/delete', 'ArtistController@postDelete')->middleware('auth');
 
 Auth::routes();
