@@ -11,6 +11,7 @@ use Domain\Model\ValueObject\PostId;
 use Domain\Model\ValueObject\PostThreadId;
 use Domain\Model\ValueObject\PostUserId;
 use Domain\Service\Repository\PostRepositoryInterface;
+use Illuminate\Http\Request;
 
 final class PostRepository implements PostRepositoryInterface
 {
@@ -35,5 +36,20 @@ final class PostRepository implements PostRepositoryInterface
             );
         }
         return $postEntities;
+    }
+
+
+    public function findTargetPost(Request $request)
+    {
+        $post = $this->postModel->find($request->id);
+        $postEntity = [];
+        $postEntity = new Post(
+            new PostId($post->id),
+            new PostUserId($post->user_id),
+            new PostThreadId($post->thread_id),
+            new PostComment($post->comment),
+            $post->created_at
+        );
+        return $postEntity;
     }
 }
