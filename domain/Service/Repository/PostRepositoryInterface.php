@@ -9,4 +9,5 @@ use Domain\Model\ValueObject\PostThreadId;
 interface PostRepositoryInterface
 {
     public function findAll(PostThreadId $threadId): array;
+    //PostThreadId型の$threadIdを入れるとarrayを返してくれる
 }
