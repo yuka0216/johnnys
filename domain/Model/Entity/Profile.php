@@ -2,9 +2,14 @@
 
 namespace Domain\Model\Entity;
 
-use Domain\Model\ValueObject\ArtistBloodType;
+use Domain\Model\ValueObject\ProfileFavorite;
+use Domain\Model\ValueObject\ProfileFreeWriting;
+use Domain\Model\ValueObject\ProfileId;
+use Domain\Model\ValueObject\ProfileImagePath;
+use Domain\Model\ValueObject\ProfileName;
+use Domain\Model\ValueObject\ProfileUserId;
 
-class Profile
+final class Profile
 {
     private $id;
     private $userId;
@@ -21,5 +26,31 @@ class Profile
         $this->favorite = $favorite;
         $this->freeWriting = $freeWriting;
         $this->imagePath = $imagePath;
+    }
+
+    public function id(): ProfileId
+    {
+        return $this->id;
+    }
+    public function userId(): ProfileUserId
+    {
+        return $this->userId;
+    }
+    public function name(): ProfileName
+    {
+        return $this->name;
+    }
+
+    public function favorite(): ProfileFavorite
+    {
+        return $this->favorite;
+    }
+    public function freeWriting(): ProfileFreeWriting
+    {
+        return $this->freeWriting;
+    }
+    public function imagePath(): ProfileImagePath
+    {
+        return $this->imagePath;
     }
 }
