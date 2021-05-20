@@ -54,30 +54,30 @@ class Post extends Model
         $image->save();
     }
 
-    public static function makePostIndex(Collection $posts)
-    {
-        $postList = [];
+    // public static function makePostIndex(Collection $posts)
+    // {
+    //     $postList = [];
 
-        foreach ($posts as $post) {
-            $postList[] = [
-                "id" => $post->id,
-                "user_id" => $post->user->id,
-                "name" => $post->user->name,
-                "comment" => $post->comment,
-                "images" => $post->images,
-                "created_at" => $post->created_at,
-                "profile_image" => self::profileImage($post)
-            ];
-        }
+    //     foreach ($posts as $post) {
+    //         $postList[] = [
+    //             "id" => $post->id,
+    //             "user_id" => $post->user->id,
+    //             "name" => $post->user->name,
+    //             "comment" => $post->comment,
+    //             "images" => $post->images,
+    //             "created_at" => $post->created_at,
+    //             "profile_image" => self::profileImage($post)
+    //         ];
+    //     }
 
-        return $postList;
-    }
+    //     return $postList;
+    // }
 
-    public static function profileImage($post)
-    {
-        $profileImage = Profile::where('user_id', $post->user->id)->value('profile_image_path');
-        return $profileImage;
-    }
+    // public static function profileImage($post)
+    // {
+    //     $profileImage = Profile::where('user_id', $post->user->id)->value('profile_image_path');
+    //     return $profileImage;
+    // }
 
     public static function postUpdate(Request $request, $post)
     {

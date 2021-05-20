@@ -9,7 +9,7 @@ use Domain\Model\ValueObject\PostUserId;
 use Domain\Model\ValueObject\PostId;
 use phpDocumentor\Reflection\Types\Boolean;
 
-class Post
+final class Post
 {
     private $id;
     private $userId;
@@ -53,8 +53,8 @@ class Post
 
     //判定メソッドの例（コメントが２０文字以上か、trueかfalseを返す)
     //文字数制限が変わったらココを変えればよいだけ
-    public function isLongComment(): bool
-    {
-        return (mb_strlen($this->comment) > 20);
-    }
+    // public function isLongComment(): bool
+    // {
+    //     return (mb_strlen($this->comment) > 20);
+    // }
 }
