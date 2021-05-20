@@ -51,9 +51,9 @@ class ArtistController extends controller
         return view('artist.talkboard', ['thread_name' => $thread_name, 'threadId' => $threadId, 'posts' => $posts, 'threadList' => $threadList]);
     }
 
-    public function postEdit(Request $request)
+    public function postEdit(Request $request, PostRepository $postRepository)
     {
-        $post = Post::find($request->id);
+        $post = $postRepository->findTargetPost($request);
         $image = Image::where('post_id', $request->id)->value('image_path');
         $threadId = $request->threadId;
         return view('artist.postEdit', ['post' => $post, 'image' => $image, 'threadId' => $threadId]);

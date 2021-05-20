@@ -5,12 +5,12 @@
     <div class="row py-4">
         <div class="col-md-12" id="main">
             <div class="border">
-                <form action="{{ action('ArtistController@postUpdate',['id' => $post['id']]) }}" method="post" enctype="multipart/form-data">
+                <form action="{{ action('ArtistController@postUpdate',['id' => $post->id()->value()]) }}" method="post" enctype="multipart/form-data">
                     @csrf
                     <div class="form-group col-md-12">
                         <label>コメント</label>
                         @if($errors->has('comment')) <span class="text-danger">{{ $errors->first('comment') }}</span> @endif
-                        <textarea class="form-control" name="comment" rows="5">{{ $post->comment }}</textarea>
+                        <textarea class="form-control" name="comment" rows="5">{{ $post->comment()->value() }}</textarea>
                         @if (!empty($image))
                         画像:
                         <img src="{{ asset('/images/' . $image) }}" style="width: 100px">
