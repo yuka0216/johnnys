@@ -12,7 +12,7 @@ class UserEmail
 
     public function __construct(string $value)
     {
-        if (strpos($value, '@') === false) {
+        if (preg_match("/@/", $value) === false) {
             throw new Exception("@を含んだ値を指定してください");
         }
         $this->value = $value;

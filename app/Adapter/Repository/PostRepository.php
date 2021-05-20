@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Adapter\Repository;
 
-use App\Post as PostModel;
+use App\Post as PostModel; //as 別名
 use Domain\Model\Entity\Post;
 use Domain\Model\ValueObject\PostComment;
 use Domain\Model\ValueObject\PostId;
@@ -16,7 +16,7 @@ final class PostRepository implements PostRepositoryInterface
 {
     private $postModel;
 
-    public function __construct(PostModel $postModel)
+    public function __construct(PostModel $postModel) //モデルのPostの機能を使える$postModelをセット
     {
         $this->postModel = $postModel;
     }
