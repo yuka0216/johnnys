@@ -9,11 +9,11 @@
         <div class="form-group col-md-12">
           @if (!empty($profile))
           <label>名前</label>
-          <input type="text" class="form-control" name="name" value="{{ $profile->name }}">
+          <input type="text" class="form-control" name="name" value="{{ $profile->name()->value() }}">
           <label>担当</label>
-          <input type="text" class="form-control" name="favorite" value="{{ $profile->favorite }}">
+          <input type="text" class="form-control" name="favorite" value="{{ $profile->favorite()->value() }}">
           <label>自己紹介</label>
-          <textarea type="text" class="form-control" name="free_writing" rows="4" cols="100">{{ $profile->free_writing }}</textarea>
+          <textarea type="text" class="form-control" name="free_writing" rows="4" cols="100">{{ $profile->freeWriting()->value() }}</textarea>
           <div class="input-group">
             <div class="input-group-prepend">
               <span class="input-group-text" id="inputGroupFileAddon">プロフィール画像</span>

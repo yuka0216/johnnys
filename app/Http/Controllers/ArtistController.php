@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Adapter\Repository\PostRepository;
+use App\Adapter\Repository\ProfileRepository;
 use App\Http\Requests\createThreadRequest;
 use App\Http\Requests\createPostRequest;
 use Illuminate\Http\Request;
@@ -12,6 +13,8 @@ use App\Thread;
 use App\Profile;
 use App\Image;
 use Domain\Model\ValueObject\PostThreadId;
+use Domain\Model\ValueObject\UserId;
+use Domain\Service\Repository\ProfileRepositoryInterface;
 use Illuminate\Support\Facades\Auth;
 
 class ArtistController extends controller
@@ -99,11 +102,11 @@ class ArtistController extends controller
         return redirect("mypage/" . $user_id);
     }
 
-    public function setting()
+    public function setting(ProfileRepository $profileRepository)
     {
         $user_id = Auth::id();
-        $profile = Profile::where('user_id', $user_id)->first();
-
+        $userId = new UserId($user_id);
+        $profile = $profileRepository->findTargetProfile($userId);
         return view('artist.setting', ['profile' => $profile]);
     }
 

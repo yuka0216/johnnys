@@ -10,12 +10,12 @@ class ProfileImagePath
 {
     private $value;
 
-    public function __construct(str $value)
+    public function __construct(string $value)
     {
         $this->value = $value;
     }
 
-    public function value(): str
+    public function value(): string
     {
         return $this->value;
     }
