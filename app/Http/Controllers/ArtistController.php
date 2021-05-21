@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Adapter\Repository\ArtistRepository;
 use App\Adapter\Repository\PostRepository;
 use App\Adapter\Repository\ProfileRepository;
 use App\Http\Requests\createThreadRequest;
@@ -15,7 +16,6 @@ use App\Image;
 use Domain\Model\ValueObject\PostId;
 use Domain\Model\ValueObject\PostThreadId;
 use Domain\Model\ValueObject\UserId;
-use Domain\Service\Repository\ProfileRepositoryInterface;
 use Illuminate\Support\Facades\Auth;
 
 class ArtistController extends controller
@@ -26,10 +26,10 @@ class ArtistController extends controller
         return $threadList;
     }
 
-    public function index(Request $request)
+    public function index(Request $request, ArtistRepository $artistRepository)
     {
-        $artists = Artist::fetchProfileBySearch($request);
-        $searchWordList = Artist::makeSearchWordList($request);
+        $searchWordList = $artistRepository->makeSearchWordList($request);
+        $artists = $artistRepository->fetchProfileBySearch($searchWordList);
         $image = "C:\bbs\snowman";
 
         return view('artist.all', ['artists' => $artists, 'image' => $image, 'searchWordList' => $searchWordList]);

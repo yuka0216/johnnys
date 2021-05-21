@@ -13,7 +13,7 @@ class ArtistName
     private const MAX_LENGTH = "10";
     private $value;
 
-    public function __construct(str $value)
+    public function __construct(string $value)
     {
         if (mb_strlen($value) > self::MAX_LENGTH) {
             throw new Exception("名前は10文字以内で指定してください");
@@ -21,7 +21,7 @@ class ArtistName
         $this->value = $value;
     }
 
-    public function value(): str
+    public function value(): string
     {
         return $this->value;
     }
