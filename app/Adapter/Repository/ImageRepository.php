@@ -23,18 +23,11 @@ final class ImageRepository implements ImageRepositoryInterface
     public function findAll(): array
     {
         $images = $this->imageModel->all();
-        $imageEntities = [];
-        foreach ($images as $image) {
-            $imageEntities[] = new Image(
-                new ImageId($image->id),
-                new ImagePath($image->image_path),
-                new ImagePostId($image->post_id)
-            );
-        }
+        $imageEntities = self::makeEntities($images);
         return $imageEntities;
     }
 
-    public function makeEntities($images): array
+    public static function makeEntities($images): array
     {
         $imageEntities = [];
         foreach ($images as $image) {
