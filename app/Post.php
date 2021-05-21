@@ -45,7 +45,6 @@ class Post extends Model
             $path = $request->file('image')->storeAs('images', $request->file('image')->hashName(), 'public_uploads');
             $image->image_path = basename($path);
         }
-
         $image->post_id = $post->max('id');
 
         unset($form['_token']);
@@ -93,6 +92,7 @@ class Post extends Model
                 $image = new Image;
                 $path = $request->file('image')->storeAs('images', $request->file('image')->hashName(), 'public_uploads');
                 $image->image_path = basename($path);
+                $image->post_id = $post->id;
             }
             unset($form['_token']);
             unset($form['image']);

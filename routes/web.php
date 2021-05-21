@@ -24,6 +24,9 @@ Route::group(['prefix' => 'snowman', 'middleware' => 'auth'], function () {
 
     Route::get('add', 'ArtistController@makeCheckBox');
     Route::post('add', 'ArtistController@addThread');
+    Route::get('Edit', 'ArtistController@postEdit');
+    Route::post('Edit', 'ArtistController@postUpdate');
+    Route::get('delete', 'ArtistController@postDelete');
 
     Route::view('/', 'artist.snowman');
     Route::view('profile', 'artist.snowmanprofile');
