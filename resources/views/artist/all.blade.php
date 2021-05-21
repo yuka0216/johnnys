@@ -45,12 +45,12 @@
             </thead>
             @foreach($artists as $artist)
             <tr>
-              <td><a href="{{ asset('/snowman/profile/' . $artist->id ) }}"><img src="{{ asset('image/' . $artist->image_path) }}" class="img-thumbnail" alt="参考画像" width="120" height="120"></td>
-              <td>{{ $artist->name }}</td>
-              <td>{{ $artist->group }}</td>
+              <td><a href="{{ asset('/snowman/profile/' . $artist->id()->value() ) }}"><img src="{{ asset('image/' . $artist->imagePath()->value()) }}" class="img-thumbnail" alt="参考画像" width="120" height="120"></td>
+              <td>{{ $artist->name()->value() }}</td>
+              <td>{{ $artist->group()->value() }}</td>
               <td>{{ $artist->birthday }}</td>
-              <td>{{ $artist->blood_type }}</td>
-              <td>{{ $artist->joined_date }}</a></td>
+              <td>{{ $artist->bloodType()->value() }}</td>
+              <td>{{ $artist->joinedDate }}</a></td>
             </tr>
             @endforeach
           </table>

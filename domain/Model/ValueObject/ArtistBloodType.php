@@ -13,7 +13,7 @@ class ArtistBloodType
     private const MAX_LENGTH = 2;
     private $value;
 
-    public function __construct(str $value)
+    public function __construct(string $value)
     {
         if (mb_strlen($value) > self::MAX_LENGTH) {
             throw new Exception("BloodTypeは2文字以内の値を指定してください");
@@ -28,7 +28,7 @@ class ArtistBloodType
         $this->value = $value;
     }
 
-    public function value(): str
+    public function value(): string
     {
         return $this->value;
     }

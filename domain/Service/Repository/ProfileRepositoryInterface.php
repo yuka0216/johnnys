@@ -8,5 +8,5 @@ use Domain\Model\ValueObject\UserId;
 
 interface ProfileRepositoryInterface
 {
-    public function findTargetProfile(UserId $userId);
+    public function findTargetProfile(UserId $userId): object;
 }

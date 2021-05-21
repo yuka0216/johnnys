@@ -12,5 +12,5 @@ interface PostRepositoryInterface
     public function findAll(PostThreadId $threadId): array;
     //PostThreadId型の$threadIdを入れるとarrayを返してくれる
 
-    public function findTargetPost(Request $request);
+    public function findTargetPost(Request $request): object;
 }
