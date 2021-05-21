@@ -47,15 +47,15 @@
     <table class="table">
       <tr>
         <td>
-          <a href="{{ "/mypage/" . $post->userId()->value() }}">ユーザー名</a><br>
+          <a href="{{ "/mypage/" . $post->user()->id()->value() }}">{{ $post->user()->name()->value() }}</a><br>
           {{ $post->comment()->value() }}<br>
-          @if (!empty($post->images))
-          @foreach ($post->images as $image)
-          <img src="{{ asset('/images/' . $image->image_path) }}" style="width: 100px"><br>
+          @if (!empty($post->images()))
+          @foreach ($post->images() as $image)
+          <img src="{{ asset('/images/' . $image->path()->value()) }}" style="width: 100px"><br>
           @endforeach
           @endif
           {{ $post->createdAt() }}
-          @if ($post->userId()->value() == Auth::id())
+          @if ($post->user()->id()->value() == Auth::id())
           <div align="right">
             <a href="{{ action('ArtistController@postEdit', ['id' => $post->id()->value()]) }}">編集</a>
             <a href="{{ action('ArtistController@postDelete', ['id' => $post->id()->value()]) }}">削除</a>
