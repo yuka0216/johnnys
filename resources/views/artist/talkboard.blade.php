@@ -9,7 +9,7 @@
           <p>talk about...?</p>
           <a href="{{ action('ArtistController@makeCheckBox') }}" role="button" class="btn btn-primary">新規作成</a>
           @foreach ($threadList as $thread)
-          <a href="/snowman/profile/{{ $thread->id }}" class="nav-link" style="color:black">#{{ $thread->thread_name }}</a>
+          <a href="/snowman/profile/{{ $thread->id()->value() }}" class="nav-link" style="color:black">#{{ $thread->name()->value() }}</a>
           @endforeach
         </div>
       </div>
@@ -17,7 +17,7 @@
     <div class="col-md-8 order-2" id="main">
       <div class="border">
         <h4 class="text-center">talk board</h4>
-        <h2 class="text-center">-{{ $thread_name }}-</h2>
+        <h2 class="text-center">-{{ $thread_name->value() }}-</h2>
         <br>
         <form action="{{ action('ArtistController@post', ['threadId' => $threadId]) }}" method="post" enctype="multipart/form-data">
           {{ csrf_field() }}

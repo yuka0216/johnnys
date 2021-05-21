@@ -5,25 +5,24 @@ namespace App\Http\Controllers;
 use App\Adapter\Repository\ArtistRepository;
 use App\Adapter\Repository\PostRepository;
 use App\Adapter\Repository\ProfileRepository;
+use App\Adapter\Repository\ThreadRepository;
 use App\Http\Requests\createThreadRequest;
 use App\Http\Requests\createPostRequest;
 use Illuminate\Http\Request;
-use App\Artist;
 use App\Post;
 use App\Thread;
 use App\Profile;
 use App\Image;
-use Domain\Model\Entity\Artist as EntityArtist;
 use Domain\Model\ValueObject\PostThreadId;
+use Domain\Model\ValueObject\ThreadId;
 use Domain\Model\ValueObject\UserId;
 use Illuminate\Support\Facades\Auth;
 
 class ArtistController extends controller
 {
-    public static function makeThreadList()
+    public static function makeThreadList(ThreadRepository $threadRepository)
     {
-        $threadList = Thread::all();
-        return $threadList;
+        return $threadRepository->findAll();
     }
 
     public function index(Request $request, ArtistRepository $artistRepository)
@@ -43,14 +42,14 @@ class ArtistController extends controller
         return redirect("snowman/profile/" . $request->threadId);
     }
 
-    public function postIndex($threadId, PostRepository $postRepository) //newしておいてくれる(Laravelの機能)
+    public function postIndex($threadId, PostRepository $postRepository, ThreadRepository $threadRepository) //newしておいてくれる(Laravelの機能)
     {
         $postThreadId = new PostThreadId($threadId);
         // $postRepository = new PostRepository();
         //↑エラーになったのでPostRepository $postRepositoryを引数にしてnewした状態の$postRepositoryを使えるようにした。
         $posts = $postRepository->findAll($postThreadId);
-        $threadList = self::makeThreadList();
-        $thread_name = Thread::where('id', $threadId)->value('thread_name'); // $posts->thread->thread_nameとしたかったがpostsが何もないスレッドだとエラーが生じる
+        $threadList = self::makeThreadList($threadRepository);
+        $thread_name = $threadRepository->threadName(new ThreadId($threadId));
 
         return view('artist.talkboard', ['thread_name' => $thread_name, 'threadId' => $threadId, 'posts' => $posts, 'threadList' => $threadList]);
     }
@@ -82,19 +81,20 @@ class ArtistController extends controller
 
     public function addThread(createThreadRequest $request)
     {
-        $thread = Thread::addThread($request);
+        Thread::addThread($request);
         $add_id = Thread::max('id');
 
         return redirect("snowman/profile/" . $add_id);
     }
 
-    public function myPostIndex()
-    {
-        $id = Auth::user()->id;
-        $myPosts = Post::where('user_id', $id)->orderBy('created_at', 'desc')->get();
+    //reactで表示してる部分なので今は使っていない
+    // public function myPostIndex()
+    // {
+    //     $id = Auth::user()->id;
+    //     $myPosts = Post::where('user_id', $id)->orderBy('created_at', 'desc')->get();
 
-        return view('artist.app', ['myPosts' => $myPosts]);
-    }
+    //     return view('artist.app', ['myPosts' => $myPosts]);
+    // }
 
     public function profileEdit(Request $request)
     {
@@ -105,15 +105,14 @@ class ArtistController extends controller
 
     public function setting(ProfileRepository $profileRepository)
     {
-        $user_id = Auth::id();
-        $userId = new UserId($user_id);
+        $userId = new UserId(Auth::id());
         $profile = $profileRepository->findTargetProfile($userId);
         return view('artist.setting', ['profile' => $profile]);
     }
 
-    public function makeCheckBox() //スレッド新規作成画面の誰の話題か選ぶためのチェックボックス作成（とりあえずネットのコピペ）
+    public function makeCheckBox(ThreadRepository $threadRepository) //スレッド新規作成画面の誰の話題か選ぶためのチェックボックス作成（とりあえずネットのコピペ）
     {
-        $threadList = self::makeThreadList();
+        $threadList = self::makeThreadList($threadRepository);
 
         $chkDatas = [
             "chk01" => "佐久間大介",
