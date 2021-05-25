@@ -44,7 +44,7 @@
             <br>
             {{ csrf_field() }}
             <div class="text-right">
-              <button class="btn col-md-2" style="background-color:#e5c4bb">\\ 推す //</button>
+              <button class="btn" style="background-color:#e5c4bb">\\ 作成 //</button>
             </div>
           </div>
         </form>
