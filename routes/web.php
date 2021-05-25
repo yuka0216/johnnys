@@ -12,9 +12,15 @@
 */
 //api routing
 Route::group(['prefix' => 'api', 'middleware' => 'auth'], function () {
-    Route::get('mypage/{userId}', 'PostController@index');
+    Route::get('mypage/{targetUserId}/{loginId}', 'PostController@index');
     Route::get('search/{searchValue}', 'PostController@searchIndex');
     Route::get('profile/mypage/{userId}', 'ProfileController@fetchProfileByUserId');
+    Route::get('favorite', 'LikeController@store');
+    Route::post('favorite', 'LikeController@store');
+    Route::get('favorite/{postId}/{userId}', 'LikeController@favorite');
+    Route::delete('favorite/{postId}/{userId}', 'LikeController@delete');
+    Route::get('user', 'UserController@user');
+    Route::get('check/favorite/{postID}/{userID}', 'LikeController@favorite');
 });
 
 //Snow Manページのrouting
@@ -45,7 +51,7 @@ Route::group(['middleware' => 'auth'], function () {
 });
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth.login');
 });
 
 Auth::routes();
