@@ -8,6 +8,7 @@ use Domain\Model\ValueObject\PostThreadId;
 use Domain\Model\ValueObject\PostId;
 use Domain\Model\Entity\User;
 
+
 final class Post
 {
     private $id;

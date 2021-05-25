@@ -47,7 +47,7 @@
     <table class="table">
       <tr>
         <td>
-          <a href="{{ "/mypage/" . $post->user()->id()->value() }}">{{ $post->user()->name()->value() }}</a><br>
+          <a href="{{ "/mypage/" . $post->user()->id()->value() }}"><img class="rounded-full" src="{{ asset('/images/' . $post->user()->profile()->imagePath()->value())}}" width="50" height="50" align="right">{{ $post->user()->name()->value() }}</a><br>
           {{ $post->comment()->value() }}<br>
           @if (!empty($post->images()))
           @foreach ($post->images() as $image)
