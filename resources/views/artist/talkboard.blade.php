@@ -31,7 +31,7 @@
               </div>
               <div class="custom-file col-5">
                 <input type="file" class="custom-file-input" id="inputGroupFile" name="image" accept=".png,.jpg,.jpeg,image/png,image/jpg" aria-describedby="inputGroupFileAddon">
-                <label class="custom-file-label" for="inputGroupFile" data-browse="参照">ファイルを選択</label>
+                <label class="custom-file-label" for="inputGroupFile" data-browse="参照">ファイル</label>
               </div>
             </div>
             <div class="text-right">
