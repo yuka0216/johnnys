@@ -113,6 +113,7 @@ class Post extends Model
                     "user_id" => $post->user_id,
                     "name" => $post->user->name,
                     "comment" => $post->comment,
+                    "threadName" => $post->thread->thread_name,
                     "imagePaths" => self::makeImagePaths($post->images),
                     "created_at" => $post->created_at->format('Y/m/d h:m:s'),
                     "likeCount" => self::countFavorite($post),
