@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
   <div class="row py-4">
-    <div class="col-md-3 order-1" id="sticky-sidebar">
+    <div class="col-md-3 order-2" id="sticky-sidebar">
       <div class="sticky-top">
         <div class="nav flex-column">
           <h4>talk about...?</h4>
@@ -14,7 +14,7 @@
         </div>
       </div>
     </div>
-    <div class="col-md-8 order-2" id="main">
+    <div class="col-md-8 order-1" id="main">
       <div class="border">
         <h4 class="text-center">talk board</h4>
         <h2 class="text-center">-{{ $thread_name->value() }}-</h2>
@@ -55,7 +55,11 @@
         <table class="table">
           <tr>
             <td>
-              <a href="{{ "/mypage/" . $post->user()->id()->value()  }}" style="color:#6f6152"><img class="rounded-full" style="border: 3px solid" src="{{ asset('/images/' . $post->user()->profile()->imagePath()->value())}}" width="65" height="65" align="right">{{ $post->user()->profile()->name()->value() }}</a><br>
+              <a href="{{ "/mypage/" . $post->user()->id()->value()  }}" style="color:#6f6152">
+                <img @if ($post->user()->profile()->favorite()->value() == 2) class="rounded-full recommend-image-border"
+                @else class="rounded-full default-image-border"
+                @endif
+                src="{{ asset('/images/' . $post->user()->profile()->imagePath()->value())}}" width="65" height="65" align="right">{{ $post->user()->profile()->name()->value() }}</a><br>
               {{ $post->comment()->value() }}<br>
               @if (!empty($post->images()))
               @foreach ($post->images() as $image)

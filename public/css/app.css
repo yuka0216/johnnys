@@ -10944,3 +10944,13 @@ a.text-dark:focus {
   }
 }
 
+.recommend-image-border {
+  border: 3px solid;
+  border-color: red;
+}
+
+.default-image-border {
+  border: 3px solid;
+  border-color: blue;
+}
+
