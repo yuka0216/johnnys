@@ -11,6 +11,7 @@ use App\Post;
 use App\Thread;
 use App\Profile;
 use App\Image;
+use Domain\Model\ValueObject\PostId;
 use Domain\Model\ValueObject\PostThreadId;
 use Illuminate\Support\Facades\Auth;
 
@@ -53,7 +54,8 @@ class ArtistController extends controller
 
     public function postEdit(Request $request, PostRepository $postRepository)
     {
-        $post = $postRepository->findTargetPost($request);
+        $postId = new PostId($request->id);
+        $post = $postRepository->findTargetPost($postId);
         $image = Image::where('post_id', $request->id)->value('image_path');
         $threadId = $request->threadId;
         return view('artist.postEdit', ['post' => $post, 'image' => $image, 'threadId' => $threadId]);
