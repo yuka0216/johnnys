@@ -55,7 +55,7 @@
         <table class="table">
           <tr>
             <td>
-              <a href="{{ "/mypage/" . $post->user()->id()->value()  }}" style="color:#6f6152"><img class="rounded-full" style="border: 3px solid" src="{{ asset('/images/' . $post->user()->profile()->imagePath()->value())}}" width="65" height="65" align="right">{{ $post->user()->name()->value() }}</a><br>
+              <a href="{{ "/mypage/" . $post->user()->id()->value()  }}" style="color:#6f6152"><img class="rounded-full" style="border: 3px solid" src="{{ asset('/images/' . $post->user()->profile()->imagePath()->value())}}" width="65" height="65" align="right">{{ $post->user()->profile()->name()->value() }}</a><br>
               {{ $post->comment()->value() }}<br>
               @if (!empty($post->images()))
               @foreach ($post->images() as $image)

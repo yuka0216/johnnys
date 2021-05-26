@@ -10,42 +10,14 @@
         <label>名前</label>
         <input type="text" class="form-control" name="name" value="{{ $profile->name()->value() }}">
         <label>担当</label><br>
+        @foreach($memberList as $member)
         <div class="form-check form-check-inline">
-          <input class="form-check-input" type="radio" name="favorite" id="radio2a" value="岩本照" {{ ($profile->favorite()->value() == "岩本照")? "checked" : "" }}>
-          <label class="form-check-label" for="radio2a">岩本照</label>
+          <input class="form-check-input" type="radio" id="radio2a" name="favorite" value="{{ $member->id }}" {{ ($profile->favorite()->value() == $member->id)? "checked" : "" }}>
+          <label class="form-check-label" for="radio2a">{{ $member->name }}</label>
         </div>
-        <div class="form-check form-check-inline">
-          <input class="form-check-input" type="radio" name="favorite" id="radio2b" value="深澤辰也" {{ ($profile->favorite()->value() == "深澤辰也")? "checked" : "" }}>
-          <label class="form-check-label" for="radio2b">深澤辰也</label>
-        </div>
-        <div class="form-check form-check-inline">
-          <input class="form-check-input" type="radio" name="favorite" id="radio2b" value="渡辺翔太" {{ ($profile->favorite()->value() == "渡辺翔太")? "checked" : "" }}>
-          <label class="form-check-label" for="radio2b">渡辺翔太</label>
-        </div>
-        <div class="form-check form-check-inline">
-          <input class="form-check-input" type="radio" name="favorite" id="radio2b" value="ラウール" {{ ($profile->favorite()->value() == "ラウール")? "checked" : "" }}>
-          <label class="form-check-label" for="radio2b">ラウール</label>
-        </div>
-        <div class="form-check form-check-inline">
-          <input class="form-check-input" type="radio" name="favorite" id="radio2b" value="向井康二" {{ ($profile->favorite()->value() == "向井康二")? "checked" : "" }}>
-          <label class="form-check-label" for="radio2b">向井康二</label>
-        </div>
-        <div class="form-check form-check-inline">
-          <input class="form-check-input" type="radio" name="favorite" id="radio2b" value="阿部亮平" {{ ($profile->favorite()->value() == "阿部亮平")? "checked" : "" }}>
-          <label class="form-check-label" for="radio2b">阿部亮平</label>
-        </div>
-        <div class="form-check form-check-inline">
-          <input class="form-check-input" type="radio" name="favorite" id="radio2b" value="目黒蓮" {{ ($profile->favorite()->value() == "目黒蓮")? "checked" : "" }}>
-          <label class="form-check-label" for="radio2b">目黒蓮</label>
-        </div>
-        <div class="form-check form-check-inline">
-          <input class="form-check-input" type="radio" name="favorite" id="radio2b" value="宮舘涼太" {{ ($profile->favorite()->value() == "宮舘涼太")? "checked" : "" }}>
-          <label class="form-check-label" for="radio2b">宮舘涼太</label>
-        </div>
-        <div class="form-check form-check-inline">
-          <input class="form-check-input" type="radio" name="favorite" id="radio2b" value="佐久間大介" {{ ($profile->favorite()->value() == "佐久間大介")? "checked" : "" }}>
-          <label class="form-check-label" for="radio2b">佐久間大介</label>
-        </div><br>
+        @endforeach
+        @if($errors->has('artist_id')) <span class="text-danger">{{ $errors->first('artist_id') }}</span> @endif
+        <br>
         <label>自己紹介</label>
         <textarea type="text" class="form-control" name="free_writing" rows="4" cols="100">{{ $profile->freeWriting()->value() }}</textarea>
         <div class="input-group">
@@ -57,46 +29,20 @@
             <label class="custom-file-label" for="inputGroupFile" data-browse="参照">ファイルを選択</label>
           </div>
         </div>
+
         @else
+
         <label>名前</label>
         <input type="text" class="form-control" name="name" placeholder="名前">
         <label>担当</label><br>
+        @foreach($memberList as $member)
         <div class="form-check form-check-inline">
-          <input class="form-check-input" type="radio" name="favorite" id="radio2a" value="岩本照">
-          <label class="form-check-label" for="radio2a">岩本照</label>
+          <input class="form-check-input" type="radio" id="radio2a" name="favorite" value="{{ $member->id }}">
+          <label class="form-check-label" for="radio2a">{{ $member->name }}</label>
         </div>
-        <div class="form-check form-check-inline">
-          <input class="form-check-input" type="radio" name="favorite" id="radio2b" value="深澤辰也">
-          <label class="form-check-label" for="radio2b">深澤辰也</label>
-        </div>
-        <div class="form-check form-check-inline">
-          <input class="form-check-input" type="radio" name="favorite" id="radio2b" value="渡辺翔太">
-          <label class="form-check-label" for="radio2b">渡辺翔太</label>
-        </div>
-        <div class="form-check form-check-inline">
-          <input class="form-check-input" type="radio" name="favorite" id="radio2b" value="ラウール">
-          <label class="form-check-label" for="radio2b">ラウール</label>
-        </div>
-        <div class="form-check form-check-inline">
-          <input class="form-check-input" type="radio" name="favorite" id="radio2b" value="向井康二">
-          <label class="form-check-label" for="radio2b">向井康二</label>
-        </div>
-        <div class="form-check form-check-inline">
-          <input class="form-check-input" type="radio" name="favorite" id="radio2b" value="阿部亮平">
-          <label class="form-check-label" for="radio2b">阿部亮平</label>
-        </div>
-        <div class="form-check form-check-inline">
-          <input class="form-check-input" type="radio" name="favorite" id="radio2b" value="目黒蓮">
-          <label class="form-check-label" for="radio2b">目黒蓮</label>
-        </div>
-        <div class="form-check form-check-inline">
-          <input class="form-check-input" type="radio" name="favorite" id="radio2b" value="宮舘涼太">
-          <label class="form-check-label" for="radio2b">宮舘涼太</label>
-        </div>
-        <div class="form-check form-check-inline">
-          <input class="form-check-input" type="radio" name="favorite" id="radio2b" value="佐久間大介">
-          <label class="form-check-label" for="radio2b">佐久間大介</label>
-        </div>
+        @endforeach
+        @if($errors->has('artist_id')) <span class="text-danger">{{ $errors->first('artist_id') }}</span> @endif
+        <br>
         <label>自己紹介</label>
         <textarea type="text" class="form-control" name="free_writing" rows="4" cols="100"></textarea>
         <div class="input-group">
