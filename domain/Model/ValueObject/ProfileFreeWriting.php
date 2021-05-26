@@ -11,15 +11,15 @@ class ProfileFreeWriting
     private const MAX_LENGTH = 20;
     private $value;
 
-    public function __construct(str $value)
+    public function __construct(string $value)
     {
-        if ($value > self::MAX_LENGTH) {
+        if (mb_strlen($value) > self::MAX_LENGTH) {
             throw new Exception("FreeWritingは20文字以内で指定してください");
         }
         $this->value = $value;
     }
 
-    public function value(): str
+    public function value(): string
     {
         return $this->value;
     }

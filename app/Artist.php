@@ -18,10 +18,10 @@ class Artist extends Model
         return $this->hasMany('App\Thread');
     }
 
-    public static function fetchProfileByName(string $name)
-    {
-        return Artist::where('talk_board', $name)->first();
-    }
+    // public static function fetchProfileByName(string $name)
+    // {
+    //     return Artist::where('talk_board', $name)->first();
+    // }
 
     public static function fetchProfileBySearch(Request $request)
     {
