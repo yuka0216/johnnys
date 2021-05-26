@@ -7,6 +7,7 @@ use Domain\Model\ValueObject\PostComment;
 use Domain\Model\ValueObject\PostThreadId;
 use Domain\Model\ValueObject\PostUserId;
 use Domain\Model\ValueObject\PostId;
+use phpDocumentor\Reflection\Types\Boolean;
 
 class Post
 {
@@ -48,5 +49,12 @@ class Post
     public function createdAt(): ?DateTime
     {
         return $this->createdAt;
+    }
+
+    //判定メソッドの例（コメントが２０文字以上か、trueかfalseを返す)
+    //文字数制限が変わったらココを変えればよいだけ
+    public function isLongComment(): bool
+    {
+        return (mb_strlen($this->comment) > 20);
     }
 }

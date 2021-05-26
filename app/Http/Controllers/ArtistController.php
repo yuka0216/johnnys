@@ -11,6 +11,7 @@ use App\Post;
 use App\Thread;
 use App\Profile;
 use App\Image;
+use Domain\Model\ValueObject\PostId;
 use Domain\Model\ValueObject\PostThreadId;
 use Illuminate\Support\Facades\Auth;
 
@@ -39,9 +40,11 @@ class ArtistController extends controller
         return redirect("snowman/profile/" . $request->threadId);
     }
 
-    public function postIndex($threadId, PostRepository $postRepository)
+    public function postIndex($threadId, PostRepository $postRepository) //newしておいてくれる(Laravelの機能)
     {
         $postThreadId = new PostThreadId($threadId);
+        // $postRepository = new PostRepository();
+        //↑エラーになったのでPostRepository $postRepositoryを引数にしてnewした状態の$postRepositoryを使えるようにした。
         $posts = $postRepository->findAll($postThreadId);
         $threadList = self::makeThreadList();
         $thread_name = Thread::where('id', $threadId)->value('thread_name'); // $posts->thread->thread_nameとしたかったがpostsが何もないスレッドだとエラーが生じる
@@ -49,9 +52,10 @@ class ArtistController extends controller
         return view('artist.talkboard', ['thread_name' => $thread_name, 'threadId' => $threadId, 'posts' => $posts, 'threadList' => $threadList]);
     }
 
-    public function postEdit(Request $request)
+    public function postEdit(Request $request, PostRepository $postRepository)
     {
-        $post = Post::find($request->id);
+        $postId = new PostId($request->id);
+        $post = $postRepository->findTargetPost($postId);
         $image = Image::where('post_id', $request->id)->value('image_path');
         $threadId = $request->threadId;
         return view('artist.postEdit', ['post' => $post, 'image' => $image, 'threadId' => $threadId]);
