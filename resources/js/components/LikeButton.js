@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
-import Liked from './Liked';
-import NotLiked from './NotLiked';
+import unlikePost from './unlikePost';
+import likePost from './likePost';
 
 const LikeButton = ({ post, user }) => {
 
@@ -23,16 +23,18 @@ const LikeButton = ({ post, user }) => {
   const [like, setLike] = useState(post.isLiked);
   const [likeCount, setLikeCount] = useState(post.likeCount);
 
+  console.log("like", like);
+  console.log("likeCount", likeCount);
+
   const onClick = () => {
     if (like) {
-      <Liked post={post} user={user} />
+      unlikePost(post, user)
       setLikeCount(likeCount - 1);
-      setLike(!like);
     } else {
-      <NotLiked post={post} user={user} />
+      likePost(post, user)
       setLikeCount(likeCount + 1);
-      setLike(!like);
     }
+    setLike(!like);
   }
 
   return (

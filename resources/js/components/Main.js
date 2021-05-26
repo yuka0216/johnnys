@@ -9,7 +9,6 @@ import Search from './search';
 import '../App.css';
 import SearchPosts from './SearchPosts';
 import Form from './Form';
-import Profile from './Profile';
 import ProfileCheck from './ProfileCheck';
 
 const Main = () => {
@@ -18,18 +17,16 @@ const Main = () => {
   const [searchPosts, setSearchPosts] = useState([]);
   const [profile, setProfile] = useState([]);
   const [user, setUser] = useState();
-
+  const url = window.location.pathname;
+  const targetUserId = String(url);
 
   useEffect(() => {
     init()
   }, []);
 
-
   const init = async () => {
     try {
       const user = await initUser();
-      const url = window.location.pathname;
-      const targetUserId = String(url);
       initPosts(targetUserId, user);
       initProfile(targetUserId);
     } catch (e) {
@@ -57,8 +54,6 @@ const Main = () => {
     }
   }
 
-
-
   const initProfile = async (targetUserId) => {
     try {
       const res = await axios.get('/api/profile' + (targetUserId))
@@ -82,7 +77,7 @@ const Main = () => {
   return (
     <Container>
       <ProfileCheck profile={profile} />
-      <Tabs>
+      <Tabs onSelect={() => { initPosts(targetUserId, user) }}>
         <TabList>
           <Tab><img src={'/image/吹き出し.jpg'} width="40px" /></Tab>
           <Tab><img src={'/image/カメラ.jpeg'} width="40px" /></Tab>
