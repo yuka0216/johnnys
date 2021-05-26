@@ -6,6 +6,7 @@ namespace Domain\Service\Repository;
 
 use Domain\Model\ValueObject\PostId;
 use Domain\Model\ValueObject\PostThreadId;
+use Illuminate\Http\Request;
 
 interface PostRepositoryInterface
 {
