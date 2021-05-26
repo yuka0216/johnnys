@@ -39,9 +39,9 @@ final class PostRepository implements PostRepositoryInterface
     }
 
 
-    public function findTargetPost(Request $request): object
+    public function findTargetPost(PostId $postId): object
     {
-        $post = $this->postModel->find($request->id);
+        $post = $this->postModel->find($postId);
         $postEntity = [];
         $postEntity = new Post(
             new PostId($post->id),
