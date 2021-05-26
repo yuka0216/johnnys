@@ -39,11 +39,10 @@ const Main = () => {
   const initPosts = async (targetUserId, user) => {
     try {
       const res = await axios.get('/api' + (targetUserId) + '/' + (user.id))
+      console.log("res", res.data);
       setPosts(res.data);
     } catch (e) {
-      console.log("e", e.response.status);
-      if (e.response.status == 404) alert(e.response.data.message);
-      if (e.response.status == 500) alert("ステータスコード500");
+      console.log("e", e);
 
     }
   }

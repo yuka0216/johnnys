@@ -88081,23 +88081,22 @@ var Main = function Main() {
 
             case 3:
               res = _context2.sent;
+              console.log("res", res.data);
               setPosts(res.data);
-              _context2.next = 12;
+              _context2.next = 11;
               break;
 
-            case 7:
-              _context2.prev = 7;
+            case 8:
+              _context2.prev = 8;
               _context2.t0 = _context2["catch"](0);
-              console.log("e", _context2.t0.response.status);
-              if (_context2.t0.response.status == 404) alert(_context2.t0.response.data.message);
-              if (_context2.t0.response.status == 500) alert("ステータスコード500");
+              console.log("e", _context2.t0);
 
-            case 12:
+            case 11:
             case "end":
               return _context2.stop();
           }
         }
-      }, _callee2, null, [[0, 7]]);
+      }, _callee2, null, [[0, 8]]);
     }));
 
     return function initPosts(_x, _x2) {
@@ -88389,7 +88388,7 @@ var Profile = function Profile(_ref) {
       className: "d-block mx-auto",
       src: "/images/".concat(profile.profile_image_path),
       width: "100px"
-    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, profile.user_id), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, profile.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, profile.favorite), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, profile.free_writing));
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, profile.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, profile.favorite), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, profile.free_writing));
   });
 };
 
