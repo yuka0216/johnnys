@@ -87935,6 +87935,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _SearchPosts__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./SearchPosts */ "./resources/js/components/SearchPosts.js");
 /* harmony import */ var _Form__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./Form */ "./resources/js/components/Form.js");
 /* harmony import */ var _Profile__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./Profile */ "./resources/js/components/Profile.js");
+/* harmony import */ var _ProfileCheck__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./ProfileCheck */ "./resources/js/components/ProfileCheck.js");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -87966,6 +87967,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
+
 var Main = function Main() {
   var _useState = Object(react__WEBPACK_IMPORTED_MODULE_4__["useState"])([]),
       _useState2 = _slicedToArray(_useState, 2),
@@ -87979,8 +87981,8 @@ var Main = function Main() {
 
   var _useState5 = Object(react__WEBPACK_IMPORTED_MODULE_4__["useState"])([]),
       _useState6 = _slicedToArray(_useState5, 2),
-      profiles = _useState6[0],
-      setProfiles = _useState6[1];
+      profile = _useState6[0],
+      setProfile = _useState6[1];
 
   var _useState7 = Object(react__WEBPACK_IMPORTED_MODULE_4__["useState"])(),
       _useState8 = _slicedToArray(_useState7, 2),
@@ -88114,22 +88116,21 @@ var Main = function Main() {
 
             case 3:
               res = _context4.sent;
-              setProfiles(res.data);
-              console.log("profiles", profiles);
-              _context4.next = 11;
+              setProfile(res.data);
+              _context4.next = 10;
               break;
 
-            case 8:
-              _context4.prev = 8;
+            case 7:
+              _context4.prev = 7;
               _context4.t0 = _context4["catch"](0);
               console.log("e", _context4.t0);
 
-            case 11:
+            case 10:
             case "end":
               return _context4.stop();
           }
         }
-      }, _callee4, null, [[0, 8]]);
+      }, _callee4, null, [[0, 7]]);
     }));
 
     return function initProfile(_x4) {
@@ -88173,8 +88174,8 @@ var Main = function Main() {
     };
   }();
 
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["Container"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement(_Profile__WEBPACK_IMPORTED_MODULE_12__["default"], {
-    profiles: profiles
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["Container"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement(_ProfileCheck__WEBPACK_IMPORTED_MODULE_13__["default"], {
+    profile: profile
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement(react_tabs__WEBPACK_IMPORTED_MODULE_2__["Tabs"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement(react_tabs__WEBPACK_IMPORTED_MODULE_2__["TabList"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement(react_tabs__WEBPACK_IMPORTED_MODULE_2__["Tab"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement("img", {
     src: '/image/吹き出し.jpg',
     width: "40px"
@@ -88341,17 +88342,71 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var Profile = function Profile(_ref) {
-  var profiles = _ref.profiles;
-  return profiles.map(function (profile) {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      key: profile.id,
-      className: "text-center"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-      className: "d-block mx-auto",
-      src: "/images/".concat(profile.profile_image_path),
-      width: "100px"
-    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, profile.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, profile.favorite), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, profile.free_writing));
-  });
+  var profile = _ref.profile;
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "text-center"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+    className: "d-block mx-auto",
+    src: "/images/".concat(profile.profile_image_path),
+    width: "100px"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, profile.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "\u63A8\u3057\uFF1A", profile.favorite), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, profile.free_writing));
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Profile);
+
+/***/ }),
+
+/***/ "./resources/js/components/ProfileCheck.js":
+/*!*************************************************!*\
+  !*** ./resources/js/components/ProfileCheck.js ***!
+  \*************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _Profile__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Profile */ "./resources/js/components/Profile.js");
+/* harmony import */ var _ProfileEmpty__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./ProfileEmpty */ "./resources/js/components/ProfileEmpty.js");
+
+
+
+
+var ProfileCheck = function ProfileCheck(_ref) {
+  var profile = _ref.profile;
+
+  if (profile == "empty") {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_ProfileEmpty__WEBPACK_IMPORTED_MODULE_2__["default"], null);
+  } else {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Profile__WEBPACK_IMPORTED_MODULE_1__["default"], {
+      profile: profile
+    });
+  }
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (ProfileCheck);
+
+/***/ }),
+
+/***/ "./resources/js/components/ProfileEmpty.js":
+/*!*************************************************!*\
+  !*** ./resources/js/components/ProfileEmpty.js ***!
+  \*************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+
+
+var Profile = function Profile(_ref) {
+  var profile = _ref.profile;
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "text-center"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "\u30D7\u30ED\u30D5\u30A3\u30FC\u30EB\u672A\u767B\u9332"));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (Profile);
@@ -88441,7 +88496,7 @@ var TwitterViewPostIndex = function TwitterViewPostIndex(_ref) {
     className: "card"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "card-body"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, post.name, " @ ", post.threadName), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, post.comment), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_ImagePathsMap__WEBPACK_IMPORTED_MODULE_1__["default"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, post.name, " @ ", post.threadName, "\u30B9\u30EC\u30C3\u30C9"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, post.comment), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_ImagePathsMap__WEBPACK_IMPORTED_MODULE_1__["default"], {
     key: post.id,
     post: post,
     viewType: "twitter"

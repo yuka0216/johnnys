@@ -28,7 +28,6 @@ final class ThreadRepository implements ThreadRepositoryInterface
             $threadEntities[] = new Thread(
                 new ThreadId($thread->id),
                 new ThreadName($thread->thread_name),
-                new ThreadArtistId($thread->artist_id),
             );
         }
         return $threadEntities;

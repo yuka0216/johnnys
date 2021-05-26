@@ -10,13 +10,11 @@ final class Thread
 {
     private $id;
     private $name;
-    private $artistId;
 
-    public function __construct(ThreadId $id, ThreadName $name, ThreadArtistId $artistId)
+    public function __construct(ThreadId $id, ThreadName $name)
     {
         $this->id = $id;
         $this->name = $name;
-        $this->artistId = $artistId;
     }
 
     public function id(): ThreadId
@@ -27,10 +25,5 @@ final class Thread
     public function name(): ThreadName
     {
         return $this->name;
-    }
-
-    public function artistId(): ThreadArtistId
-    {
-        return $this->artistId;
     }
 }

@@ -23,16 +23,12 @@ class Thread extends Model
 
     public static function addThread(Request $request)
     {
-        $selectedName = $request->talkAbout;
-        $form = $request->all();
         $thread = new Thread;
 
-        $form['artist_id'] = Artist::where('name', $selectedName)->value('id');
-        $form['thread_name'] = $request->thread_name;
+        $thread->thread_name = $request->thread_name;
 
-        unset($form['_token']);
+        unset($request['_token']);
 
-        $thread->fill($form);
         $thread->save();
     }
 }

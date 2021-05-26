@@ -10,8 +10,10 @@ use App\Adapter\Repository\ThreadRepository;
 use App\Http\Requests\createThreadRequest;
 use App\Http\Requests\createPostRequest;
 use Illuminate\Http\Request;
+use App\Artist;
 use App\Post;
 use App\Thread;
+use App\Threads_artist;
 use App\Profile;
 use App\Image;
 use Domain\Model\ValueObject\PostId;
@@ -86,6 +88,11 @@ class ArtistController extends controller
         Thread::addThread($request);
         $add_id = Thread::max('id');
 
+        $artist_ids = $request->artist_id;
+        foreach ($artist_ids as $artist_id) {
+            Threads_artist::addThreadData($artist_id, $add_id);
+            unset($request['_token']);
+        }
         return redirect("snowman/profile/" . $add_id);
     }
 
@@ -107,86 +114,22 @@ class ArtistController extends controller
 
     public function setting(ProfileRepository $profileRepository)
     {
-        $user_id = Auth::id();
-        $userId = new UserId($user_id);
-        $profile = $profileRepository->findTargetProfile($userId);
-        return view('artist.setting', ['profile' => $profile]);
+        $userId = new UserId(Auth::id());
+        $profile = Profile::where('user_id', $userId->value())->first();
+        if (!empty($profile)) $profile = $profileRepository->findTargetProfile($userId);
+
+        $memberList = Artist::where('group', 'Snow Man')->get();
+        return view('artist.setting', ['profile' => $profile, 'memberList' => $memberList]);
     }
 
     public function makeCheckBox(ThreadRepository $threadRepository) //スレッド新規作成画面の誰の話題か選ぶためのチェックボックス作成（とりあえずネットのコピペ）
     {
         $threadList = self::makeThreadList($threadRepository);
+        $memberList = Artist::where('group', 'Snow Man')->get();
 
-        $chkDatas = [
-            "chk01" => "佐久間大介",
-            "chk02" => "岩本照",
-            "chk03" => "渡辺翔太",
-            "chk04" => "深澤辰也",
-            "chk05" => "ラウール",
-            "chk06" => "阿部亮平",
-            "chk07" => "向井康二",
-            "chk08" => "宮舘涼太",
-            "chk09" => "目黒蓮",
-        ];
-        // $chk01b = false;
-        // $chk02b = false;
-        // $chk03b = false;
-        // $chk04b = false;
-        // $chk05b = false;
-        // $chk06b = false;
-        // $chk07b = false;
-        // $chk08b = false;
-        // $chk09b = false;
-
-        // if ($chk01b) {
-        //     $chkChecked["chk01"] = "checked";
-        // } else {
-        //     $chkChecked["chk01"] = "";
-        // }
-        // if ($chk02b) {
-        //     $chkChecked["chk02"] = "checked";
-        // } else {
-        //     $chkChecked["chk02"] = "";
-        // }
-        // if ($chk03b) {
-        //     $chkChecked["chk03"] = "checked";
-        // } else {
-        //     $chkChecked["chk03"] = "";
-        // }
-        // if ($chk04b) {
-        //     $chkChecked["chk04"] = "checked";
-        // } else {
-        //     $chkChecked["chk04"] = "";
-        // }
-        // if ($chk05b) {
-        //     $chkChecked["chk05"] = "checked";
-        // } else {
-        //     $chkChecked["chk05"] = "";
-        // }
-        // if ($chk06b) {
-        //     $chkChecked["chk06"] = "checked";
-        // } else {
-        //     $chkChecked["chk06"] = "";
-        // }
-        // if ($chk07b) {
-        //     $chkChecked["chk07"] = "checked";
-        // } else {
-        //     $chkChecked["chk07"] = "";
-        // }
-        // if ($chk08b) {
-        //     $chkChecked["chk08"] = "checked";
-        // } else {
-        //     $chkChecked["chk08"] = "";
-        // }
-        // if ($chk09b) {
-        //     $chkChecked["chk09"] = "checked";
-        // } else {
-        //     $chkChecked["chk09"] = "";
-        // }
         return view('artist.addThread', [
             'threadList' => $threadList,
-            'chkDatas' => $chkDatas,
-            // 'chkChecked' => $chkChecked
+            'memberList' => $memberList,
         ]);
     }
 }

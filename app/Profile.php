@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\Model;
+use App\Artist;
 
 class Profile extends Model
 {
@@ -54,5 +55,18 @@ class Profile extends Model
 
         $profile->fill($form);
         $profile->save();
+    }
+
+    public static function mypageViewProfile($profile)
+    {
+        $favoriteName = Artist::where('id', $profile->favorite)->value('name');
+
+        $profile = [
+            "name" => $profile->name,
+            "favorite" => $favoriteName,
+            "free_writing" => $profile->free_writing,
+            "profile_image_path" => $profile->profile_image_path
+        ];
+        return $profile;
     }
 }

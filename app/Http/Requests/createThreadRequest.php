@@ -25,7 +25,7 @@ class createThreadRequest extends FormRequest
     {
         return [
             'thread_name' => 'required|max:20',
-            'talkAbout' => 'required',
+            'artist_id' => 'required',
         ];
     }
 
@@ -34,7 +34,7 @@ class createThreadRequest extends FormRequest
         return [
             'thread_name.required' => '＊スレッドタイトルに入力が必要です。',
             'thread_name.max' => '＊スレッドタイトルは20文字以内で入力してください',
-            'talkAbout.required' => '＊誰の話題か最低一つは選択してください。',
+            'artist_id.required' => '＊誰の話題か最低一つは選択してください。',
         ];
     }
 }

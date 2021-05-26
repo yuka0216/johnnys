@@ -29,18 +29,14 @@
             <br>
             <label for="chk01" class="col-form-label">誰についての話題ですか？</label>
             <div class="col-md-12">
-              @foreach($chkDatas as $ckey => $cval)
+              @foreach($memberList as $member)
               <div class="form-check form-check-inline">
-                <input class="form-check-input" type="checkbox" id="chk01" name="talkAbout" value="{{$cval}}">
-                {{--
-                                @if(empty(old()) and $chkChecked[$ckey]=='checked' ) checked="checked" 
-                                @elseif($ckey==old($ckey))) checked="checked" @endif>
-                                --}}
-                <label class="form-check-label" for="{{$ckey}}">{{$cval}}</label>
+                <input class="form-check-input" type="checkbox" id="chk01" name="artist_id[]" value="{{ $member->id }}">
+                <label class="form-check-label" for="chk01">{{ $member->name }}</label>
               </div>
               @endforeach
             </div>
-            @if($errors->has('talkAbout')) <span class="text-danger">{{ $errors->first('talkAbout') }}</span> @endif
+            @if($errors->has('artist_id')) <span class="text-danger">{{ $errors->first('artist_id') }}</span> @endif
             <br>
             {{ csrf_field() }}
             <div class="text-right">
