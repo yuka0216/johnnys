@@ -24,7 +24,7 @@ final class ProfileRepository implements ProfileRepositoryInterface
         $this->profileModel = $profileModel;
     }
 
-    public function findTargetProfile(UserId $userId)
+    public function findTargetProfile(UserId $userId): object
     {
         $profile = $this->profileModel->where('user_id', $userId->value())->first();
         $profileEntity = new Profile(
