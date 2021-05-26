@@ -6,3 +6,13 @@
 
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
+
+.recommend-image-border {
+    border: 3px solid;
+    border-color: red;
+}
+
+.default-image-border {
+    border: 3px solid;
+    border-color: blue; 
+}
