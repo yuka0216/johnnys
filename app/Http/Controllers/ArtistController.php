@@ -14,6 +14,7 @@ use App\Post;
 use App\Thread;
 use App\Profile;
 use App\Image;
+use Domain\Model\ValueObject\PostId;
 use Domain\Model\ValueObject\PostThreadId;
 use Domain\Model\ValueObject\ThreadId;
 use Domain\Model\ValueObject\UserId;
@@ -106,7 +107,8 @@ class ArtistController extends controller
 
     public function setting(ProfileRepository $profileRepository)
     {
-        $userId = new UserId(Auth::id());
+        $user_id = Auth::id();
+        $userId = new UserId($user_id);
         $profile = $profileRepository->findTargetProfile($userId);
         return view('artist.setting', ['profile' => $profile]);
     }
