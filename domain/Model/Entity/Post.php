@@ -5,23 +5,26 @@ namespace Domain\Model\Entity;
 use DateTime;
 use Domain\Model\ValueObject\PostComment;
 use Domain\Model\ValueObject\PostThreadId;
-use Domain\Model\ValueObject\PostUserId;
 use Domain\Model\ValueObject\PostId;
+use Domain\Model\Entity\User;
+
 
 final class Post
 {
     private $id;
-    private $userId;
+    private $user;
     private $threadId;
     private $comment;
+    private $images;
     private $createdAt;
 
-    public function __construct(PostId $id, PostUserId $userId, PostThreadId $threadId, PostComment $comment, ?DateTime $createdAt)
+    public function __construct(PostId $id, User $user, PostThreadId $threadId, PostComment $comment, array $images, ?DateTime $createdAt)
     {
         $this->id = $id;
-        $this->userId = $userId;
+        $this->user = $user;
         $this->threadId = $threadId;
         $this->comment = $comment;
+        $this->images = $images;
         $this->createdAt = $createdAt;
     }
 
@@ -30,9 +33,9 @@ final class Post
         return $this->id;
     }
 
-    public function userId(): PostUserId
+    public function user(): User
     {
-        return $this->userId;
+        return $this->user;
     }
 
     public function threadId(): PostThreadId
@@ -43,6 +46,11 @@ final class Post
     public function comment(): PostComment
     {
         return $this->comment;
+    }
+
+    public function images(): array
+    {
+        return $this->images;
     }
 
     public function createdAt(): ?DateTime

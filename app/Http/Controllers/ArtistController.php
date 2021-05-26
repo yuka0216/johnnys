@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Adapter\Repository\ArtistRepository;
+use App\Adapter\Repository\ImageRepository;
 use App\Adapter\Repository\PostRepository;
 use App\Adapter\Repository\ProfileRepository;
 use App\Adapter\Repository\ThreadRepository;
@@ -43,22 +44,21 @@ class ArtistController extends controller
         return redirect("snowman/profile/" . $request->threadId);
     }
 
-    public function postIndex($threadId, PostRepository $postRepository, ThreadRepository $threadRepository) //newしておいてくれる(Laravelの機能)
+    public function postIndex($threadId, PostRepository $postRepository, ThreadRepository $threadRepository, ImageRepository $imageRepository, ProfileRepository $profileRepository) //newしておいてくれる(Laravelの機能)
     {
         $postThreadId = new PostThreadId($threadId);
         // $postRepository = new PostRepository();
         //↑エラーになったのでPostRepository $postRepositoryを引数にしてnewした状態の$postRepositoryを使えるようにした。
-        $posts = $postRepository->findAll($postThreadId);
+        $posts = $postRepository->findAll($postThreadId, $imageRepository, $profileRepository);
         $threadList = self::makeThreadList($threadRepository);
         $thread_name = $threadRepository->threadName(new ThreadId($threadId));
 
         return view('artist.talkboard', ['thread_name' => $thread_name, 'threadId' => $threadId, 'posts' => $posts, 'threadList' => $threadList]);
     }
 
-    public function postEdit(Request $request, PostRepository $postRepository)
+    public function postEdit(Request $request, PostRepository $postRepository, ImageRepository $imageRepository, ProfileRepository $profileRepository)
     {
-        $postId = new PostId($request->id);
-        $post = $postRepository->findTargetPost($postId);
+        $post = $postRepository->findTargetPost($request, $imageRepository, $profileRepository);
         $image = Image::where('post_id', $request->id)->value('image_path');
         $threadId = $request->threadId;
         return view('artist.postEdit', ['post' => $post, 'image' => $image, 'threadId' => $threadId]);
