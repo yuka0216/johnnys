@@ -7,7 +7,6 @@ use Domain\Model\ValueObject\PostComment;
 use Domain\Model\ValueObject\PostThreadId;
 use Domain\Model\ValueObject\PostUserId;
 use Domain\Model\ValueObject\PostId;
-use phpDocumentor\Reflection\Types\Boolean;
 
 final class Post
 {
