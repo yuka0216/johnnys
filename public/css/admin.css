@@ -53,3 +53,116 @@
   width: 250px;
 }
 
+/*------------------------------------
+- COLOR brown
+------------------------------------*/
+
+.alert-brown {
+  color: #c37762;
+}
+
+.alert-brown .alert-link {
+  color: #af5a43;
+}
+
+.badge-brown {
+  color: #212529;
+  background-color: #e5c4bb;
+}
+
+.badge-brown[href]:hover,
+.badge-brown[href]:focus {
+  color: #212529;
+  background-color: #d6a396;
+}
+
+.btn-brown {
+  color: #212529;
+  background-color: #e5c4bb;
+  border-color: #e5c4bb;
+}
+
+.btn-brown:hover {
+  color: #212529;
+  background-color: #dbada1;
+  border-color: #d6a396;
+}
+
+.btn-brown:focus,
+.btn-brown.focus {
+  box-shadow: 0 0 0 0.2rem rgba(229, 196, 187, 0.5);
+}
+
+.btn-brown.disabled,
+.btn-brown:disabled {
+  color: #212529;
+  background-color: #e5c4bb;
+  border-color: #e5c4bb;
+}
+
+.btn-brown:not(:disabled):not(.disabled):active,
+.btn-brown:not(:disabled):not(.disabled).active,
+.show > .btn-brown.dropdown-toggle {
+  color: #212529;
+  background-color: #d6a396;
+  border-color: #d29a8b;
+}
+
+.btn-brown:not(:disabled):not(.disabled):active:focus,
+.btn-brown:not(:disabled):not(.disabled).active:focus,
+.show > .btn-brown.dropdown-toggle:focus {
+  box-shadow: 0 0 0 0.2rem rgba(229, 196, 187, 0.5);
+}
+
+.btn-outline-brown {
+  color: #e5c4bb;
+  background-color: transparent;
+  border-color: #e5c4bb;
+}
+
+.btn-outline-brown:hover {
+  color: #212529;
+  background-color: #e5c4bb;
+  border-color: #e5c4bb;
+}
+
+.btn-outline-brown:focus,
+.btn-outline-brown.focus {
+  box-shadow: 0 0 0 0.2rem rgba(229, 196, 187, 0.5);
+}
+
+.btn-outline-brown.disabled,
+.btn-outline-brown:disabled {
+  color: #e5c4bb;
+  background-color: transparent;
+}
+
+.btn-outline-brown:not(:disabled):not(.disabled):active,
+.btn-outline-brown:not(:disabled):not(.disabled).active,
+.show > .btn-outline-brown.dropdown-toggle {
+  color: #212529;
+  background-color: #e5c4bb;
+  border-color: #e5c4bb;
+}
+
+.btn-outline-brown:not(:disabled):not(.disabled):active:focus,
+.btn-outline-brown:not(:disabled):not(.disabled).active:focus,
+.show > .btn-outline-brown.dropdown-toggle:focus {
+  box-shadow: 0 0 0 0.2rem rgba(229, 196, 187, 0.5);
+}
+
+.list-group-item-brown {
+  color: #c37762;
+}
+
+.list-group-item-brown.list-group-item-action:hover,
+.list-group-item-brown.list-group-item-action:focus {
+  color: #c37762;
+}
+
+.list-group-item-brown.list-group-item-action.active {
+  color: #212529;
+  background-color: #c37762;
+  border-color: #c37762;
+}
+

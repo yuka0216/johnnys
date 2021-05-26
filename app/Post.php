@@ -44,13 +44,14 @@ class Post extends Model
         if (isset($form['image'])) {
             $path = $request->file('image')->storeAs('images', $request->file('image')->hashName(), 'public_uploads');
             $image->image_path = basename($path);
+
+            $image->post_id = $post->max('id');
+
+            unset($form['_token']);
+            unset($form['image']);
+
+            $image->save();
         }
-        $image->post_id = $post->max('id');
-
-        unset($form['_token']);
-        unset($form['image']);
-
-        $image->save();
     }
 
     // public static function makePostIndex(Collection $posts)
@@ -83,8 +84,11 @@ class Post extends Model
         $form = $request->all();
         $post->fill($form)->save();
 
+        $image = Image::where('post_id', $form['id'])->first();
+
+        if ($request->remove == 'true') $image->where('post_id', $form['id'])->delete();
+
         if (isset($form['image'])) {
-            $image = Image::where('post_id', $form['id'])->first();
             if (!empty($image)) {
                 $path = $request->file('image')->storeAs('images', $request->file('image')->hashName(), 'public_uploads');
                 $image->image_path = basename($path);
@@ -113,6 +117,7 @@ class Post extends Model
                     "user_id" => $post->user_id,
                     "name" => $post->user->name,
                     "comment" => $post->comment,
+                    "threadName" => $post->thread->thread_name,
                     "imagePaths" => self::makeImagePaths($post->images),
                     "created_at" => $post->created_at->format('Y/m/d h:m:s'),
                     "likeCount" => self::countFavorite($post),

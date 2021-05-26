@@ -6,7 +6,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { Container, Row, Col } from 'react-bootstrap';
 import Posts from './Posts';
 import Search from './search';
-import "../App.css";
+import '../App.css';
 import SearchPosts from './SearchPosts';
 import Form from './Form';
 import Profile from './Profile';
@@ -88,7 +88,7 @@ const Main = () => {
           <Tab><img src={'/image/カメラ.jpeg'} width="40px" /></Tab>
           <Tab><img src={'/image/虫眼鏡.jpg'} width="40px" /></Tab>
           <Tab><img src={'/image/マイク.png'} width="40px" /></Tab>
-          <Tab><img src={'/image/設定.png'} width="40px" /></Tab>
+          <Tab><img src={'/image/DM.jpeg'} width="40px" /></Tab>
         </TabList>
         <TabPanel>
           <div>
@@ -99,7 +99,7 @@ const Main = () => {
         <TabPanel>
           <div>
             <h2>インスタ風画像投稿だけ表示</h2>
-            <div className="d-flex flex-md-wrap col-md-12">
+            <div className="d-flex flex-wrap">
               <Posts posts={posts} viewType="instagram" />
             </div>
           </div>

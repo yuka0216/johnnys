@@ -23,6 +23,7 @@ const Search = ({ search }) => {
         value={searchValue}
         onChange={handleSearchInputChanges}
         type="text"
+        style={{ border: 'solid 1px black' }}
       />
       <input onClick={callSearchFunction} type="submit" value="SEARCH" />
     </form >

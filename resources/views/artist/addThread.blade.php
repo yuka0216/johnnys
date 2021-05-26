@@ -6,8 +6,8 @@
     <div class="col-md-3 order-1" id="sticky-sidebar">
       <div class="sticky-top">
         <div class="nav flex-column">
-          <p>talk about...?</p>
-          <a href="{{ action('ArtistController@makeCheckBox') }}" role="button" class="btn btn-primary">新規作成</a>
+          <h4>talk about...?</h4>
+          <a href="{{ action('ArtistController@makeCheckBox') }}" role="button" class="btn" style="background-color: #e5c4bb">新規作成</a>
           @foreach ($threadList as $thread)
           <a href="/snowman/profile/{{ $thread->id()->value() }}" class="nav-link" style="color:black">{{ $thread->name()->value() }}</a>
           @endforeach
@@ -18,7 +18,7 @@
       <!-- <div class="row"> -->
       <!-- <div class="col-md-12 mx-auto"> -->
       <div class="border">
-        <h4 class="text-center">新規作成</h4>
+        <h4 class="text-center">スレッド新規作成</h4>
         <br>
         <form action="{{ action('ArtistController@addThread') }}" method="post">
           <div class="form-group col-md-12">
@@ -44,7 +44,7 @@
             <br>
             {{ csrf_field() }}
             <div class="text-right">
-              <input type="submit" class="btn btn-primary" value="作成">
+              <button class="btn" style="background-color:#e5c4bb">\\ 作成 //</button>
             </div>
           </div>
         </form>
