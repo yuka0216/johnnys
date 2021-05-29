@@ -9,7 +9,7 @@
           <h4>talk about...?</h4>
           <a href="{{ action('ArtistController@makeCheckBox') }}" role="button" class="btn" style="background-color: #e5c4bb">新規作成</a>
           @foreach ($threadList as $thread)
-          <a href="/snowman/profile/{{ $thread->id()->value() }}" class="nav-link" style="color:black">#{{ $thread->name()->value() }}</a>
+          <a href="/snowman/talk/{{ $thread->id()->value() }}" class="nav-link" style="color:black">#{{ $thread->name()->value() }}</a>
           @endforeach
         </div>
       </div>
@@ -59,7 +59,7 @@
                 <img @if (is_null($post->user()->profile())) class="rounded-full"
                 src=" {{ asset('/images/snow.png') }}" width="65" height="65" align="right">{{ $post->user()->name()->value() }}</a><br>
               @else class="rounded-full {{ $colorList[$post->user()->profile()->favorite()->value()] }}"
-              src=" {{ asset('/images/' . $post->user()->profile()->imagePath()->value())}}" width="65" height="65" align="right">{{ $post->user()->profile()->name()->value() }}</a><br>
+              src=" {{ asset('/images/' . $post->user()->profile()->imagePath()->value())}}" width="64" height="64" align="right">{{ $post->user()->profile()->name()->value() }}</a><br>
               @endif
               {{ $post->comment()->value() }}<br>
               @if (!empty($post->images()))

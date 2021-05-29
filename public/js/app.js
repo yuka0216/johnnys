@@ -52953,7 +52953,7 @@ var Profile = function Profile(_ref) {
     className: "d-block mx-auto",
     src: "/images/".concat(profile.profile_image_path),
     width: "100px"
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, profile.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "\u63A8\u3057\uFF1A", profile.favorite), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, profile.free_writing));
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, profile.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "\u62C5\u5F53\uFF1A", profile.favorite), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, profile.free_writing));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (Profile);
@@ -53101,7 +53101,7 @@ var TwitterViewPostIndex = function TwitterViewPostIndex(_ref) {
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "card-body"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, post.name, " @ ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-    href: "/snowman/profile/".concat(post.thread_id)
+    href: "/snowman/talk/".concat(post.thread_id)
   }, post.threadName, "\u30B9\u30EC\u30C3\u30C9")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, post.comment), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_ImagePathsMap__WEBPACK_IMPORTED_MODULE_1__["default"], {
     key: post.id,
     post: post,

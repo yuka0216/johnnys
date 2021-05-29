@@ -36,6 +36,13 @@ final class ArtistRepository implements ArtistRepositoryInterface
         return self::makeEntity($artists);
     }
 
+    public function fetchProfileBySnowman(): array
+    {
+        $targetArtistList = $this->artistModel->where('group', "Snow Man")->get();
+        return self::makeEntity($targetArtistList);
+    }
+
+
     public function fetchProfileBySearch($searchWordList): array
     {
         $query = $this->artistModel->query();

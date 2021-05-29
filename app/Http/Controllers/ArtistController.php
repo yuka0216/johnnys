@@ -11,13 +11,12 @@ use App\Http\Requests\createThreadRequest;
 use App\Http\Requests\createPostRequest;
 use Illuminate\Http\Request;
 use App\Artist;
+use App\Http\Requests\createSettingRequest;
 use App\Post;
 use App\Thread;
 use App\Threads_artist;
 use App\Profile;
 use App\Image;
-use Domain\Model\ValueObject\PostId;
-use Domain\Model\Entity\Post as EntityPost;
 use Domain\Model\ValueObject\PostThreadId;
 use Domain\Model\ValueObject\ThreadId;
 use Domain\Model\ValueObject\UserId;
@@ -30,13 +29,21 @@ class ArtistController extends controller
         return $threadRepository->findAll();
     }
 
-    public function index(Request $request, ArtistRepository $artistRepository)
+    public function snowmanIndex(ArtistRepository $artistRepository)
+    {
+        $artists = $artistRepository->fetchProfileBySnowman();
+        $image = "C:\bbs\snowman";
+
+        return view('artist.snowmanmember', ['artists' => $artists, 'image' => $image]);
+    }
+
+    public function artistIndex(Request $request, ArtistRepository $artistRepository)
     {
         $searchWordList = $artistRepository->makeSearchWordList($request);
         $artists = $artistRepository->fetchProfileBySearch($searchWordList);
         $image = "C:\bbs\snowman";
 
-        return view('artist.all', ['artists' => $artists, 'image' => $image, 'searchWordList' => $searchWordList]);
+        return view('artist.artistList', ['artists' => $artists, 'image' => $image, 'searchWordList' => $searchWordList]);
     }
 
     public function post(createPostRequest $request)
@@ -44,7 +51,7 @@ class ArtistController extends controller
         $user = Auth::user();
         $post = Post::postDataSave($request, $user);
 
-        return redirect("snowman/profile/" . $request->threadId);
+        return redirect("snowman/talk/" . $request->threadId);
     }
 
     public function postIndex($threadId, PostRepository $postRepository, ThreadRepository $threadRepository, ImageRepository $imageRepository, ProfileRepository $profileRepository) //newしておいてくれる(Laravelの機能)
@@ -57,6 +64,7 @@ class ArtistController extends controller
         $thread_name = $threadRepository->threadName(new ThreadId($threadId));
 
         $colorList = [
+            "0" => "white",
             "1" => "pink",
             "2" => "yellow",
             "3" => "blue",
@@ -84,7 +92,7 @@ class ArtistController extends controller
         $post = Post::find($request->id);
         Post::postUpdate($request, $post);
 
-        return redirect("snowman/profile/" . $post->thread_id);
+        return redirect("snowman/talk/" . $post->thread_id);
     }
 
     public function postDelete(Request $request)
@@ -93,7 +101,7 @@ class ArtistController extends controller
         Post::where('id', $request->id)->delete();
         Image::where('post_id', $request->id)->delete();
 
-        return redirect("snowman/profile/" . $threadId);
+        return redirect("snowman/talk/" . $threadId);
     }
 
     public function addThread(createThreadRequest $request)
@@ -106,7 +114,7 @@ class ArtistController extends controller
             Threads_artist::addThreadData($artist_id, $add_id);
             unset($request['_token']);
         }
-        return redirect("snowman/profile/" . $add_id);
+        return redirect("snowman/talk/" . $add_id);
     }
 
     //reactで表示してる部分なので今は使っていない
@@ -118,21 +126,21 @@ class ArtistController extends controller
     //     return view('artist.app', ['myPosts' => $myPosts]);
     // }
 
-    public function profileEdit(Request $request)
+    public function profileEdit(createSettingRequest $request)
     {
         $user_id = Auth::id();
         Profile::profileEdit($request, $user_id);
         return redirect("mypage/" . $user_id);
     }
 
-    public function setting(ProfileRepository $profileRepository)
+    public function profile(ProfileRepository $profileRepository)
     {
         $userId = new UserId(Auth::id());
         $profile = Profile::where('user_id', $userId->value())->first();
         if (!empty($profile)) $profile = $profileRepository->findTargetProfile($userId);
 
         $memberList = Artist::where('group', 'Snow Man')->get();
-        return view('artist.setting', ['profile' => $profile, 'memberList' => $memberList]);
+        return view('artist.profile', ['profile' => $profile, 'memberList' => $memberList]);
     }
 
     public function makeCheckBox(ThreadRepository $threadRepository) //スレッド新規作成画面の誰の話題か選ぶためのチェックボックス作成（とりあえずネットのコピペ）

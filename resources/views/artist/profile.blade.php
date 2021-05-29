@@ -4,12 +4,13 @@
 <div class="container">
   <div class="row py-4">
     <div class="col-md-6 mx-auto" id="main">
-      <h4 class="text-center">profile登録</h4>
-      <form action="/setting" method="post" enctype="multipart/form-data">
+      <h4 class="text-center">profile編集</h4>
+      <form action="/profile" method="post" enctype="multipart/form-data">
         @if (!empty($profile))
         <label>名前</label>
+        @if($errors->has('name'))<span class="text-danger">{{ $errors->first('name') }}</span>@endif
         <input type="text" class="form-control" name="name" value="{{ $profile->name()->value() }}">
-        <label>担当</label><br>
+        <label>担当</label><br>登録するとプロフィール画像の縁取りが担当のメンバーカラーになります。<br>
         @foreach($memberList as $member)
         <div class="form-check form-check-inline">
           <input class="form-check-input" type="radio" id="radio2a" name="favorite" value="{{ $member->id }}" {{ ($profile->favorite()->value() == $member->id)? "checked" : "" }}>
@@ -33,6 +34,7 @@
         @else
 
         <label>名前</label>
+        @if($errors->has('name'))<span class="text-danger">{{ $errors->first('name') }}</span>@endif
         <input type="text" class="form-control" name="name" placeholder="名前">
         <label>担当</label><br>
         @foreach($memberList as $member)

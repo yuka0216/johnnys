@@ -6,7 +6,7 @@ const TwitterViewPostIndex = ({ post, user }) => {
   return (
     <div className="card">
       <div className="card-body">
-        <p>{post.name} @ <a href={`/snowman/profile/${post.thread_id}`}>{post.threadName}スレッド</a></p>
+        <p>{post.name} @ <a href={`/snowman/talk/${post.thread_id}`}>{post.threadName}スレッド</a></p>
         <p>{post.comment}</p>
         <ImagePathsMap key={post.id} post={post} viewType="twitter" />
         <p>{post.created_at}</p>

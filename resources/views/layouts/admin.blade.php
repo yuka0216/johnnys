@@ -28,11 +28,11 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
       <div class="navbar-nav">
-        <a class="nav-link" href="/all">ALL</a>
+        <a class="nav-link" href="/artistlist">ALL</a>
         <a class="nav-link" href="/snowman">Snow Man</a>
         <a class="nav-link" href="/sixtones">SixTONES</a>
         <a class="nav-link" href="/mypage/{{Auth::id()}}">My Page</a>
-        <a class="nav-link" href="/setting">setting</a>
+        <a class="nav-link" href="/profile">Profile</a>
       </div>
     </div>
     <!-- Right Side Of Navbar -->
