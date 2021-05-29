@@ -17,6 +17,7 @@ use App\Threads_artist;
 use App\Profile;
 use App\Image;
 use Domain\Model\ValueObject\PostId;
+use Domain\Model\Entity\Post as EntityPost;
 use Domain\Model\ValueObject\PostThreadId;
 use Domain\Model\ValueObject\ThreadId;
 use Domain\Model\ValueObject\UserId;
