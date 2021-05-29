@@ -11,14 +11,14 @@ class LikeController extends Controller
     public function store(Request $request)
     {
         $favorite = new Favorite;
-        $favorite->post_id = $request->post_id;
-        $favorite->user_id = $request->user_id;
+        $favorite->post_id = $request->postId;
+        $favorite->user_id = $request->userId;
         $favorite->save();
     }
 
-    public function delete($postID, $userID)
+    public function delete(Request $request)
     {
-        Favorite::where('post_id', $postID)->where('user_id', $userID)->delete();
+        Favorite::where('post_id', $request->postId)->where('user_id', $request->userId)->delete();
     }
 
     public function favorite($postID, $userID)

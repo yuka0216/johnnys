@@ -52556,9 +52556,6 @@ var LikeButton = function LikeButton(_ref) {
       likeCount = _useState4[0],
       setLikeCount = _useState4[1];
 
-  console.log("like", like);
-  console.log("likeCount", likeCount);
-
   var onClick = function onClick() {
     if (like) {
       Object(_unlikePost__WEBPACK_IMPORTED_MODULE_2__["default"])(post, user);
@@ -53146,8 +53143,8 @@ var likePost = /*#__PURE__*/function () {
             _context.prev = 0;
             _context.next = 3;
             return axios__WEBPACK_IMPORTED_MODULE_1___default.a.post('/api/favorite', {
-              post_id: post.id,
-              user_id: user.id
+              postId: post.id,
+              userId: user.id
             });
 
           case 3:
@@ -53270,31 +53267,35 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 var unlikePost = /*#__PURE__*/function () {
   var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee(post, user) {
+    var params;
     return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
       while (1) {
         switch (_context.prev = _context.next) {
           case 0:
-            _context.prev = 0;
-            _context.next = 3;
-            return axios__WEBPACK_IMPORTED_MODULE_1___default.a["delete"]('/api/favorite/' + post.id + '/' + user.id, {
-              post_id: post.id,
-              user_id: user.id
+            params = {
+              postId: post.id,
+              userId: user.id
+            };
+            _context.prev = 1;
+            _context.next = 4;
+            return axios__WEBPACK_IMPORTED_MODULE_1___default.a["delete"]('/api/favorite', {
+              data: params
             });
 
-          case 3:
+          case 4:
             return _context.abrupt("return", _context.sent);
 
-          case 6:
-            _context.prev = 6;
-            _context.t0 = _context["catch"](0);
+          case 7:
+            _context.prev = 7;
+            _context.t0 = _context["catch"](1);
             console.log("delError", _context.t0);
 
-          case 9:
+          case 10:
           case "end":
             return _context.stop();
         }
       }
-    }, _callee, null, [[0, 6]]);
+    }, _callee, null, [[1, 7]]);
   }));
 
   return function unlikePost(_x, _x2) {

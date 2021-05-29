@@ -18,7 +18,7 @@ Route::group(['prefix' => 'api', 'middleware' => 'auth'], function () {
     Route::get('favorite', 'LikeController@store');
     Route::post('favorite', 'LikeController@store');
     Route::get('favorite/{postId}/{userId}', 'LikeController@favorite');
-    Route::delete('favorite/{postId}/{userId}', 'LikeController@delete');
+    Route::delete('favorite', 'LikeController@delete');
     Route::get('user', 'UserController@user');
     Route::get('check/favorite/{postID}/{userID}', 'LikeController@favorite');
 });
@@ -26,7 +26,7 @@ Route::group(['prefix' => 'api', 'middleware' => 'auth'], function () {
 //Snow Manページのrouting
 Route::group(['prefix' => 'snowman', 'middleware' => 'auth'], function () {
     Route::get('talk/{threadId}', 'ArtistController@postIndex');
-    Route::post('talk/{threadId}', 'ArtistController@post');
+    Route::post('talk', 'ArtistController@post');
 
     Route::get('addthread', 'ArtistController@makeCheckBox');
     Route::post('addthread', 'ArtistController@addThread');
@@ -48,6 +48,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/artistlist', 'ArtistController@artistIndex');
     Route::view('/sixtones', 'artist.sixtones');
     Route::view('/mypage/{userId}', 'artist.app');
+    Route::view('/mypage', 'auth.login');
     Route::get('/home', 'HomeController@index')->name('home');
     Route::view('/', 'artist.snowman');
 });
