@@ -43,7 +43,6 @@ final class PostRepository implements PostRepositoryInterface
         foreach ($posts as $post) {
             $user = $this->userModel->where('id', $post->user_id)->first();
 
-
             $images = $this->imageModel->where('post_id', $post->id)->get();
             $imageEntities = $imageRepository->makeEntities($images);
             $profileEntities = $profileRepository->findTargetProfile(new UserId($user->id));

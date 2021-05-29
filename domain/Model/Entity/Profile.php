@@ -18,7 +18,7 @@ final class Profile
     private $freeWriting;
     private $imagePath;
 
-    public function __construct(ProfileId $id, ProfileUserId $userId, ProfileName $name, ProfileFavorite $favorite, ProfileFreeWriting $freeWriting,  ProfileImagePath $imagePath)
+    public function __construct(?ProfileId $id, ?ProfileUserId $userId, ?ProfileName $name, ?ProfileFavorite $favorite, ?ProfileFreeWriting $freeWriting,  ?ProfileImagePath $imagePath)
     {
         $this->id = $id;
         $this->userId = $userId;
@@ -28,28 +28,28 @@ final class Profile
         $this->imagePath = $imagePath;
     }
 
-    public function id(): ProfileId
+    public function id(): ?ProfileId
     {
         return $this->id;
     }
-    public function userId(): ProfileUserId
+    public function userId(): ?ProfileUserId
     {
         return $this->userId;
     }
-    public function name(): ProfileName
+    public function name(): ?ProfileName
     {
         return $this->name;
     }
 
-    public function favorite(): ProfileFavorite
+    public function favorite(): ?ProfileFavorite
     {
         return $this->favorite;
     }
-    public function freeWriting(): ProfileFreeWriting
+    public function freeWriting(): ?ProfileFreeWriting
     {
         return $this->freeWriting;
     }
-    public function imagePath(): ProfileImagePath
+    public function imagePath(): ?ProfileImagePath
     {
         return $this->imagePath;
     }

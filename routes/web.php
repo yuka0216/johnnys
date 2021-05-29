@@ -48,10 +48,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::view('/sixtones', 'artist.sixtones');
     Route::view('/mypage/{userId}', 'artist.app');
     Route::get('/home', 'HomeController@index')->name('home');
-});
-
-Route::get('/', function () {
-    return view('auth.login');
+    Route::view('/', 'artist.snowman');
 });
 
 Auth::routes();

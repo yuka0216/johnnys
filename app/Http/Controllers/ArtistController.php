@@ -54,8 +54,20 @@ class ArtistController extends controller
         $posts = $postRepository->findAll($postThreadId, $imageRepository, $profileRepository);
         $threadList = self::makeThreadList($threadRepository);
         $thread_name = $threadRepository->threadName(new ThreadId($threadId));
-        $color = "pink";
-        return view('artist.talkboard', ['thread_name' => $thread_name, 'threadId' => $threadId, 'posts' => $posts, 'threadList' => $threadList, 'color' => $color]);
+
+        $colorList = [
+            "1" => "pink",
+            "2" => "yellow",
+            "3" => "blue",
+            "4" => "purple",
+            "5" => "white",
+            "6" => "green",
+            "7" => "orange",
+            "8" => "red",
+            "9" => "black"
+        ];
+
+        return view('artist.talkboard', ['thread_name' => $thread_name, 'threadId' => $threadId, 'posts' => $posts, 'threadList' => $threadList, 'colorList' => $colorList]);
     }
 
     public function postEdit(Request $request, PostRepository $postRepository, ImageRepository $imageRepository, ProfileRepository $profileRepository)

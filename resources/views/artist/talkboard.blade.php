@@ -56,10 +56,11 @@
           <tr>
             <td>
               <a href="{{ "/mypage/" . $post->user()->id()->value()  }}" style="color:#6f6152">
-                <img @if ($post->user()->profile()->favorite()->value() == 2) class="rounded-full recommend-image-border"
-                @else class="rounded-full default-image-border"
-                @endif
-                src="{{ asset('/images/' . $post->user()->profile()->imagePath()->value())}}" width="65" height="65" align="right">{{ $post->user()->profile()->name()->value() }}</a><br>
+                <img @if (is_null($post->user()->profile())) class="rounded-full"
+                src=" {{ asset('/images/snow.png') }}" width="65" height="65" align="right">{{ $post->user()->name()->value() }}</a><br>
+              @else class="rounded-full {{ $colorList[$post->user()->profile()->favorite()->value()] }}"
+              src=" {{ asset('/images/' . $post->user()->profile()->imagePath()->value())}}" width="65" height="65" align="right">{{ $post->user()->profile()->name()->value() }}</a><br>
+              @endif
               {{ $post->comment()->value() }}<br>
               @if (!empty($post->images()))
               @foreach ($post->images() as $image)

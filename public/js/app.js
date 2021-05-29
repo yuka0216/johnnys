@@ -52510,7 +52510,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _unlikePost__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./unlikePost */ "./resources/js/components/unlikePost.js");
+/* harmony import */ var _unlikePost__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./unlikePost */ "./resources/js/components/unlikePost.js");
 /* harmony import */ var _likePost__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./likePost */ "./resources/js/components/likePost.js");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
@@ -52561,7 +52561,7 @@ var LikeButton = function LikeButton(_ref) {
 
   var onClick = function onClick() {
     if (like) {
-      Object(_unlikePost__WEBPACK_IMPORTED_MODULE_4__["default"])(post, user);
+      Object(_unlikePost__WEBPACK_IMPORTED_MODULE_2__["default"])(post, user);
       setLikeCount(likeCount - 1);
     } else {
       Object(_likePost__WEBPACK_IMPORTED_MODULE_3__["default"])(post, user);
@@ -53101,7 +53101,7 @@ var TwitterViewPostIndex = function TwitterViewPostIndex(_ref) {
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "card-body"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, post.name, " @ ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-    href: "/snowman/".concat(post.threadName)
+    href: "/snowman/profile/".concat(post.thread_id)
   }, post.threadName, "\u30B9\u30EC\u30C3\u30C9")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, post.comment), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_ImagePathsMap__WEBPACK_IMPORTED_MODULE_1__["default"], {
     key: post.id,
     post: post,
