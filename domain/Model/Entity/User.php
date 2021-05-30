@@ -12,7 +12,7 @@ class User
     private $name;
     private $profile;
 
-    public function __construct(UserId $id, UserName $name, Profile $profile)
+    public function __construct(UserId $id, UserName $name, ?Profile $profile)
     {
         $this->id = $id;
         $this->name = $name;
@@ -35,7 +35,7 @@ class User
         return $this->name;
     }
 
-    public function profile(): Profile
+    public function profile(): ?Profile
     {
         return $this->profile;
     }

@@ -26,10 +26,10 @@
         </div>
       </div>
       <div class="col btn-group" style="padding:0px" role="group" aria-label="Basic example">
-        <a href="/snowman/profile" class="btn btn-secondary col-md-4">TALK</a>
-        <a href="/snowman/checkit" class="btn btn-secondary col-md-4">CHECK IT</a>
+        <a href="/snowman/talk" class="btn btn-secondary col-md-4">TALK</a>
+        <a href="/snowman/member" class="btn btn-secondary col-md-4">MEMBER</a>
         <a href="/snowman/mustgo" class="btn btn-secondary col-md-4">MUST GO</a>
-        <a href="/snowman/aaa" class="btn btn-secondary col-md-4">AAA</a>
+        <a href="/snowman/checkit" class="btn btn-secondary col-md-4">CHECK IT</a>
       </div>
       <div class="col" style="padding-top:20px">
         <h2 class="text-center">-- NEWS --</h2>

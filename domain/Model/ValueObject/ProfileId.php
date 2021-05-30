@@ -10,7 +10,7 @@ class ProfileId
 {
     private $value;
 
-    public function __construct(int $value)
+    public function __construct(?int $value)
     {
         if ($value < 1) {
             throw new Exception("profileIdは1以上を指定してください");
@@ -18,7 +18,7 @@ class ProfileId
         $this->value = $value;
     }
 
-    public function value(): int
+    public function value(): ?int
     {
         return $this->value;
     }

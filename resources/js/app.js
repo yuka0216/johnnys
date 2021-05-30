@@ -11,7 +11,7 @@
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-require('./bootstrap');
+// require('./bootstrap');
 import React from 'react';
 import { render } from 'react-dom';
 import { Router, Route, browserHistory } from 'react-router';

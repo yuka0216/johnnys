@@ -27,28 +27,20 @@
       </div>
       <div class="col btn-group" style="padding:0px" role="group" aria-label="Basic example">
         <button type="button" class="btn btn-secondary col-md-4">PROFILE</button>
-        <button type="button" class="btn btn-secondary col-md-3">CHECK IT</button>
+        <button type="button" class="btn btn-secondary col-md-3">MEMBER</button>
         <button type="button" class="btn btn-secondary col-md-3">MUST GO</button>
-        <button type="button" class="btn btn-secondary col-md-3">aaa</button>
+        <button type="button" class="btn btn-secondary col-md-3">CHECK IT</button>
       </div>
       <div class="col" style="padding-top:20px">
         <h2 class="text-center">-- NEWS --</h2>
         <ul>
-          <li class="list-unstyled">2021/03/03</li>
-          <li class="list-unstyled">2021/03/05</li>
-          <li class="list-unstyled">2021/04/01</li>
+          <li class="list-unstyled">順次コンテンツ更新予定</li>
         </ul>
       </div>
     </div>
   </div>
 </div>
 @endsection
-
-<footer>
-  <a class="btn btn-outline-light btn-floating m-1" href=@yield('instagram') role="button">
-    <i class="fab fa-instagram"></i>
-  </a>
-</footer>
 
 @section('johnnys')
 https://www.johnnys-net.jp/page?id=artistTop&artist=42
@@ -57,13 +49,13 @@ https://www.johnnys-net.jp/page?id=artistTop&artist=42
 https://www.sixtones.jp/
 @endsection
 @section('twitter')
-<!-- https://twitter.com/sore_snowman -->
+https://twitter.com/sore_snowman
 @endsection
 @section('instagram')
 https://www.instagram.com/sixtones_official/?hl=ja
 @endsection
 @section('weibo')
-<!-- https://weibo.com/SnowManofficial?is_all=1 -->
+https://weibo.com/SnowManofficial?is_all=1
 @endsection
 @section('youtube')
 https://www.youtube.com/channel/UCwjAKjycHHT1QzHrQN5Stww

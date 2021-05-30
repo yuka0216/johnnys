@@ -118,6 +118,7 @@ class Post extends Model
                     "user_id" => $post->user_id,
                     "name" => $name,
                     "comment" => $post->comment,
+                    "thread_id" => $post->thread->id,
                     "threadName" => $post->thread->thread_name,
                     "imagePaths" => self::makeImagePaths($post->images),
                     "created_at" => $post->created_at->format('Y/m/d h:m:s'),

@@ -5,7 +5,7 @@
   <div class="row">
     <div class="col-md-10 mx-auto">
       <h3>アーティスト一覧</h3>
-      <form action="{{ action('ArtistController@index') }}" method="get">
+      <form action="{{ action('ArtistController@artistIndex') }}" method="get">
         <div class="form-group row">
           <label class="col-md-2">名前</label>
           <div class="col-md-2">
@@ -45,7 +45,7 @@
             </thead>
             @foreach($artists as $artist)
             <tr>
-              <td><a href="{{ asset('/snowman/profile/' . $artist->id()->value() ) }}"><img src="{{ asset('image/' . $artist->imagePath()->value()) }}" class="img-thumbnail" alt="参考画像" width="120" height="120"></td>
+              <td><a href="{{ asset('/snowman/talk/' . $artist->id()->value() ) }}"><img src="{{ asset('image/' . $artist->imagePath()->value()) }}" class="img-thumbnail" alt="参考画像" width="120" height="120"></td>
               <td>{{ $artist->name()->value() }}</td>
               <td>{{ $artist->group()->value() }}</td>
               <td>{{ $artist->birthday }}</td>

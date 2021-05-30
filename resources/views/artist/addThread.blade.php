@@ -9,7 +9,7 @@
           <h4>talk about...?</h4>
           <a href="{{ action('ArtistController@makeCheckBox') }}" role="button" class="btn" style="background-color: #e5c4bb">新規作成</a>
           @foreach ($threadList as $thread)
-          <a href="/snowman/profile/{{ $thread->id()->value() }}" class="nav-link" style="color:black">{{ $thread->name()->value() }}</a>
+          <a href="/snowman/talk/{{ $thread->id()->value() }}" class="nav-link" style="color:black">{{ $thread->name()->value() }}</a>
           @endforeach
         </div>
       </div>
