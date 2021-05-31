@@ -64,7 +64,7 @@ class ArtistController extends controller
         $thread_name = $threadRepository->threadName(new ThreadId($threadId));
 
         $colorList = [
-            "0" => "white",
+            "0" => "none",
             "1" => "pink",
             "2" => "yellow",
             "3" => "blue",
@@ -116,15 +116,6 @@ class ArtistController extends controller
         }
         return redirect("snowman/talk/" . $add_id);
     }
-
-    //reactで表示してる部分なので今は使っていない
-    // public function myPostIndex()
-    // {
-    //     $id = Auth::user()->id;
-    //     $myPosts = Post::where('user_id', $id)->orderBy('created_at', 'desc')->get();
-
-    //     return view('artist.app', ['myPosts' => $myPosts]);
-    // }
 
     public function profileEdit(createSettingRequest $request)
     {

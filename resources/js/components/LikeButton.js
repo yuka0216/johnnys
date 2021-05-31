@@ -23,9 +23,6 @@ const LikeButton = ({ post, user }) => {
   const [like, setLike] = useState(post.isLiked);
   const [likeCount, setLikeCount] = useState(post.likeCount);
 
-  console.log("like", like);
-  console.log("likeCount", likeCount);
-
   const onClick = () => {
     if (like) {
       unlikePost(post, user)
