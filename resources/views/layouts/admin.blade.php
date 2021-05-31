@@ -16,10 +16,9 @@
     <link rel="dns-prefetch" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,600" rel="stylesheet" type="text/css">
     <!-- Styles -->
-    <link href="{{ secure_asset('css/app.css') }}" rel="stylesheet">
-    <link href="{{ secure_asset('css/admin.css') }}" rel="stylesheet">
-    <link href="{{asset('css/app.css')}}" rel="stylesheet" type="text/css">
-    <link rel="stylesheet" href="{{ secure_asset('/lightbox/css/lightbox.min.css') }}">
+    <link href="{{ asset('css/admin.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="{{ asset('/lightbox/css/lightbox.min.css') }}">
   </head>
 
   <body>
