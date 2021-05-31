@@ -1,27 +1,26 @@
 <!DOCTYPE html>
 <html lang="{{ app()->getLocale() }}">
 
-<div class="wrapper">
-
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>@yield('title')</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1, , shrink-to-fit=no"">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>@yield('title')</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, , shrink-to-fit=no"">
   <link rel=" stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
-    <link href="https://use.fontawesome.com/releases/v5.15.1/css/all.css" rel="stylesheet">
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-    <!-- Fonts -->
-    <link rel="dns-prefetch" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,600" rel="stylesheet" type="text/css">
-    <!-- Styles -->
-    <link href="{{ asset('css/admin.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet" type="text/css">
-    <link rel="stylesheet" href="{{ asset('/lightbox/css/lightbox.min.css') }}">
-  </head>
+  <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+  <link href="https://use.fontawesome.com/releases/v5.15.1/css/all.css" rel="stylesheet">
+  <meta name="csrf-token" content="{{ csrf_token() }}">
+  <!-- Fonts -->
+  <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,600" rel="stylesheet" type="text/css">
+  <!-- Styles -->
+  <link href="{{ asset('css/admin.css') }}" rel="stylesheet">
+  <link href="{{ asset('css/app.css') }}" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="{{ asset('/lightbox/css/lightbox.min.css') }}">
+</head>
 
-  <body>
+<body>
+  <div class="wrapper">
     <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #d2d1d0">
       <a class="navbar-brand text-dark" href="/snowman">TOP</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
@@ -73,54 +72,54 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <script src="{{ mix('js/app.js') }}"></script>
-  </body>
-  <footer>
-    <!-- Grid container -->
-    <div class="container p-4 pb-0">
-      <!-- Section: Social media -->
-      <section class="mb-4">
-        <!--johnnys-->
-        <a class="btn btn-outline-light btn-floating m-1" href=@yield('johnnys') role="button">
-          <i class="far fa-snowflake"></i>
-        </a>
-        <!-- avex -->
-        <a class="btn btn-outline-light btn-floating m-1" href=@yield('record') role="button">
-          <i class="fas fa-compact-disc"></i>
-        </a>
+    <footer>
+      <!-- Grid container -->
+      <div class="container p-4 pb-0">
+        <!-- Section: Social media -->
+        <section class="mb-4">
+          <!--johnnys-->
+          <a class="btn btn-outline-light btn-floating m-1" href=@yield('johnnys') role="button">
+            <i class="far fa-snowflake"></i>
+          </a>
+          <!-- avex -->
+          <a class="btn btn-outline-light btn-floating m-1" href=@yield('record') role="button">
+            <i class="fas fa-compact-disc"></i>
+          </a>
 
-        <!-- youtube -->
-        <a class="btn btn-outline-light btn-floating m-1" href=@yield('youtube') role="button">
-          <i class="fab fa-youtube"></i>
-        </a>
+          <!-- youtube -->
+          <a class="btn btn-outline-light btn-floating m-1" href=@yield('youtube') role="button">
+            <i class="fab fa-youtube"></i>
+          </a>
 
 
-        <!-- Twitter -->
-        <a class="btn btn-outline-light btn-floating m-1" href=@yield('twitter') role="button">
-          <i class="fab fa-twitter"></i>
-        </a>
+          <!-- Twitter -->
+          <a class="btn btn-outline-light btn-floating m-1" href=@yield('twitter') role="button">
+            <i class="fab fa-twitter"></i>
+          </a>
 
-        <!-- weibo -->
-        <a class="btn btn-outline-light btn-floating m-1" href=@yield('weibo') role="button">
-          <i class="fab fa-weibo"></i>
-        </a>
+          <!-- weibo -->
+          <a class="btn btn-outline-light btn-floating m-1" href=@yield('weibo') role="button">
+            <i class="fab fa-weibo"></i>
+          </a>
 
-        <!-- Instagram -->
-        <a class="btn btn-outline-light btn-floating m-1" href=@yield('instagram') role="button">
-          <i class="fab fa-instagram"></i>
-        </a>
+          <!-- Instagram -->
+          <a class="btn btn-outline-light btn-floating m-1" href=@yield('instagram') role="button">
+            <i class="fab fa-instagram"></i>
+          </a>
 
-      </section>
-      <!-- Section: Social media -->
-    </div>
-    <!-- Grid container -->
+        </section>
+        <!-- Section: Social media -->
+      </div>
+      <!-- Grid container -->
 
-    <!-- Copyright -->
-    <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
-      © Copyright:
-      <a class="text-white" href="https://www.johnnys-net.jp">as much as</a>
-    </div>
-    <!-- Copyright -->
-  </footer>
-</div>
+      <!-- Copyright -->
+      <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+        © Copyright:
+        <a class="text-white" href="https://www.johnnys-net.jp">as much as</a>
+      </div>
+      <!-- Copyright -->
+    </footer>
+  </div>
+</body>
 
 </html>
