@@ -34,9 +34,9 @@
       <div class="col" style="padding-top:20px">
         <h2 class="text-center">-- NEWS --</h2>
         <ul>
-          <li class="list-unstyled">2021/03/03 デビューライブDVD&Bluelay発売</li>
-          <li class="list-unstyled">2021/03/05 2021年カレンダー発売</li>
-          <li class="list-unstyled">2021/04/01 それSnowManにやらせてください 地上波放送開始！</li>
+          <li class="list-unstyled">2021/07/14 3rdシングル HELLO HELLO発売!!</li>
+          <li class="list-unstyled">毎週日曜13時 それSnowManにやらせてください 地上波放送中！</li>
+          <li class="list-unstyled">毎週水曜日YouTube配信！</li>
         </ul>
       </div>
     </div>
