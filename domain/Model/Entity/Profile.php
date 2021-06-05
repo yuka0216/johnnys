@@ -12,16 +12,14 @@ use Domain\Model\ValueObject\ProfileUserId;
 final class Profile
 {
     private $id;
-    private $userId;
     private $name;
     private $favorite;
     private $freeWriting;
     private $imagePath;
 
-    public function __construct(?ProfileId $id, ?ProfileUserId $userId, ?ProfileName $name, ?ProfileFavorite $favorite, ?ProfileFreeWriting $freeWriting,  ?ProfileImagePath $imagePath)
+    public function __construct(?ProfileId $id, ?ProfileName $name, ?ProfileFavorite $favorite, ?ProfileFreeWriting $freeWriting,  ?ProfileImagePath $imagePath)
     {
         $this->id = $id;
-        $this->userId = $userId;
         $this->name = $name;
         $this->favorite = $favorite;
         $this->freeWriting = $freeWriting;
@@ -31,10 +29,6 @@ final class Profile
     public function id(): ?ProfileId
     {
         return $this->id;
-    }
-    public function userId(): ?ProfileUserId
-    {
-        return $this->userId;
     }
     public function name(): ?ProfileName
     {

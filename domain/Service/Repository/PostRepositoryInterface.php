@@ -6,13 +6,15 @@ namespace Domain\Service\Repository;
 
 use App\Adapter\Repository\ImageRepository;
 use App\Adapter\Repository\ProfileRepository;
+use Domain\Model\Entity\Post;
+use Domain\Model\ValueObject\PostId;
 use Domain\Model\ValueObject\PostThreadId;
 use Illuminate\Http\Request;
 
 interface PostRepositoryInterface
 {
-    public function findAll(PostThreadId $threadId, ImageRepository $imageRepository, ProfileRepository $profileRepository): array;
+    public function findAll(PostThreadId $threadId): array;
     //PostThreadId型の$threadIdを入れるとarrayを返してくれる
 
-    public function findTargetPost(Request $request, ImageRepository $imageRepository, ProfileRepository $profileRepository): object;
+    public function findTargetPost(PostId $id): Post;
 }

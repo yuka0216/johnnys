@@ -11,9 +11,11 @@
             <label>コメント編集</label>
             @if($errors->has('comment')) <span class="text-danger">{{ $errors->first('comment') }}</span> @endif
             <textarea class="form-control" name="comment" rows="5">{{ $post->comment()->value() }}</textarea>
-            @if (!empty($image))
+            @if (!empty($post->images()))
             投稿した画像:
-            <img src="{{ asset('/images/' . $image) }}" style="width: 100px">
+            @foreach ($post->images() as $image)
+            <img src="{{ asset('/images/' . $image->path()->value()) }}" style="width: 100px">
+            @endforeach
             @endif
             <br>
             <div class="form-check">

@@ -10,11 +10,13 @@ final class Thread
 {
     private $id;
     private $name;
+    private $artists;
 
-    public function __construct(ThreadId $id, ThreadName $name)
+    public function __construct(ThreadId $id, ThreadName $name, array $artists)
     {
         $this->id = $id;
         $this->name = $name;
+        $this->artists = $artists;
     }
 
     public function id(): ThreadId
@@ -25,5 +27,16 @@ final class Thread
     public function name(): ThreadName
     {
         return $this->name;
+    }
+
+    public function artists(): array
+    {
+        return $this->artists;
+    }
+
+    public function equals(ThreadId $threadId): bool
+    {
+        return ($this->id()::class === $threadId::class
+            && $this->id()->value() === $threadId->value());
     }
 }

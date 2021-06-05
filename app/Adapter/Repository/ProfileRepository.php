@@ -30,7 +30,6 @@ final class ProfileRepository implements ProfileRepositoryInterface
         if ($profile == null) return null;
         $profileEntity = new Profile(
             new ProfileId($profile->id),
-            new ProfileUserId($profile->user_id),
             new ProfileName($profile->name),
             new ProfileFavorite($profile->favorite),
             new ProfileFreeWriting($profile->free_writing),
