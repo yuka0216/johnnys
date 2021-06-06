@@ -13,8 +13,10 @@ class ProfileFreeWriting
 
     public function __construct(?string $value)
     {
-        if (mb_strlen($value) > self::MAX_LENGTH) {
-            throw new Exception("FreeWritingは20文字以内で指定してください");
+        if ($value !== null) {
+            if (mb_strlen($value) > self::MAX_LENGTH) {
+                throw new Exception("FreeWritingは20文字以内で指定してください");
+            }
         }
         $this->value = $value;
     }

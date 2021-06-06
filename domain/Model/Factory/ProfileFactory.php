@@ -13,7 +13,7 @@ use Domain\Model\ValueObject\ProfileName;
 
 class ProfileFactory
 {
-    public static function create(int $id, string $name, string $favorite, string $freeWriting, string $imagePath): Profile
+    public static function create(int $id, string $name, ?string $favorite, ?string $freeWriting, string $imagePath): Profile
     {
         return new Profile(
             new ProfileId($id),
