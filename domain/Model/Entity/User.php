@@ -17,12 +17,6 @@ class User
         $this->id = $id;
         $this->name = $name;
         $this->profile = $profile;
-        // $this->email = $email;
-        // $this->emailVerifiedAt = $emailVerifiedAt;
-        // $this->password = $password;
-        // $this->rememberToken = $rememberToken;
-        // $this->createdAt = $createdAt;
-        // $this->updatedAt = $updatedAt;
     }
 
     public function id(): UserId

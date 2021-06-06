@@ -6,12 +6,7 @@ namespace App\Adapter\Repository;
 
 use App\Profile as ProfileModel;
 use Domain\Model\Entity\Profile;
-use Domain\Model\ValueObject\ProfileFavorite;
-use Domain\Model\ValueObject\ProfileFreeWriting;
-use Domain\Model\ValueObject\ProfileId;
-use Domain\Model\ValueObject\ProfileImagePath;
-use Domain\Model\ValueObject\ProfileName;
-use Domain\Model\ValueObject\ProfileUserId;
+use Domain\Model\Factory\ProfileFactory;
 use Domain\Model\ValueObject\UserId;
 use Domain\Service\Repository\ProfileRepositoryInterface;
 
@@ -24,17 +19,10 @@ final class ProfileRepository implements ProfileRepositoryInterface
         $this->profileModel = $profileModel;
     }
 
-    public function findTargetProfile(UserId $userId)
+    public function findTargetProfile(UserId $userId): ?Profile
     {
         $profile = $this->profileModel->where('user_id', $userId->value())->first();
         if ($profile == null) return null;
-        $profileEntity = new Profile(
-            new ProfileId($profile->id),
-            new ProfileName($profile->name),
-            new ProfileFavorite($profile->favorite),
-            new ProfileFreeWriting($profile->free_writing),
-            new ProfileImagePath($profile->profile_image_path),
-        );
-        return $profileEntity;
+        return ProfileFactory::create($profile->id, $profile->name, $profile->favorite, $profile->free_writing, $profile->profile_image_path);
     }
 }

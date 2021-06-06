@@ -30,7 +30,7 @@ final class ArtistRepository implements ArtistRepositoryInterface
         return ArtistFactory::createMultiple($targetArtists);
     }
 
-    public function fetchProfilesByGroupName($groupName): array
+    public function fetchProfilesByGroupName(string $groupName): array
     {
         $targetArtists = $this->artistModel->where('group', $groupName)->get();
         return ArtistFactory::createMultiple($targetArtists);

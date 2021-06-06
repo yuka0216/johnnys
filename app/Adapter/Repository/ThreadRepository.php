@@ -8,8 +8,6 @@ use App\Thread as ThreadModel;
 use App\ThreadsArtists as ThreadsArtistsModel;
 use Domain\Model\Factory\ArtistFactory;
 use Domain\Model\Factory\ThreadFactory;
-use Domain\Model\ValueObject\ThreadId;
-use Domain\Model\ValueObject\ThreadName;
 use Domain\Service\Repository\ThreadRepositoryInterface;
 
 final class ThreadRepository implements ThreadRepositoryInterface
@@ -35,11 +33,5 @@ final class ThreadRepository implements ThreadRepositoryInterface
             $artistEntities[$threadArtist->thread_id][] = ArtistFactory::create($artist->id, $artist->name, $artist->group, $artist->birthday, $artist->blood_type, $artist->joined_date, $artist->image_path);
         }
         return ThreadFactory::createMultiple($threads, $artistEntities);
-    }
-
-    public function threadName(ThreadId $threadId): object
-    {
-        $thread_name = $this->threadModel->where('id', $threadId->value())->value('thread_name');
-        return new ThreadName($thread_name);
     }
 }
