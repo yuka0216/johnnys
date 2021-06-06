@@ -44,7 +44,7 @@ final class Artist
         return $this->group;
     }
 
-    public function birthday(): String
+    public function birthday(): string
     {
         return $this->birthday;
     }
