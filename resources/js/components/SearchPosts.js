@@ -6,7 +6,7 @@ const SearchPosts = ({ searchPosts }) => (
     <div key={searchPost.id} className="card">
       <div className="card-body">
         <div>
-          <p>{searchPost.name}</p>
+          <p>{searchPost.name}@ <a href={`/snowman/talk/${searchPost.thread_id}`}>{searchPost.threadName}スレッド</a></p>
           <p>{searchPost.comment}</p>
           <ImagePathsMap post={searchPost} viewType="instagram" />
           <p>{searchPost.created_at}</p>
