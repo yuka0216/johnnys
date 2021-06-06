@@ -29,10 +29,10 @@
             <br>
             <label for="chk01" class="col-form-label">誰についての話題ですか？</label>
             <div class="col-md-12">
-              @foreach($memberList as $member)
+              @foreach($artists as $artist)
               <div class="form-check form-check-inline">
-                <input class="form-check-input" type="checkbox" id="chk01" name="artist_id[]" value="{{ $member->id }}">
-                <label class="form-check-label" for="chk01">{{ $member->name }}</label>
+                <input class="form-check-input" type="checkbox" id="chk01" name="artist_id[]" value="{{ $artist->id()->value() }}">
+                <label class="form-check-label" for="chk01">{{ $artist->name()->value() }}</label>
               </div>
               @endforeach
             </div>

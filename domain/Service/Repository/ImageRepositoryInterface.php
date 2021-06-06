@@ -8,5 +8,4 @@ namespace Domain\Service\Repository;
 interface ImageRepositoryInterface
 {
     public function findAll(): array;
-    public static function makeEntities($images): array;
 }

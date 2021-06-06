@@ -11,10 +11,10 @@
         @if($errors->has('name'))<span class="text-danger">{{ $errors->first('name') }}</span>@endif
         <input type="text" class="form-control" name="name" value="{{ $profile->name()->value() }}"><br>
         <label>担当</label><br>
-        @foreach($memberList as $member)
+        @foreach($artists as $artist)
         <div class="form-check form-check-inline">
-          <input class="form-check-input" type="radio" id="radio2a" name="favorite" value="{{ $member->id }}" {{ ($profile->favorite()->value() == $member->id)? "checked" : "" }}>
-          <label class="form-check-label" for="radio2a">{{ $member->name }}</label>
+          <input class="form-check-input" type="radio" id="radio2a" name="favorite" value="{{ $artist->id()->value() }}" {{ ($profile->favorite()->value() == $artist->id()->value())? "checked" : "" }}>
+          <label class="form-check-label" for="radio2a">{{ $artist->name()->value() }}</label>
         </div>
         @endforeach
         <br>
@@ -38,10 +38,10 @@
         @if($errors->has('name'))<span class="text-danger">{{ $errors->first('name') }}</span>@endif
         <input type="text" class="form-control" name="name" placeholder="名前"><br>
         <label>担当</label><br>
-        @foreach($memberList as $member)
+        @foreach($artists as $artist)
         <div class="form-check form-check-inline">
-          <input class="form-check-input" type="radio" id="radio2a" name="favorite" value="{{ $member->id }}">
-          <label class="form-check-label" for="radio2a">{{ $member->name }}</label>
+          <input class="form-check-input" type="radio" id="radio2a" name="favorite" value="{{ $artist->id()->value() }}">
+          <label class="form-check-label" for="radio2a">{{ $artist->name()->value() }}</label>
         </div>
         @endforeach
         <br>

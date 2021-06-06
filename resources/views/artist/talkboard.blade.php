@@ -8,7 +8,7 @@
         <div class="nav flex-column">
           <h4>talk about...?</h4>
           <a href="{{ action('ArtistController@makeCheckBox') }}" role="button" class="btn" style="background-color: #e5c4bb">新規作成</a>
-          @foreach ($threadList as $thread)
+          @foreach ($threads as $thread)
           <a href="/snowman/talk/{{ $thread->id()->value() }}" class="nav-link" style="color:black">#{{ $thread->name()->value() }}</a>
           @endforeach
         </div>
@@ -17,9 +17,9 @@
     <div class="col-md-8 order-1" id="main">
       <div class="border">
         <h4 class="text-center">talk board</h4>
-        <h2 class="text-center">-{{ $thread_name->value() }}-</h2>
+        <h2 class="text-center">-{{ $targetThread->name()->value() }}-</h2>
         <br>
-        <form action="{{ action('ArtistController@post', ['threadId' => $threadId]) }}" method="post" enctype="multipart/form-data">
+        <form action="{{ action('ArtistController@post', ['threadId' => $targetThread->id()->value()]) }}" method="post" enctype="multipart/form-data">
           {{ csrf_field() }}
           <div class="form-group col-md-12">
             <label>コメント</label>
@@ -48,7 +48,7 @@
       </div>
     </nav>
     <div class="tab-content" id="nav-tabContent">
-      <form action="{{ action('ArtistController@postIndex', ['threadId' => $threadId]) }}" method="get"></form>
+      <form action="{{ action('ArtistController@postIndex', ['threadId' => $targetThread->id()->value()]) }}" method="get"></form>
       <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
         @if (count($posts) > 0)
         @foreach($posts as $post)
@@ -57,7 +57,7 @@
             <td>
               <a href="{{ "/mypage/" . $post->user()->id()->value()  }}" style="color:#6f6152">
                 <img @if (is_null($post->user()->profile())) class="rounded-full"
-                src=" {{ asset('/images/snow.png') }}" width="65" height="65" align="right">{{ $post->user()->name()->value() }}</a><br>
+                src=" {{ asset('/images/snow.png') }}" width="63" height="63" align="right">{{ $post->user()->name()->value() }}</a><br>
               @else class="rounded-full {{ $colorList[$post->user()->profile()->favorite()->value()] }}"
               src=" {{ asset('/images/' . $post->user()->profile()->imagePath()->value())}}" width="64" height="64" align="right">{{ $post->user()->profile()->name()->value() }}</a><br>
               @endif

@@ -5,7 +5,7 @@
   <div class="row">
     <div class="col-md-10 mx-auto">
       <h3>アーティスト一覧</h3>
-      <form action="{{ action('ArtistController@snowmanIndex') }}" method="get">
+      <form action="{{ action('ArtistController@groupMemberIndex', ['groupName' => "Snow Man"]) }}" method="get">
         <table class="table table-hover">
           <thead class="thead-lignt">
             <tr>

@@ -3,20 +3,19 @@
 namespace App\Http\Controllers;
 
 use App\Adapter\Repository\ArtistRepository;
-use App\Adapter\Repository\ImageRepository;
 use App\Adapter\Repository\PostRepository;
 use App\Adapter\Repository\ProfileRepository;
 use App\Adapter\Repository\ThreadRepository;
 use App\Http\Requests\createThreadRequest;
 use App\Http\Requests\createPostRequest;
 use Illuminate\Http\Request;
-use App\Artist;
 use App\Http\Requests\createSettingRequest;
 use App\Post;
 use App\Thread;
 use App\Threads_artist;
 use App\Profile;
 use App\Image;
+use Domain\Model\ValueObject\PostId;
 use Domain\Model\ValueObject\PostThreadId;
 use Domain\Model\ValueObject\ThreadId;
 use Domain\Model\ValueObject\UserId;
@@ -24,16 +23,10 @@ use Illuminate\Support\Facades\Auth;
 
 class ArtistController extends controller
 {
-    public static function makeThreadList(ThreadRepository $threadRepository)
+    public function groupMemberIndex(ArtistRepository $artistRepository)
     {
-        return $threadRepository->findAll();
-    }
-
-    public function snowmanIndex(ArtistRepository $artistRepository)
-    {
-        $artists = $artistRepository->fetchProfileBySnowman();
+        $artists = $artistRepository->fetchProfilesByGroupName("Snow Man");
         $image = "C:\bbs\snowman";
-
         return view('artist.snowmanmember', ['artists' => $artists, 'image' => $image]);
     }
 
@@ -54,14 +47,17 @@ class ArtistController extends controller
         return redirect("snowman/talk/" . $request->threadId);
     }
 
-    public function postIndex($threadId, PostRepository $postRepository, ThreadRepository $threadRepository, ImageRepository $imageRepository, ProfileRepository $profileRepository) //newしておいてくれる(Laravelの機能)
+    public function postIndex($threadId, PostRepository $postRepository, ThreadRepository $threadRepository) //newしておいてくれる(Laravelの機能)
     {
         $postThreadId = new PostThreadId($threadId);
-        // $postRepository = new PostRepository();
-        //↑エラーになったのでPostRepository $postRepositoryを引数にしてnewした状態の$postRepositoryを使えるようにした。
-        $posts = $postRepository->findAll($postThreadId, $imageRepository, $profileRepository);
-        $threadList = self::makeThreadList($threadRepository);
-        $thread_name = $threadRepository->threadName(new ThreadId($threadId));
+        $posts = $postRepository->findAll($postThreadId);
+        $threadIdVo = new ThreadId($threadId);
+        $threads = $threadRepository->findAll();
+        foreach ($threads as $thread) {
+            if ($thread->equals($threadIdVo)) {
+                $targetThread = clone $thread;
+            }
+        }
 
         $colorList = [
             "0" => "none",
@@ -76,15 +72,14 @@ class ArtistController extends controller
             "9" => "black"
         ];
 
-        return view('artist.talkboard', ['thread_name' => $thread_name, 'threadId' => $threadId, 'posts' => $posts, 'threadList' => $threadList, 'colorList' => $colorList]);
+        return view('artist.talkboard', ['targetThread' => $targetThread, 'posts' => $posts, 'threads' => $threads, 'colorList' => $colorList]);
     }
 
-    public function postEdit(Request $request, PostRepository $postRepository, ImageRepository $imageRepository, ProfileRepository $profileRepository)
+    public function postEdit(Request $request, PostRepository $postRepository)
     {
-        $post = $postRepository->findTargetPost($request, $imageRepository, $profileRepository);
-        $image = Image::where('post_id', $request->id)->value('image_path');
-        $threadId = $request->threadId;
-        return view('artist.postEdit', ['post' => $post, 'image' => $image, 'threadId' => $threadId]);
+        $postId = new PostId($request->id);
+        $post = $postRepository->findTargetPost($postId);
+        return view('artist.postEdit', ['post' => $post]);
     }
 
     public function postUpdate(Request $request)
@@ -124,24 +119,22 @@ class ArtistController extends controller
         return redirect("mypage/" . $user_id);
     }
 
-    public function profile(ProfileRepository $profileRepository)
+    public function profile(ProfileRepository $profileRepository, ArtistRepository $artistRepository)
     {
         $userId = new UserId(Auth::id());
-        $profile = Profile::where('user_id', $userId->value())->first();
-        if (!empty($profile)) $profile = $profileRepository->findTargetProfile($userId);
-
-        $memberList = Artist::where('group', 'Snow Man')->get();
-        return view('artist.profile', ['profile' => $profile, 'memberList' => $memberList]);
+        $profile = $profileRepository->findTargetProfile($userId);
+        $artists = $artistRepository->fetchProfilesByGroupName("Snow Man");
+        return view('artist.profile', ['profile' => $profile, 'artists' => $artists]);
     }
 
-    public function makeCheckBox(ThreadRepository $threadRepository) //スレッド新規作成画面の誰の話題か選ぶためのチェックボックス作成（とりあえずネットのコピペ）
+    public function makeCheckBox(ThreadRepository $threadRepository, ArtistRepository $artistRepository) //スレッド新規作成画面の誰の話題か選ぶためのチェックボックス作成（とりあえずネットのコピペ）
     {
-        $threadList = self::makeThreadList($threadRepository);
-        $memberList = Artist::where('group', 'Snow Man')->get();
+        $threadList = $threadRepository->findAll();
+        $artists = $artistRepository->fetchProfilesByGroupName("Snow Man");
 
         return view('artist.addThread', [
             'threadList' => $threadList,
-            'memberList' => $memberList,
+            'artists' => $artists,
         ]);
     }
 }

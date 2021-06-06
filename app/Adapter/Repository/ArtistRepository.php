@@ -5,13 +5,7 @@ declare(strict_types=1);
 namespace App\Adapter\Repository;
 
 use App\Artist as ArtistModel;
-use DateTime;
-use Domain\Model\Entity\Artist;
-use Domain\Model\ValueObject\ArtistBloodType;
-use Domain\Model\ValueObject\ArtistGroup;
-use Domain\Model\ValueObject\ArtistId;
-use Domain\Model\ValueObject\ArtistImagePath;
-use Domain\Model\ValueObject\ArtistName;
+use Domain\Model\Factory\ArtistFactory;
 use Domain\Service\Repository\ArtistRepositoryInterface;
 use Illuminate\Http\Request;
 
@@ -32,32 +26,32 @@ final class ArtistRepository implements ArtistRepositoryInterface
 
     public function findAll(): array
     {
-        $artists = $this->artistModel->all();
-        return self::makeEntity($artists);
+        $targetArtists = $this->artistModel->all();
+        return ArtistFactory::createMultiple($targetArtists);
     }
 
-    public function fetchProfileBySnowman(): array
+    public function fetchProfilesByGroupName($groupName): array
     {
-        $targetArtistList = $this->artistModel->where('group', "Snow Man")->get();
-        return self::makeEntity($targetArtistList);
+        $targetArtists = $this->artistModel->where('group', $groupName)->get();
+        return ArtistFactory::createMultiple($targetArtists);
     }
 
 
     public function fetchProfileBySearch($searchWordList): array
     {
-        $query = $this->artistModel->query();
         $judge = array_filter($searchWordList);
         if (empty($judge)) {
             return $this->findAll();
         }
 
+        $query = $this->artistModel->query();
         foreach ($searchWordList as $columnName => $searchWord) {
             if ($columnName == self::BLOOD_TYPE_LABEL && (!empty($searchWord))) $query->where($columnName, $searchWord);
             if (!empty($searchWord)) $query->where($columnName, 'LIKE', '%' . $searchWord . '%');
         }
+        $targetArtists = $query->get();
 
-        $targetArtistList = $query->get();
-        return self::makeEntity($targetArtistList);
+        return ArtistFactory::createMultiple($targetArtists);
     }
 
     public static function makeSearchWordList(Request $request): array
@@ -71,22 +65,5 @@ final class ArtistRepository implements ArtistRepositoryInterface
         ];
 
         return $searchWordList;
-    }
-
-    public static function makeEntity($targetArtistList): array
-    {
-        $artistEntities = [];
-        foreach ($targetArtistList as $targetArtist) {
-            $artistEntities[] = new Artist(
-                new ArtistId($targetArtist->id),
-                new ArtistName($targetArtist->name),
-                new ArtistGroup($targetArtist->group),
-                $targetArtist->birthday,
-                new ArtistBloodType($targetArtist->blood_type),
-                $targetArtist->joined_date,
-                new ArtistImagePath($targetArtist->image_path)
-            );
-        }
-        return $artistEntities;
     }
 }
