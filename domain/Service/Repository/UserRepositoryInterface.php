@@ -7,5 +7,4 @@ namespace Domain\Service\Repository;
 
 interface UserRepositoryInterface
 {
-    public function findAll(): array;
 }

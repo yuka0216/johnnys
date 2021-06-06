@@ -12,9 +12,9 @@ use Illuminate\Http\Request;
 use App\Http\Requests\createSettingRequest;
 use App\Post;
 use App\Thread;
-use App\Threads_artist;
 use App\Profile;
 use App\Image;
+use App\ThreadsArtists;
 use Domain\Model\ValueObject\PostId;
 use Domain\Model\ValueObject\PostThreadId;
 use Domain\Model\ValueObject\ThreadId;
@@ -106,7 +106,7 @@ class ArtistController extends controller
 
         $artist_ids = $request->artist_id;
         foreach ($artist_ids as $artist_id) {
-            Threads_artist::addThreadData($artist_id, $add_id);
+            ThreadsArtists::addThreadData($artist_id, $add_id);
             unset($request['_token']);
         }
         return redirect("snowman/talk/" . $add_id);

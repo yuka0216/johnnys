@@ -36,7 +36,7 @@
 
         <label>名前</label>
         @if($errors->has('name'))<span class="text-danger">{{ $errors->first('name') }}</span>@endif
-        <input type="text" class="form-control" name="name" placeholder="名前"><br>
+        <input type="text" class="form-control" name="name"><br>
         <label>担当</label><br>
         @foreach($artists as $artist)
         <div class="form-check form-check-inline">
