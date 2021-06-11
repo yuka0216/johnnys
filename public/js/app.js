@@ -52358,6 +52358,35 @@ Object(react_dom__WEBPACK_IMPORTED_MODULE_1__["render"])( /*#__PURE__*/react__WE
 
 /***/ }),
 
+/***/ "./resources/js/components/FavoriteThreads.js":
+/*!****************************************************!*\
+  !*** ./resources/js/components/FavoriteThreads.js ***!
+  \****************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _Threads__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Threads */ "./resources/js/components/Threads.js");
+
+
+
+var FavoriteThreads = function FavoriteThreads(_ref) {
+  var profile = _ref.profile;
+  return profile.favoriteThreads.map(function (favoriteThread) {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Threads__WEBPACK_IMPORTED_MODULE_1__["default"], {
+      key: favoriteThread.thread_id,
+      favoriteThread: favoriteThread
+    });
+  });
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (FavoriteThreads);
+
+/***/ }),
+
 /***/ "./resources/js/components/Form.js":
 /*!*****************************************!*\
   !*** ./resources/js/components/Form.js ***!
@@ -52608,6 +52637,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _SearchPosts__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./SearchPosts */ "./resources/js/components/SearchPosts.js");
 /* harmony import */ var _Form__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./Form */ "./resources/js/components/Form.js");
 /* harmony import */ var _ProfileCheck__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./ProfileCheck */ "./resources/js/components/ProfileCheck.js");
+/* harmony import */ var _FavoriteThreads__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./FavoriteThreads */ "./resources/js/components/FavoriteThreads.js");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -52625,6 +52655,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
 
 
 
@@ -52716,22 +52747,21 @@ var Main = function Main() {
 
             case 3:
               res = _context2.sent;
-              console.log("res", res.data);
               setPosts(res.data);
-              _context2.next = 11;
+              _context2.next = 10;
               break;
 
-            case 8:
-              _context2.prev = 8;
+            case 7:
+              _context2.prev = 7;
               _context2.t0 = _context2["catch"](0);
               console.log("e", _context2.t0);
 
-            case 11:
+            case 10:
             case "end":
               return _context2.stop();
           }
         }
-      }, _callee2, null, [[0, 8]]);
+      }, _callee2, null, [[0, 7]]);
     }));
 
     return function initPosts(_x, _x2) {
@@ -52861,6 +52891,9 @@ var Main = function Main() {
     src: '/image/虫眼鏡.jpg',
     width: "40px"
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement(react_tabs__WEBPACK_IMPORTED_MODULE_2__["Tab"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement("img", {
+    src: '/image/ピンクハート.png',
+    width: "40px"
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement(react_tabs__WEBPACK_IMPORTED_MODULE_2__["Tab"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement("img", {
     src: '/image/マイク.png',
     width: "40px"
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement(react_tabs__WEBPACK_IMPORTED_MODULE_2__["Tab"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement("img", {
@@ -52879,7 +52912,9 @@ var Main = function Main() {
     search: search
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement(_SearchPosts__WEBPACK_IMPORTED_MODULE_10__["default"], {
     searchPosts: searchPosts
-  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement(react_tabs__WEBPACK_IMPORTED_MODULE_2__["TabPanel"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement("h2", null, "\u30B3\u30F3\u30B5\u30FC\u30C8\u53C2\u6226\u5C65\u6B74"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement("p", null, "\u8FFD\u52A0\u3059\u308B\u30DC\u30BF\u30F3"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement("p", null, "\u30D6\u30ED\u30B0\u307F\u305F\u3044\u306B\u6295\u7A3F\u4E00\u89A7\u8868\u793A")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement(react_tabs__WEBPACK_IMPORTED_MODULE_2__["TabPanel"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement(_Form__WEBPACK_IMPORTED_MODULE_11__["default"], null))));
+  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement(react_tabs__WEBPACK_IMPORTED_MODULE_2__["TabPanel"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement("h2", null, "\u63A8\u3057\u306E\u30B9\u30EC\u30C3\u30C9\u4E00\u89A7"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement(_FavoriteThreads__WEBPACK_IMPORTED_MODULE_13__["default"], {
+    profile: profile
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement(react_tabs__WEBPACK_IMPORTED_MODULE_2__["TabPanel"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement("h2", null, "\u30B3\u30F3\u30B5\u30FC\u30C8\u53C2\u6226\u5C65\u6B74"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement("p", null, "\u8FFD\u52A0\u3059\u308B\u30DC\u30BF\u30F3"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement("p", null, "\u30D6\u30ED\u30B0\u307F\u305F\u3044\u306B\u6295\u7A3F\u4E00\u89A7\u8868\u793A")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement(react_tabs__WEBPACK_IMPORTED_MODULE_2__["TabPanel"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement(_Form__WEBPACK_IMPORTED_MODULE_11__["default"], null))));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (Main);
@@ -53047,6 +53082,37 @@ var SearchPosts = function SearchPosts(_ref) {
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (SearchPosts);
+
+/***/ }),
+
+/***/ "./resources/js/components/Threads.js":
+/*!********************************************!*\
+  !*** ./resources/js/components/Threads.js ***!
+  \********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+
+
+var Threads = function Threads(_ref) {
+  var favoriteThread = _ref.favoriteThread;
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    style: {
+      marginBottom: "5px"
+    },
+    className: "card"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "card-body"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "# ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+    href: "/snowman/talk/".concat(favoriteThread.thread_id)
+  }, favoriteThread.thread_name, "\u30B9\u30EC\u30C3\u30C9"))));
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Threads);
 
 /***/ }),
 

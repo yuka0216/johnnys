@@ -5,6 +5,8 @@ namespace App;
 use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\Model;
 use App\Artist;
+use App\Thread;
+use App\ThreadsArtists;
 
 class Profile extends Model
 {
@@ -61,11 +63,20 @@ class Profile extends Model
     {
         $favoriteName = Artist::where('id', $profile->favorite)->value('name');
 
+        $favoriteThreadIds = ThreadsArtists::where('artist_id', $profile->favorite)->get();
+        foreach ($favoriteThreadIds as $favoriteThreadId) {
+            $favoriteThreads[] = [
+                "thread_id" => $favoriteThreadId->thread_id,
+                "thread_name" => Thread::where('id', $favoriteThreadId->thread_id)->value('thread_name')
+            ];
+        }
+
         $profile = [
             "name" => $profile->name,
             "favorite" => $favoriteName,
             "free_writing" => $profile->free_writing,
-            "profile_image_path" => $profile->profile_image_path
+            "profile_image_path" => $profile->profile_image_path,
+            "favoriteThreads" => $favoriteThreads,
         ];
         return $profile;
     }

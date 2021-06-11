@@ -2,10 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Http\Resources\PostResource;
 use App\Post;
-use Illuminate\Support\Facades\Auth;
 
 class PostController extends Controller
 {
