@@ -10,6 +10,7 @@ import '../App.css';
 import SearchPosts from './SearchPosts';
 import Form from './Form';
 import ProfileCheck from './ProfileCheck';
+import FavoriteThreads from './FavoriteThreads';
 
 const Main = () => {
 
@@ -37,7 +38,6 @@ const Main = () => {
   const initPosts = async (targetUserId, user) => {
     try {
       const res = await axios.get('/api' + (targetUserId) + '/' + (user.id))
-      console.log("res", res.data);
       setPosts(res.data);
     } catch (e) {
       console.log("e", e);
@@ -82,6 +82,7 @@ const Main = () => {
           <Tab><img src={'/image/吹き出し.jpg'} width="40px" /></Tab>
           <Tab><img src={'/image/カメラ.jpeg'} width="40px" /></Tab>
           <Tab><img src={'/image/虫眼鏡.jpg'} width="40px" /></Tab>
+          <Tab><img src={'/image/ピンクハート.png'} width="40px" /></Tab>
           <Tab><img src={'/image/マイク.png'} width="40px" /></Tab>
           <Tab><img src={'/image/DM.jpeg'} width="40px" /></Tab>
         </TabList>
@@ -105,6 +106,10 @@ const Main = () => {
             <Search search={search} />
             <SearchPosts searchPosts={searchPosts} />
           </div>
+        </TabPanel>
+        <TabPanel>
+          <h2>推しのスレッド一覧</h2>
+          <FavoriteThreads profile={profile} />
         </TabPanel>
         <TabPanel>
           <h2>コンサート参戦履歴</h2>
