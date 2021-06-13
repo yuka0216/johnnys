@@ -56,4 +56,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::view('/', 'artist.snowman');
 });
 
+//ゲストユーザーログイン
+Route::get('guest', 'Auth\LoginController@guestLogin')->name('login.guest');
+
 Auth::routes();
