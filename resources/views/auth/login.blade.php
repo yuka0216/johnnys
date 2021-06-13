@@ -54,6 +54,11 @@
                 <button type="submit" class="btn btn-primary">
                   {{ __('Login') }}
                 </button>
+                <button class="btn btn-success">
+                  <a href="{{ route('login.guest') }}" class="text-white">
+                    ゲストログイン
+                  </a>
+                </button>
               </div>
             </div>
           </form>

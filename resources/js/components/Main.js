@@ -79,12 +79,12 @@ const Main = () => {
       <ProfileCheck profile={profile} />
       <Tabs onSelect={() => { initPosts(targetUserId, user) }}>
         <TabList>
-          <Tab><img src={'/image/吹き出し.jpg'} width="40px" /></Tab>
-          <Tab><img src={'/image/カメラ.jpeg'} width="40px" /></Tab>
-          <Tab><img src={'/image/虫眼鏡.jpg'} width="40px" /></Tab>
-          <Tab><img src={'/image/ピンクハート.png'} width="40px" /></Tab>
-          <Tab><img src={'/image/マイク.png'} width="40px" /></Tab>
-          <Tab><img src={'/image/DM.jpeg'} width="40px" /></Tab>
+          <Tab style={{ width: "57px" }}><img src={'/image/吹き出し.jpg'} width="40px" /></Tab>
+          <Tab style={{ width: "57px" }}><img src={'/image/カメラ.jpeg'} width="40px" /></Tab>
+          <Tab style={{ width: "57px" }}><img src={'/image/虫眼鏡.jpg'} width="40px" /></Tab>
+          <Tab style={{ width: "57px" }}><img src={'/image/ピンクハート.png'} width="40px" /></Tab>
+          <Tab style={{ width: "57px" }}><img src={'/image/マイク.png'} width="40px" /></Tab>
+          <Tab style={{ width: "57px" }}><img src={'/image/DM.jpeg'} width="50px" /></Tab>
         </TabList>
         <TabPanel>
           <div>
