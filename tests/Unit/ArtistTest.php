@@ -1,6 +1,8 @@
 <?php
 
-namespace Tests\Feature;
+declare(strict_types=1);
+
+namespace Tests\Unit;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
@@ -16,8 +18,8 @@ class ArtistTest extends TestCase
      */
     public function testExample()
     {
-        $artist = new ArtistName(1);
+        $artist = new ArtistName("大谷");
         $artistName = $artist->value();
-        $this->assertEquals(1, $artistName);
+        $this->assertEquals("大谷", $artistName);
     }
 }
