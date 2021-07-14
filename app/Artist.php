@@ -18,6 +18,11 @@ class Artist extends Model
         return $this->hasMany('App\Thread');
     }
 
+    public function groupList()
+    {
+        return $this->belongsTo('App\GroupList');
+    }
+
     // public static function fetchProfileByName(string $name)
     // {
     //     return Artist::where('talk_board', $name)->first();
